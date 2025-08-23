@@ -17,8 +17,8 @@
 
 **Jacob Ross** - *Combat Medic & ACS Approved Instructor*
 
-- **DOD Combat Medic** (2011-2012, Afghanistan deployment)
-- **33+ combat casualties** processed under direct enemy fire  
+- **National Guard Combat Medic** (Multiple Overseas tours; 2011-2012, Afghanistan deployment)
+- **Multiple combat casualties** processed under direct enemy fire  
 - **American College of Surgeons** Stop the Bleed Approved Instructor
 - **Federal Security Clearance** (Active Secret)
 - **Author**: *Blood, Dirt & Duct Tape: A Combat Medic's Legacy*
@@ -28,12 +28,12 @@
 ## 📋 Training Programs
 
 ### Civilian Field Responder Course
-**8-Hour Comprehensive Training • $395**
+**4-Hour Comprehensive Training • $395**
 
-#### What You'll Learn:
-- ✅ **Hemorrhage Control** - Tourniquet application, pressure dressings, hemostatic agents
-- ✅ **Tactical Movement** - Casualty extraction, cover techniques, team coordination  
-- ✅ **Field Readiness** - Improvised supplies, environmental considerations, legal protection
+What You'll Learn:
+- ✅ Hemorrhage Control - Tourniquet application, pressure dressings, hemostatic agents
+- ✅ Tactical Movement - Casualty movement, airway management, hypothermia treatment  
+- ✅ Field Readiness - Improvised techniques, environmental considerations, legal 
 
 #### What You Get:
 - 🏆 **Official Stop the Bleed Certification** (ACS Approved)
@@ -46,7 +46,7 @@
 - **Small Groups Only**: 6 students maximum
 - **Hands-On Training**: Real equipment, real scenarios
 - **Combat-Tested Techniques**: Methods proven under fire
-- **Dual Certification**: ACS + Tactical enhancements
+- **Dual Certification**: ACS + Tactically Enhanced
 
 ---
 

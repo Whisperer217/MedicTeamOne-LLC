@@ -12,6 +12,7 @@
 ## 🩸 Mission Statement
 
 **Medic Team One, LLC** delivers combat-tested trauma training to civilians, bridging the gap between military medical expertise and community preparedness. Our mission: **Real skills. Real gear. Real readiness.**
+- Battlefield to backyard
 
 ## 🎖️ About the Instructor
 

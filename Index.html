@@ -1,0 +1,547 @@
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { CheckCircle, Shield, BookOpen, Phone, Calendar, BadgeCheck, MapPin, Landmark, Cross, AlertTriangle, Target, Users, Award, Clock, Mail, MessageCircle } from "lucide-react";
+
+export default function CivilianResponderSite() {
+  const [activeTab, setActiveTab] = useState("overview");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+
+  const handleFormChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-black text-neutral-100">
+      {/* ENHANCED NAVBAR */}
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/80 border-b border-red-900/30">
+        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              {/* Logo placeholder - replace with actual logo */}
+              <img 
+                src="/logo.png" 
+                alt="Medic Team One Logo" 
+                className="h-12 w-12 rounded-xl object-cover shadow-lg shadow-red-600/25"
+                onError={(e) => {
+                  // Fallback to icon if logo fails to load
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              {/* Fallback icon - hidden when logo loads successfully */}
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-600/25" style={{display: 'none'}}>
+                <Cross className="h-6 w-6 text-white" />
+              </div>
+              <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-black animate-pulse" />
+            </div>
+            <div className="leading-tight">
+              <p className="text-xs tracking-widest text-red-400 font-semibold">MEDIC TEAM ONE, LLC</p>
+              <p className="font-bold text-lg">Stop the Bleed + Tactical Enhancements</p>
+              <p className="text-xs text-neutral-400">ACS Approved • Combat Medic Instructor</p>
+            </div>
+          </div>
+          <nav className="hidden lg:flex items-center gap-8 text-sm">
+            <a href="#curriculum" className="text-neutral-300 hover:text-red-400 transition-colors font-medium">Training</a>
+            <a href="#instructor" className="text-neutral-300 hover:text-red-400 transition-colors font-medium">Instructor</a>
+            <a href="#pricing" className="text-neutral-300 hover:text-red-400 transition-colors font-medium">Dates</a>
+            <a href="#contact" className="text-neutral-300 hover:text-red-400 transition-colors font-medium">Contact</a>
+          </nav>
+          <div className="flex items-center gap-3">
+            <a href="#contact">
+              <Button variant="outline" className="hidden md:inline-flex border-red-700 text-red-400 hover:bg-red-950/50">
+                <Phone className="mr-2 h-4 w-4" />
+                Questions?
+              </Button>
+            </a>
+            <a href="#pricing">
+              <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-lg shadow-red-600/25 font-semibold">
+                <Calendar className="mr-2 h-4 w-4" />
+                Enroll Now
+              </Button>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* ENHANCED HERO */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-red-950/20 via-black to-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,38,38,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,38,38,0.1),transparent_50%)]" />
+        
+        <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-32">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-950/30 border border-red-800/30 text-red-400 text-sm font-medium mb-6">
+                <BadgeCheck className="h-4 w-4" />
+                ACS Approved • Combat Medic Certified
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-black leading-[0.9] tracking-tight">
+                Real skills.<br />
+                Real gear.<br />
+                <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                  Real readiness.
+                </span>
+              </h1>
+              
+              <p className="mt-8 text-xl text-neutral-300 leading-relaxed max-w-xl">
+                Learn life-saving hemorrhage control and tactical field craft from a 
+                <span className="font-bold text-white"> DOD Combat Medic</span> with 
+                <span className="font-bold text-white"> 33+ combat casualties</span> processed under fire.
+              </p>
+
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
+                  <div className="h-10 w-10 rounded-lg bg-green-500/10 flex items-center justify-center">
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Stop the Bleed Certified</p>
+                    <p className="text-sm text-neutral-400">Official ACS certification</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
+                  <div className="h-10 w-10 rounded-lg bg-red-500/10 flex items-center justify-center">
+                    <Target className="h-5 w-5 text-red-400" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Tactical Enhancements</p>
+                    <p className="text-sm text-neutral-400">Beyond basic training</p>
+                  </div>
+                </div>
+              </div>
+
+              <ul className="mt-8 space-y-4">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-5 w-5 text-green-400" />
+                  <span className="text-neutral-300">Small groups only • <span className="font-semibold text-white">6 students maximum</span></span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-5 w-5 text-green-400" />
+                  <span className="text-neutral-300">Take home a <span className="font-semibold text-white">CAT tourniquet</span> (yours to keep)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-5 w-5 text-green-400" />
+                  <span className="text-neutral-300">Signed copy of <span className="font-semibold text-white italic">Blood, Dirt & Duct Tape</span> memoir</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-5 w-5 text-green-400" />
+                  <span className="text-neutral-300">Civilian Field Responder certificate</span>
+                </li>
+              </ul>
+
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <a href="#pricing">
+                  <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-xl shadow-red-600/25 text-lg px-8 py-6 font-bold">
+                    <Calendar className="mr-3 h-5 w-5" />
+                    See Training Dates
+                  </Button>
+                </a>
+                <a href="#contact">
+                  <Button variant="outline" className="border-red-700/50 text-red-400 hover:bg-red-950/30 text-lg px-8 py-6">
+                    <MessageCircle className="mr-3 h-5 w-5" />
+                    Ask Questions
+                  </Button>
+                </a>
+              </div>
+
+              <div className="mt-8 flex items-center gap-3 p-4 rounded-xl bg-blue-950/30 border border-blue-800/30">
+                <Shield className="h-5 w-5 text-blue-400" />
+                <span className="text-blue-200 text-sm">Protected under Texas Good Samaritan laws • Certificate includes legal notation</span>
+              </div>
+            </div>
+
+            {/* ENHANCED RIGHT SIDE */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-transparent rounded-3xl blur-3xl" />
+              <Card className="relative bg-neutral-900/80 border-neutral-800 backdrop-blur">
+                <CardContent className="p-8">
+                  <div className="space-y-6">
+                    {/* Instructor Photo Placeholder */}
+                    <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-neutral-800 to-neutral-900 border-2 border-neutral-700 flex items-center justify-center overflow-hidden relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent" />
+                      <div className="text-center">
+                        <div className="h-16 w-16 mx-auto rounded-full bg-red-600/20 flex items-center justify-center mb-4">
+                          <Cross className="h-8 w-8 text-red-400" />
+                        </div>
+                        <p className="text-neutral-400 text-lg font-medium">Combat Medic Instructor</p>
+                        <p className="text-neutral-500 text-sm">Afghanistan 2011-2012</p>
+                      </div>
+                    </div>
+
+                    {/* Book Cover */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="aspect-[3/4] rounded-xl bg-gradient-to-br from-neutral-800 to-neutral-900 border border-neutral-700 flex items-center justify-center">
+                        <div className="text-center">
+                          <BookOpen className="h-8 w-8 text-red-400 mx-auto mb-2" />
+                          <p className="text-neutral-400 text-sm">Blood, Dirt &</p>
+                          <p className="text-neutral-400 text-sm">Duct Tape</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="p-3 rounded-lg bg-neutral-800/60 border border-neutral-700 text-center">
+                          <Users className="h-5 w-5 text-green-400 mx-auto mb-1" />
+                          <p className="text-xs text-neutral-300">6 Students Max</p>
+                        </div>
+                        <div className="p-3 rounded-lg bg-neutral-800/60 border border-neutral-700 text-center">
+                          <Clock className="h-5 w-5 text-blue-400 mx-auto mb-1" />
+                          <p className="text-xs text-neutral-300">8 Hours Training</p>
+                        </div>
+                        <div className="p-3 rounded-lg bg-neutral-800/60 border border-neutral-700 text-center">
+                          <Award className="h-5 w-5 text-yellow-400 mx-auto mb-1" />
+                          <p className="text-xs text-neutral-300">Dual Certified</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ENHANCED CURRICULUM SECTION */}
+      <section id="curriculum" className="py-20 bg-neutral-950/50">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">Combat-Tested</span> Training
+            </h2>
+            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+              Learn from real battlefield experience. Skills that work when it matters most.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="bg-neutral-900/50 border-neutral-800 hover:border-red-700/50 transition-colors">
+              <CardHeader>
+                <div className="h-12 w-12 rounded-xl bg-red-600/10 flex items-center justify-center mb-4">
+                  <AlertTriangle className="h-6 w-6 text-red-400" />
+                </div>
+                <CardTitle className="text-white">Hemorrhage Control</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-neutral-300">
+                  <li>• Tourniquet application (CAT & SOFT)</li>
+                  <li>• Pressure dressing techniques</li>
+                  <li>• Hemostatic agent usage</li>
+                  <li>• Wound packing methods</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-neutral-900/50 border-neutral-800 hover:border-red-700/50 transition-colors">
+              <CardHeader>
+                <div className="h-12 w-12 rounded-xl bg-green-600/10 flex items-center justify-center mb-4">
+                  <Target className="h-6 w-6 text-green-400" />
+                </div>
+                <CardTitle className="text-white">Tactical Movement</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-neutral-300">
+                  <li>• Casualty extraction methods</li>
+                  <li>• Cover and concealment</li>
+                  <li>• Drag techniques under pressure</li>
+                  <li>• Team coordination basics</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-neutral-900/50 border-neutral-800 hover:border-red-700/50 transition-colors">
+              <CardHeader>
+                <div className="h-12 w-12 rounded-xl bg-blue-600/10 flex items-center justify-center mb-4">
+                  <Shield className="h-6 w-6 text-blue-400" />
+                </div>
+                <CardTitle className="text-white">Field Readiness</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-neutral-300">
+                  <li>• Improvised medical supplies</li>
+                  <li>• Environmental considerations</li>
+                  <li>• Legal protection awareness</li>
+                  <li>• Documentation protocols</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* INSTRUCTOR CREDENTIALS */}
+      <section id="instructor" className="py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-950/30 border border-green-800/30 text-green-400 text-sm font-medium mb-6">
+                <BadgeCheck className="h-4 w-4" />
+                Verified Credentials
+              </div>
+              
+              <h2 className="text-4xl font-bold mb-6">Combat-Proven Instructor</h2>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
+                  <div className="h-10 w-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                    <Cross className="h-5 w-5 text-red-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">DOD Combat Medic</h3>
+                    <p className="text-neutral-300 text-sm">Afghanistan 2011-2012 • 33+ combat casualties processed under direct enemy fire</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
+                  <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                    <Landmark className="h-5 w-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">ACS Approved Instructor</h3>
+                    <p className="text-neutral-300 text-sm">American College of Surgeons Stop the Bleed certified instructor</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
+                  <div className="h-10 w-10 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0">
+                    <Award className="h-5 w-5 text-green-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">Federal Security Clearance</h3>
+                    <p className="text-neutral-300 text-sm">Active Secret clearance • Vetted for federal consultation</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <Card className="bg-gradient-to-br from-neutral-900 to-neutral-950 border-neutral-800">
+              <CardContent className="p-8">
+                <blockquote className="text-lg italic text-neutral-300 leading-relaxed">
+                  "Every technique I teach has been tested under fire. This isn't theory – 
+                  it's what works when someone's life is in your hands and seconds matter."
+                </blockquote>
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-full bg-red-600/20 flex items-center justify-center">
+                    <Cross className="h-6 w-6 text-red-400" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Jacob Ross</p>
+                    <p className="text-sm text-neutral-400">Combat Medic Instructor</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ENHANCED PRICING */}
+      <section id="pricing" className="py-20 bg-neutral-950/50">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Training Schedule</h2>
+            <p className="text-xl text-neutral-300">Small groups, maximum impact</p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <Card className="bg-gradient-to-br from-neutral-900 to-neutral-950 border-2 border-red-700/50">
+              <CardHeader className="text-center pb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-950/30 border border-red-800/30 text-red-400 text-sm font-medium mb-4 justify-center">
+                  <Award className="h-4 w-4" />
+                  Most Popular
+                </div>
+                <CardTitle className="text-3xl font-bold text-white">Civilian Field Responder</CardTitle>
+                <div className="text-5xl font-black text-red-400 mt-2">$395</div>
+                <p className="text-neutral-400">8-hour comprehensive training</p>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                    <span className="text-neutral-300">Official Stop the Bleed certification</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                    <span className="text-neutral-300">Civilian Field Responder certificate</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                    <span className="text-neutral-300">CAT tourniquet (yours to keep)</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                    <span className="text-neutral-300">Signed copy of <em>Blood, Dirt & Duct Tape</em></span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                    <span className="text-neutral-300">Small group training (6 max)</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                    <span className="text-neutral-300">Refreshments and materials</span>
+                  </li>
+                </ul>
+
+                <div className="space-y-3 mb-8">
+                  <div className="flex justify-between items-center p-3 rounded-lg bg-neutral-800/50 border border-neutral-700">
+                    <span className="text-neutral-300">December 14, 2024</span>
+                    <span className="text-green-400 font-medium">Available</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-lg bg-neutral-800/50 border border-neutral-700">
+                    <span className="text-neutral-300">January 18, 2025</span>
+                    <span className="text-green-400 font-medium">Available</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-lg bg-neutral-800/50 border border-neutral-700">
+                    <span className="text-neutral-300">February 22, 2025</span>
+                    <span className="text-yellow-400 font-medium">2 spots left</span>
+                  </div>
+                </div>
+
+                <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-xl shadow-red-600/25 text-lg py-6 font-bold">
+                  <Calendar className="mr-3 h-5 w-5" />
+                  Reserve Your Spot
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ENHANCED CONTACT */}
+      <section id="contact" className="py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid lg:grid-cols-2 gap-16">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">Questions? Let's Talk.</h2>
+              <p className="text-xl text-neutral-300 mb-8">
+                Ready to learn skills that could save lives? Have questions about the training? 
+                Get in touch.
+              </p>
+
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="h-10 w-10 rounded-lg bg-red-600/10 flex items-center justify-center">
+                    <Mail className="h-5 w-5 text-red-400" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white">Email</p>
+                    <p className="text-neutral-400">training@civilianfieldresponder.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="h-10 w-10 rounded-lg bg-green-600/10 flex items-center justify-center">
+                    <Phone className="h-5 w-5 text-green-400" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white">Phone</p>
+                    <p className="text-neutral-400">(555) 123-SAVE</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="h-10 w-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
+                    <MapPin className="h-5 w-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white">Location</p>
+                    <p className="text-neutral-400">Houston Metro Area, Texas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <Card className="bg-neutral-900/50 border-neutral-800">
+              <CardHeader>
+                <CardTitle className="text-white">Send a Message</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Input 
+                    name="name"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={handleFormChange}
+                    className="bg-neutral-800 border-neutral-700 text-white"
+                  />
+                </div>
+                <div>
+                  <Input 
+                    name="email"
+                    type="email"
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={handleFormChange}
+                    className="bg-neutral-800 border-neutral-700 text-white"
+                  />
+                </div>
+                <div>
+                  <Input 
+                    name="phone"
+                    placeholder="Phone (Optional)"
+                    value={formData.phone}
+                    onChange={handleFormChange}
+                    className="bg-neutral-800 border-neutral-700 text-white"
+                  />
+                </div>
+                <div>
+                  <Textarea 
+                    name="message"
+                    placeholder="Questions about training, scheduling, or group bookings?"
+                    rows={4}
+                    value={formData.message}
+                    onChange={handleFormChange}
+                    className="bg-neutral-800 border-neutral-700 text-white"
+                  />
+                </div>
+                <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800">
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Send Message
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ENHANCED FOOTER */}
+      <footer className="py-12 bg-neutral-950 border-t border-neutral-800">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-4">
+              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center">
+                <Cross className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="font-bold text-white">Civilian Field Responder</p>
+                <p className="text-sm text-neutral-400">Combat-proven training for civilian readiness</p>
+              </div>
+            </div>
+            
+            <div className="text-center md:text-right">
+              <p className="text-neutral-400 text-sm">
+                © 2024 Civilian Field Responder Training
+              </p>
+              <p className="text-neutral-500 text-xs mt-1">
+                ACS Stop the Bleed Approved • Texas Good Samaritan Protected
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

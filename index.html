@@ -1,28 +1,4 @@
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, Shield, BookOpen, Phone, Calendar, BadgeCheck, MapPin, Landmark, Cross, AlertTriangle, Target, Users, Award, Clock, Mail, MessageCircle } from "lucide-react";
-
-export default function CivilianResponderSite() {
-  const [activeTab, setActiveTab] = useState("overview");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
-
-  const handleFormChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  return (
-    <div className="min-h-screen w-full bg-black text-neutral-100">
+   <div className="min-h-screen w-full bg-black text-neutral-100">
       {/* ENHANCED NAVBAR */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/80 border-b border-red-900/30">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">

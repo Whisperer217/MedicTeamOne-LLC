@@ -5,7 +5,7 @@
 
 ![Logo](https://img.shields.io/badge/ACS-Approved%20Instructor-red?style=for-the-badge&logo=medical&logoColor=white)
 ![Training](https://img.shields.io/badge/Training-Stop%20the%20Bleed-darkred?style=for-the-badge&logo=cross&logoColor=white)
-![Location](https://img.shields.io/badge/Location-Houston%20Metro-blue?style=for-the-badge&logo=location&logoColor=white)
+![Location](https://img.shields.io/badge/Location-Montgomery%20County-blue?style=for-the-badge&logo=location&logoColor=white)
 
 ---
 

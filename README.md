@@ -101,8 +101,8 @@ What You'll Learn:
 
 ## 📞 Contact Information
 
-**Phone**: (555) 123-SAVE  
-**Email**: training@medicteamone.com  
+**Phone**: (936) 217-7703  
+**Email**: jacob@medicteamone.com 
 **Website**: [www.medicteamone.com](#)  
 **Location**: Houston Metro Area, Texas
 
@@ -133,8 +133,8 @@ What You'll Learn:
 
 ### Patents
 - **Seven USPTO applications** filed (2025)
-- **Consciousness protection frameworks** for AI safety
-- **Constitutional authority** through intellectual property portfolio
+- **Lifesaving frameworks** for AI safety
+- **Intellectual property portfolio
 
 ---
 
@@ -157,7 +157,7 @@ What You'll Learn:
 
 ### Certifications:
 - ✅ **American College of Surgeons** Stop the Bleed Approved Instructor
-- ✅ **DOD Combat Medic** (Afghanistan 2011-2012)
+- ✅ **National Guard Combat Medic** (Afghanistan 2011-2012)
 - ✅ **Federal Security Clearance** (Active Secret)
 - ✅ **Texas Business License** (Medic Team One, LLC)
 
@@ -173,7 +173,7 @@ What You'll Learn:
 
 ### Training Outcomes:
 - **100% Certification Rate** - All students who complete training earn dual certification
-- **95% Retention Rate** - Students complete full 8-hour program
+- **95% Retention Rate** - Students complete full 4-hour program
 - **Real-World Application** - Graduates report successful emergency interventions
 - **Federal Recognition** - Course accepted for federal contractor training requirements
 

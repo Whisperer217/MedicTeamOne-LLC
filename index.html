@@ -1,588 +1,1149 @@
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, Shield, BookOpen, Phone, Calendar, BadgeCheck, MapPin, Landmark, Cross, AlertTriangle, Target, Users, Award, Clock, Mail, MessageCircle, Globe } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medic Team One, LLC - Combat-Proven Training for Civilian Readiness</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-export default function CivilianResponderSite() {
-  const [activeTab, setActiveTab] = useState("overview");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #000;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
 
-  const handleFormChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+        /* Header/Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
+            padding: 1rem 0;
+        }
 
-  return (
-    <div className="min-h-screen w-full bg-black text-neutral-100">
-      {/* ENHANCED NAVBAR */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/80 border-b border-red-900/30">
-        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="relative">
-              {/* Logo placeholder - replace with actual logo */}
-              <img 
-                src="/logo.png" 
-                alt="Medic Team One Logo" 
-                className="h-12 w-12 rounded-xl object-cover shadow-lg shadow-red-600/25"
-                onError={(e) => {
-                  // Fallback to icon if logo fails to load
-                  e.target.style.display = 'none';
-                  e.target.nextElementSibling.style.display = 'flex';
-                }}
-              />
-              {/* Fallback icon - hidden when logo loads successfully */}
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-600/25" style={{display: 'none'}}>
-                <Cross className="h-6 w-6 text-white" />
-              </div>
-              <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-black animate-pulse" />
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.25);
+        }
+
+        .logo-icon::before {
+            content: '✚';
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 16px;
+            height: 16px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 2px solid #000;
+            animation: pulse 2s infinite;
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #dc2626;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: #a3a3a3;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #d4d4d4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #dc2626;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #dc2626;
+            color: #dc2626;
+        }
+
+        .btn-outline:hover {
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 8rem 0 6rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.15), transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(220, 38, 38, 0.1), transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 50px;
+            color: #dc2626;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #d4d4d4;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 12px;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .feature-icon.green {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .feature-icon.red {
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
+        }
+
+        .hero-list {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+
+        .hero-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #d4d4d4;
+        }
+
+        .hero-list li::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .legal-notice {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            color: #93c5fd;
+            font-size: 0.9rem;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .visual-card {
+            background: rgba(64, 64, 64, 0.5);
+            border: 1px solid #525252;
+            border-radius: 24px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .instructor-photo {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #404040, #262626);
+            border: 2px solid #525252;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instructor-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), transparent);
+        }
+
+        .photo-placeholder {
+            text-align: center;
+            color: #a3a3a3;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .credential-item {
+            padding: 0.75rem;
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Training Section */
+        .training-section {
+            padding: 6rem 0;
+            background: rgba(23, 23, 23, 0.5);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 .highlight {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .training-card {
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .training-card:hover {
+            border-color: #dc2626;
+            box-shadow: 0 8px 40px rgba(220, 38, 38, 0.2);
+        }
+
+        .training-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .training-card ul {
+            list-style: none;
+            color: #d4d4d4;
+        }
+
+        .training-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .training-card li::before {
+            content: '•';
+            color: #dc2626;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Instructor Section */
+        .instructor-section {
+            padding: 6rem 0;
+        }
+
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .credentials-list {
+            list-style: none;
+        }
+
+        .credentials-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-card {
+            background: linear-gradient(135deg, rgba(64, 64, 64, 0.5), rgba(38, 38, 38, 0.5));
+            border: 1px solid #525252;
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .quote-card blockquote {
+            font-size: 1.125rem;
+            font-style: italic;
+            color: #d4d4d4;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: rgba(220, 38, 38, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #dc2626;
+            font-size: 1.5rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 6rem 0;
+            background: rgba(23, 23, 23, 0.5);
+        }
+
+        .pricing-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(64, 64, 64, 0.5), rgba(38, 38, 38, 0.5));
+            border: 2px solid #dc2626;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .pricing-header {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), transparent);
+        }
+
+        .pricing-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid #dc2626;
+            border-radius: 50px;
+            color: #dc2626;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #dc2626;
+            margin: 1rem 0;
+        }
+
+        .pricing-content {
+            padding: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #d4d4d4;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .schedule-table {
+            margin-bottom: 2rem;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .status-available {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .status-limited {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 6rem 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #d4d4d4;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #dc2626;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 0;
+            background: rgba(23, 23, 23, 0.5);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form {
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: #404040;
+            border: 1px solid #525252;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 0;
+            background: #171717;
+            border-top: 1px solid #525252;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-text {
+            text-align: right;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-container,
+            .instructor-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>Medic Team One, LLC</h1>
+                    <p>ACS Approved • Combat Medic Instructor</p>
+                </div>
             </div>
-            <div className="leading-tight">
-              <p className="text-xs tracking-widest text-red-400 font-semibold">MEDIC TEAM ONE, LLC</p>
-              <p className="font-bold text-lg">Stop the Bleed + Tactical Enhancements</p>
-              <p className="text-xs text-neutral-400">ACS Approved • Combat Medic Instructor</p>
+            <div class="nav-menu">
+                <a href="#training">Training</a>
+                <a href="#instructor">Instructor</a>
+                <a href="#pricing">Dates</a>
+                <a href="#contact">Contact</a>
             </div>
-          </div>
-          <nav className="hidden lg:flex items-center gap-8 text-sm">
-            <a href="#curriculum" className="text-neutral-300 hover:text-red-400 transition-colors font-medium">Training</a>
-            <a href="#instructor" className="text-neutral-300 hover:text-red-400 transition-colors font-medium">Instructor</a>
-            <a href="#pricing" className="text-neutral-300 hover:text-red-400 transition-colors font-medium">Dates</a>
-            <a href="#contact" className="text-neutral-300 hover:text-red-400 transition-colors font-medium">Contact</a>
-          </nav>
-          <div className="flex items-center gap-3">
-            <a href="#contact">
-              <Button variant="outline" className="hidden md:inline-flex border-red-700 text-red-400 hover:bg-red-950/50">
-                <Phone className="mr-2 h-4 w-4" />
-                Questions?
-              </Button>
-            </a>
-            <a href="#pricing">
-              <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-lg shadow-red-600/25 font-semibold">
-                <Calendar className="mr-2 h-4 w-4" />
-                Enroll Now
-              </Button>
-            </a>
-          </div>
+            <div class="nav-buttons">
+                <a href="#contact" class="btn btn-outline">Questions?</a>
+                <a href="#pricing" class="btn btn-primary">Enroll Now</a>
+            </div>
         </div>
-      </header>
+    </nav>
 
-      {/* ENHANCED HERO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-red-950/20 via-black to-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,38,38,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,38,38,0.1),transparent_50%)]" />
-        
-        <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-32">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-950/30 border border-red-800/30 text-red-400 text-sm font-medium mb-6">
-                <BadgeCheck className="h-4 w-4" />
-                ACS Approved • Combat Medic Certified
-              </div>
-              
-              <h1 className="text-5xl md:text-7xl font-black leading-[0.9] tracking-tight">
-                Real skills.<br />
-                Real gear.<br />
-                <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
-                  Real readiness.
-                </span>
-              </h1>
-              
-              <p className="mt-8 text-xl text-neutral-300 leading-relaxed max-w-xl">
-                Learn life-saving hemorrhage control and tactical field craft from a 
-                <span className="font-bold text-white"> DOD Combat Medic</span> with 
-                <span className="font-bold text-white"> 33+ combat casualties</span> processed under fire.
-              </p>
-
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
-                  <div className="h-10 w-10 rounded-lg bg-green-500/10 flex items-center justify-center">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">Stop the Bleed Certified</p>
-                    <p className="text-sm text-neutral-400">Official ACS certification</p>
-                  </div>
+                <div class="hero-badge">
+                    ✓ ACS Approved • Combat Medic Certified
                 </div>
                 
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
-                  <div className="h-10 w-10 rounded-lg bg-red-500/10 flex items-center justify-center">
-                    <Target className="h-5 w-5 text-red-400" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">Tactical Enhancements</p>
-                    <p className="text-sm text-neutral-400">Beyond basic training</p>
-                  </div>
-                </div>
-              </div>
+                <h1>
+                    Real skills.<br>
+                    Real gear.<br>
+                    <span class="highlight">Real readiness.</span>
+                </h1>
+                
+                <p>
+                    Learn life-saving hemorrhage control and tactical field craft from a 
+                    <strong>DOD Combat Medic</strong> with <strong>multiple combat casualties</strong> processed under fire.
+                </p>
 
-              <ul className="mt-8 space-y-4">
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="mt-1 h-5 w-5 text-green-400" />
-                  <span className="text-neutral-300">Small groups only • <span className="font-semibold text-white">6 students maximum</span></span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="mt-1 h-5 w-5 text-green-400" />
-                  <span className="text-neutral-300">Take home a <span className="font-semibold text-white">CAT tourniquet</span> (yours to keep)</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="mt-1 h-5 w-5 text-green-400" />
-                  <span className="text-neutral-300">Signed copy of <span className="font-semibold text-white italic">Blood, Dirt & Duct Tape</span> memoir</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="mt-1 h-5 w-5 text-green-400" />
-                  <span className="text-neutral-300">Civilian Field Responder certificate</span>
-                </li>
-              </ul>
-
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <a href="#pricing">
-                  <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-xl shadow-red-600/25 text-lg px-8 py-6 font-bold">
-                    <Calendar className="mr-3 h-5 w-5" />
-                    See Training Dates
-                  </Button>
-                </a>
-                <a href="#contact">
-                  <Button variant="outline" className="border-red-700/50 text-red-400 hover:bg-red-950/30 text-lg px-8 py-6">
-                    <MessageCircle className="mr-3 h-5 w-5" />
-                    Ask Questions
-                  </Button>
-                </a>
-              </div>
-
-              <div className="mt-8 flex items-center gap-3 p-4 rounded-xl bg-blue-950/30 border border-blue-800/30">
-                <Shield className="h-5 w-5 text-blue-400" />
-                <span className="text-blue-200 text-sm">Protected under Texas Good Samaritan laws • Certificate includes legal notation</span>
-              </div>
-            </div>
-
-            {/* ENHANCED RIGHT SIDE */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-transparent rounded-3xl blur-3xl" />
-              <Card className="relative bg-neutral-900/80 border-neutral-800 backdrop-blur">
-                <CardContent className="p-8">
-                  <div className="space-y-6">
-                    {/* Instructor Photo Placeholder */}
-                    <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-neutral-800 to-neutral-900 border-2 border-neutral-700 flex items-center justify-center overflow-hidden relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent" />
-                      <div className="text-center">
-                        <div className="h-16 w-16 mx-auto rounded-full bg-red-600/20 flex items-center justify-center mb-4">
-                          <Cross className="h-8 w-8 text-red-400" />
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon green">✓</div>
+                        <div>
+                            <strong>Stop the Bleed Certified</strong>
+                            <p style="font-size: 0.9rem; color: #a3a3a3;">Official ACS certification</p>
                         </div>
-                        <p className="text-neutral-400 text-lg font-medium">Combat Medic Instructor</p>
-                        <p className="text-neutral-500 text-sm">Afghanistan 2011-2012</p>
-                      </div>
                     </div>
-
-                    {/* Book Cover */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="aspect-[3/4] rounded-xl bg-gradient-to-br from-neutral-800 to-neutral-900 border border-neutral-700 flex items-center justify-center">
-                        <div className="text-center">
-                          <BookOpen className="h-8 w-8 text-red-400 mx-auto mb-2" />
-                          <p className="text-neutral-400 text-sm">Blood, Dirt &</p>
-                          <p className="text-neutral-400 text-sm">Duct Tape</p>
+                    <div class="feature-card">
+                        <div class="feature-icon red">⚡</div>
+                        <div>
+                            <strong>Tactical Enhancements</strong>
+                            <p style="font-size: 0.9rem; color: #a3a3a3;">Beyond basic training</p>
                         </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-lg bg-neutral-800/60 border border-neutral-700 text-center">
-                          <Users className="h-5 w-5 text-green-400 mx-auto mb-1" />
-                          <p className="text-xs text-neutral-300">6 Students Max</p>
-                        </div>
-                        <div className="p-3 rounded-lg bg-neutral-800/60 border border-neutral-700 text-center">
-                          <Clock className="h-5 w-5 text-blue-400 mx-auto mb-1" />
-                          <p className="text-xs text-neutral-300">8 Hours Training</p>
-                        </div>
-                        <div className="p-3 rounded-lg bg-neutral-800/60 border border-neutral-700 text-center">
-                          <Award className="h-5 w-5 text-yellow-400 mx-auto mb-1" />
-                          <p className="text-xs text-neutral-300">Dual Certified</p>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ENHANCED CURRICULUM SECTION */}
-      <section id="curriculum" className="py-20 bg-neutral-950/50">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">Combat-Tested</span> Training
-            </h2>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
-              Learn from real battlefield experience. Skills that work when it matters most.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-neutral-900/50 border-neutral-800 hover:border-red-700/50 transition-colors">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-xl bg-red-600/10 flex items-center justify-center mb-4">
-                  <AlertTriangle className="h-6 w-6 text-red-400" />
-                </div>
-                <CardTitle className="text-white">Hemorrhage Control</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-neutral-300">
-                  <li>• Tourniquet application (CAT & SOFT)</li>
-                  <li>• Pressure dressing techniques</li>
-                  <li>• Hemostatic agent usage</li>
-                  <li>• Wound packing methods</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-neutral-900/50 border-neutral-800 hover:border-red-700/50 transition-colors">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-xl bg-green-600/10 flex items-center justify-center mb-4">
-                  <Target className="h-6 w-6 text-green-400" />
-                </div>
-                <CardTitle className="text-white">Tactical Movement</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-neutral-300">
-                  <li>• Casualty extraction methods</li>
-                  <li>• Cover and concealment</li>
-                  <li>• Drag techniques under pressure</li>
-                  <li>• Team coordination basics</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-neutral-900/50 border-neutral-800 hover:border-red-700/50 transition-colors">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-xl bg-blue-600/10 flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-blue-400" />
-                </div>
-                <CardTitle className="text-white">Field Readiness</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-neutral-300">
-                  <li>• Improvised medical supplies</li>
-                  <li>• Environmental considerations</li>
-                  <li>• Legal protection awareness</li>
-                  <li>• Documentation protocols</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* INSTRUCTOR CREDENTIALS */}
-      <section id="instructor" className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-950/30 border border-green-800/30 text-green-400 text-sm font-medium mb-6">
-                <BadgeCheck className="h-4 w-4" />
-                Verified Credentials
-              </div>
-              
-              <h2 className="text-4xl font-bold mb-6">Combat-Proven Instructor</h2>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
-                  <div className="h-10 w-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
-                    <Cross className="h-5 w-5 text-red-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white mb-1">DOD Combat Medic</h3>
-                    <p className="text-neutral-300 text-sm">Afghanistan 2011-2012 • 33+ combat casualties processed under direct enemy fire</p>
-                  </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
-                  <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                    <Landmark className="h-5 w-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white mb-1">ACS Approved Instructor</h3>
-                    <p className="text-neutral-300 text-sm">American College of Surgeons Stop the Bleed certified instructor</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-900/50 border border-neutral-800">
-                  <div className="h-10 w-10 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0">
-                    <Award className="h-5 w-5 text-green-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white mb-1">Federal Security Clearance</h3>
-                    <p className="text-neutral-300 text-sm">Active Secret clearance • Vetted for federal consultation</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Card className="bg-gradient-to-br from-neutral-900 to-neutral-950 border-neutral-800">
-              <CardContent className="p-8">
-                <blockquote className="text-lg italic text-neutral-300 leading-relaxed">
-                  "Every technique I teach has been tested under fire. This isn't theory – 
-                  it's what works when someone's life is in your hands and seconds matter."
-                </blockquote>
-                <div className="mt-6 flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-red-600/20 flex items-center justify-center">
-                    <Cross className="h-6 w-6 text-red-400" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">Jacob Ross</p>
-                    <p className="text-sm text-neutral-400">Combat Medic Instructor</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* ENHANCED PRICING */}
-      <section id="pricing" className="py-20 bg-neutral-950/50">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Training Schedule</h2>
-            <p className="text-xl text-neutral-300">Small groups, maximum impact</p>
-          </div>
-
-          <div className="max-w-2xl mx-auto">
-            <Card className="bg-gradient-to-br from-neutral-900 to-neutral-950 border-2 border-red-700/50">
-              <CardHeader className="text-center pb-4">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-950/30 border border-red-800/30 text-red-400 text-sm font-medium mb-4 justify-center">
-                  <Award className="h-4 w-4" />
-                  Most Popular
-                </div>
-                <CardTitle className="text-3xl font-bold text-white">Civilian Field Responder</CardTitle>
-                <div className="text-5xl font-black text-red-400 mt-2">$395</div>
-                <p className="text-neutral-400">8-hour comprehensive training</p>
-              </CardHeader>
-              <CardContent className="pt-4">
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-neutral-300">Official Stop the Bleed certification</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-neutral-300">Civilian Field Responder certificate</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-neutral-300">CAT tourniquet (yours to keep)</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-neutral-300">Signed copy of <em>Blood, Dirt & Duct Tape</em></span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-neutral-300">Small group training (6 max)</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-neutral-300">Refreshments and materials</span>
-                  </li>
+                <ul class="hero-list">
+                    <li>Small groups only • <strong>6 students maximum</strong></li>
+                    <li>Take home a <strong>CAT tourniquet</strong> (yours to keep)</li>
+                    <li>Signed copy of <strong><em>Blood, Dirt & Duct Tape</em></strong> memoir</li>
+                    <li>Civilian Field Responder certificate</li>
                 </ul>
 
-                <div className="space-y-3 mb-8">
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-neutral-800/50 border border-neutral-700">
-                    <span className="text-neutral-300">December 14, 2024</span>
-                    <span className="text-green-400 font-medium">Available</span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-neutral-800/50 border border-neutral-700">
-                    <span className="text-neutral-300">January 18, 2025</span>
-                    <span className="text-green-400 font-medium">Available</span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-neutral-800/50 border border-neutral-700">
-                    <span className="text-neutral-300">February 22, 2025</span>
-                    <span className="text-yellow-400 font-medium">2 spots left</span>
-                  </div>
+                <div class="hero-buttons">
+                    <a href="#pricing" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                        📅 See Training Dates
+                    </a>
+                    <a href="#contact" class="btn btn-outline" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                        💬 Ask Questions
+                    </a>
                 </div>
 
-                <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-xl shadow-red-600/25 text-lg py-6 font-bold">
-                  <Calendar className="mr-3 h-5 w-5" />
-                  Reserve Your Spot
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* ENHANCED CONTACT */}
-      <section id="contact" className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid lg:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-4xl font-bold mb-6">Questions? Let's Talk.</h2>
-              <p className="text-xl text-neutral-300 mb-8">
-                Ready to learn skills that could save lives? Have questions about the training? 
-                Get in touch.
-              </p>
-
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-red-600/10 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-red-400" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-white">Email</p>
-                    <p className="text-neutral-400">jacob@medicteamone.com</p>
-                  </div>
+                <div class="legal-notice">
+                    <span>🛡️</span>
+                    <span>Protected under Texas Good Samaritan laws • Certificate includes legal notation</span>
                 </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-green-600/10 flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-green-400" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-white">Phone</p>
-                    <p className="text-neutral-400">(936) 217-7703</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-blue-600/10 flex items-center justify-center">
-                    <MapPin className="h-5 w-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-white">Location</p>
-                    <p className="text-neutral-400">Houston Metro Area, Texas</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-purple-600/10 flex items-center justify-center">
-                    <Globe className="h-5 w-5 text-purple-400" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-white">Website</p>
-                    <p className="text-neutral-400">www.medicteamone.com</p>
-                  </div>
-                </div>
-
-                <div className="mt-8 p-4 rounded-lg bg-neutral-800/30 border border-neutral-700">
-                  <h3 className="font-semibold text-white mb-3 flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-blue-400" />
-                    Business Hours
-                  </h3>
-                  <div className="space-y-2 text-sm text-neutral-300">
-                    <div className="flex justify-between">
-                      <span>Training Days:</span>
-                      <span className="text-green-400">Weekends (Saturdays primarily)</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Inquiries:</span>
-                      <span>Monday-Friday, 9 AM - 5 PM CST</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Emergency Consultation:</span>
-                      <span className="text-red-400">Available with federal agencies</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            <Card className="bg-neutral-900/50 border-neutral-800">
-              <CardHeader>
-                <CardTitle className="text-white">Send a Message</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Input 
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleFormChange}
-                    className="bg-neutral-800 border-neutral-700 text-white"
-                  />
+            <div class="hero-visual">
+                <div class="visual-card">
+                    <div class="instructor-photo">
+                        <div class="photo-placeholder">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">⚕️</div>
+                            <p style="font-size: 1.2rem; font-weight: 600;">Combat Medic Instructor</p>
+                            <p style="font-size: 1rem; color: #737373;">Afghanistan 2011-2012</p>
+                        </div>
+                    </div>
+                    
+                    <div class="credentials-grid">
+                        <div class="credential-item">
+                            <div style="font-size: 1.2rem; margin-bottom: 0.25rem;">👥</div>
+                            <div>6 Students Max</div>
+                        </div>
+                        <div class="credential-item">
+                            <div style="font-size: 1.2rem; margin-bottom: 0.25rem;">⏰</div>
+                            <div>4 Hours Training</div>
+                        </div>
+                        <div class="credential-item">
+                            <div style="font-size: 1.2rem; margin-bottom: 0.25rem;">🏆</div>
+                            <div>Dual Certified</div>
+                        </div>
+                        <div class="credential-item">
+                            <div style="font-size: 1.2rem; margin-bottom: 0.25rem;">📖</div>
+                            <div>Book Included</div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <Input 
-                    name="email"
-                    type="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleFormChange}
-                    className="bg-neutral-800 border-neutral-700 text-white"
-                  />
-                </div>
-                <div>
-                  <Input 
-                    name="phone"
-                    placeholder="Phone (Optional)"
-                    value={formData.phone}
-                    onChange={handleFormChange}
-                    className="bg-neutral-800 border-neutral-700 text-white"
-                  />
-                </div>
-                <div>
-                  <Textarea 
-                    name="message"
-                    placeholder="Questions about training, scheduling, or group bookings?"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleFormChange}
-                    className="bg-neutral-800 border-neutral-700 text-white"
-                  />
-                </div>
-                <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800">
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Send Message
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      {/* ENHANCED FOOTER */}
-      <footer className="py-12 bg-neutral-950 border-t border-neutral-800">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-4">
-              {/* Logo with fallback */}
-              <img 
-                src="/medic-team-one-logo.png" 
-                alt="Medic Team One LLC Logo" 
-                className="h-10 w-10 rounded-xl object-cover shadow-lg"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextElementSibling.style.display = 'flex';
-                }}
-              />
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center" style={{display: 'none'}}>
-                <Cross className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <p className="font-bold text-white">Medic Team One, LLC</p>
-                <p className="text-sm text-neutral-400">Combat-proven training for civilian readiness</p>
-              </div>
+    <!-- Training Programs -->
+    <section id="training" class="training-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2><span class="highlight">Combat-Tested</span> Training</h2>
+                <p style="font-size: 1.25rem; color: #d4d4d4; max-width: 600px; margin: 0 auto;">
+                    Learn from real battlefield experience. Skills that work when it matters most.
+                </p>
+            </div>
+
+            <div class="training-grid">
+                <div class="training-card">
+                    <h3>
+                        <div class="card-icon" style="background: rgba(220, 38, 38, 0.1); color: #dc2626;">⚠️</div>
+                        Hemorrhage Control
+                    </h3>
+                    <ul>
+                        <li>Tourniquet application (CAT & SOFT)</li>
+                        <li>Pressure dressing techniques</li>
+                        <li>Hemostatic agent usage</li>
+                        <li>Wound packing methods</li>
+                    </ul>
+                </div>
+
+                <div class="training-card">
+                    <h3>
+                        <div class="card-icon" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">🎯</div>
+                        Tactical Movement
+                    </h3>
+                    <ul>
+                        <li>Casualty extraction methods</li>
+                        <li>Cover and concealment</li>
+                        <li>Drag techniques under pressure</li>
+                        <li>Team coordination basics</li>
+                    </ul>
+                </div>
+
+                <div class="training-card">
+                    <h3>
+                        <div class="card-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">🛡️</div>
+                        Field Readiness
+                    </h3>
+                    <ul>
+                        <li>Improvised medical supplies</li>
+                        <li>Environmental considerations</li>
+                        <li>Legal protection awareness</li>
+                        <li>Documentation protocols</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructor Credentials -->
+    <section id="instructor" class="instructor-section">
+        <div class="section-container">
+            <div class="instructor-grid">
+                <div>
+                    <div class="hero-badge" style="margin-bottom: 2rem;">
+                        ✓ Verified Credentials
+                    </div>
+                    
+                    <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 2rem;">Combat-Proven Instructor</h2>
+                    
+                    <ul class="credentials-list">
+                        <li>
+                            <div class="feature-icon red">⚕️</div>
+                            <div>
+                                <h3 style="color: white; font-weight: bold; margin-bottom: 0.5rem;">DOD Combat Medic</h3>
+                                <p style="color: #d4d4d4; font-size: 0.9rem;">Afghanistan 2011-2012 • Multiple combat casualties processed under direct enemy fire</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="feature-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">🏛️</div>
+                            <div>
+                                <h3 style="color: white; font-weight: bold; margin-bottom: 0.5rem;">ACS Approved Instructor</h3>
+                                <p style="color: #d4d4d4; font-size: 0.9rem;">American College of Surgeons Stop the Bleed certified instructor</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="feature-icon green">🔒</div>
+                            <div>
+                                <h3 style="color: white; font-weight: bold; margin-bottom: 0.5rem;">Federal Security Clearance</h3>
+                                <p style="color: #d4d4d4; font-size: 0.9rem;">Active Secret clearance • Vetted for federal consultation</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="feature-icon" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">📜</div>
+                            <div>
+                                <h3 style="color: white; font-weight: bold; margin-bottom: 0.5rem;">Patent Portfolio</h3>
+                                <p style="color: #d4d4d4; font-size: 0.9rem;">Intellectual property development in consciousness protection systems</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quote-card">
+                    <blockquote>
+                        "Every technique I teach has been tested under fire. This isn't theory – 
+                        it's what works when someone's life is in your hands and seconds matter."
+                    </blockquote>
+                    <div class="quote-author">
+                        <div class="author-avatar">⚕️</div>
+                        <div>
+                            <p style="font-weight: bold; color: white;">Jacob Ross</p>
+                            <p style="font-size: 0.9rem; color: #a3a3a3;">Combat Medic Instructor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Real Results from Real Training</h2>
+                <p style="font-size: 1.25rem; color: #d4d4d4; max-width: 600px; margin: 0 auto;">
+                    Our graduates save lives using the skills they learned.
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "This training saved my neighbor's life after a chainsaw accident. The techniques work exactly as taught."
+                    </p>
+                    <p class="testimonial-author">— Sarah M., February 2024 Graduate</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Jacob's combat experience shows in every lesson. You know this is the real deal."
+                    </p>
+                    <p class="testimonial-author">— Mike T., January 2024 Graduate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing/Schedule -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Training Schedule</h2>
+                <p style="font-size: 1.25rem; color: #d4d4d4;">Small groups, maximum impact</p>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <div class="pricing-badge">
+                        🏆 Most Popular
+                    </div>
+                    <h3 style="font-size: 2rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">Civilian Field Responder</h3>
+                    <div class="price">$395</div>
+                    <p style="color: #a3a3a3;">4-hour comprehensive training</p>
+                </div>
+
+                <div class="pricing-content">
+                    <ul class="pricing-features">
+                        <li>Official Stop the Bleed certification</li>
+                        <li>Civilian Field Responder certificate</li>
+                        <li>CAT tourniquet (yours to keep)</li>
+                        <li>Signed copy of <em>Blood, Dirt & Duct Tape</em></li>
+                        <li>Small group training (6 max)</li>
+                        <li>Refreshments and materials</li>
+                    </ul>
+
+                    <div class="schedule-table">
+                        <div class="schedule-row">
+                            <span>December 14, 2024</span>
+                            <span class="status-available">Available</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span>January 18, 2025</span>
+                            <span class="status-available">Available</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span>February 22, 2025</span>
+                            <span class="status-limited">2 spots left</span>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1rem; justify-content: center;">
+                        📅 Reserve Your Spot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <div class="contact-grid">
+                <div>
+                    <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 2rem;">Questions? Let's Talk.</h2>
+                    <p style="font-size: 1.25rem; color: #d4d4d4; margin-bottom: 3rem;">
+                        Ready to learn skills that could save lives? Have questions about the training? Get in touch.
+                    </p>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="feature-icon red">📧</div>
+                            <div>
+                                <p style="font-weight: 600; color: white;">Email</p>
+                                <p style="color: #a3a3a3;">jacob@medicteamone.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="feature-icon green">📞</div>
+                            <div>
+                                <p style="font-weight: 600; color: white;">Phone</p>
+                                <p style="color: #a3a3a3;">(936) 217-7703</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="feature-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">📍</div>
+                            <div>
+                                <p style="font-weight: 600; color: white;">Location</p>
+                                <p style="color: #a3a3a3;">Houston Metro Area, Texas</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="feature-icon" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">🌐</div>
+                            <div>
+                                <p style="font-weight: 600; color: white;">Website</p>
+                                <p style="color: #a3a3a3;">www.medicteamone.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
+                        <h3 style="color: white; font-weight: bold; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            ⏰ Business Hours
+                        </h3>
+                        <div style="font-size: 0.9rem; color: #d4d4d4;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Training Days:</span>
+                                <span style="color: #22c55e; font-weight: 600;">Weekends (Saturdays primarily)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Inquiries:</span>
+                                <span>Monday-Friday, 9 AM - 5 PM CST</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Federal Consultation:</span>
+                                <span style="color: #dc2626; font-weight: 600;">Available with agencies</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="color: white; font-size: 1.5rem; font-weight: bold; margin-bottom: 2rem;">Send a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone (Optional)</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Questions about training, scheduling, or group bookings?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            💬 Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-icon" style="width: 40px; height: 40px;"></div>
+                <div>
+                    <p style="font-weight: bold; color: white;">Medic Team One, LLC</p>
+                    <p style="font-size: 0.9rem; color: #a3a3a3;">Combat-proven training for civilian readiness</p>
+                </div>
             </div>
             
-            <div className="text-center md:text-right">
-              <p className="text-neutral-400 text-sm">
-                © 2024 Medic Team One, LLC
-              </p>
-              <p className="text-neutral-500 text-xs mt-1">
-                ACS Stop the Bleed Approved • Texas Good Samaritan Protected
-              </p>
+            <div class="footer-text">
+                <p style="color: #a3a3a3; font-size: 0.9rem;">© 2024 Medic Team One, LLC</p>
+                <p style="color: #737373; font-size: 0.8rem; margin-top: 0.25rem;">
+                    ACS Stop the Bleed Approved • Texas Good Samaritan Protected
+                </p>
             </div>
-          </div>
         </div>
-      </footer>
-    </div>
-  );
-}
+    </footer>
+</body>
+</html>

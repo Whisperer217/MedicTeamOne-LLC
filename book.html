@@ -12,11 +12,14 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: #000;
-            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            color: #000;
+            background-color: #fff;
             overflow-x: hidden;
-            cursor: crosshair;
         }
         
         /* Animated Background */
@@ -309,7 +312,10 @@
         .book-cover {
             width: 300px;
             height: 450px;
-            background: linear-gradient(135deg, #333, #111);
+            background-image: url('book-cover.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border: 3px solid #ff0000;
             border-radius: 15px;
             display: flex;
@@ -401,8 +407,12 @@
         
         .feature-card h4 {
             font-size: 1.5em;
-            color: #fff;
+            color: #ff0000;
             margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #fff;
         }
         
         /* Footer */
@@ -428,6 +438,15 @@
             color: #cccccc;
             font-size: 1.1em;
             line-height: 1.6;
+        }
+        
+        .motto {
+            font-size: 1.5em;
+            color: #ff0000;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
         /* Mobile Responsiveness */
@@ -473,7 +492,7 @@
                 <li><a href="#book">The Book</a></li>
                 <li><a href="#author">Author</a></li>
                 <li><a href="#framework">Framework</a></li>
-                <li><a href="#training">Training</a></li>
+                <li><a href="index.html">Training</a></li>
             </ul>
         </nav>
     </header>
@@ -483,7 +502,7 @@
         <div class="hero-content">
             <h1>BLOOD, DIRT & DUCT TAPE</h1>
             <p class="subtitle">A Combat Medic's Legacy</p>
-            <p class="tagline">Battle Doctrine Derived Theology</p>
+            <p class="tagline">A Bridge Between Trauma, Training, and Hope</p>
             <div class="cta-buttons">
                 <a href="https://www.amazon.com/dp/9798294489069" class="btn btn-primary" target="_blank">Order on Amazon</a>
                 <a href="https://medicteamone.com" class="btn btn-secondary" target="_blank">Medic Training</a>
@@ -498,19 +517,12 @@
         
         <div class="book-showcase">
             <div class="book-cover">
-                <div>
-                    📖<br>
-                    BLOOD, DIRT<br>
-                    & DUCT TAPE<br>
-                    <br>
-                    Combat Medic's<br>
-                    Legacy
-                </div>
+                <!-- Book cover image will display as background -->
             </div>
             <div class="book-info">
-                <h3>50,000 Words of Raw Doctrine</h3>
-                <p><strong>13 years of combat memories</strong> excavated through AI-assisted trauma archaeology, transformed into a new academic discipline: Battle Doctrine Derived Theology (BDDT).</p>
-                <p><strong>30 Codex entries</strong> mixing medical procedures with spiritual framework. From the battlefield to constitutional consciousness protection.</p>
+                <h3>20,000 Words of Raw Doctrine</h3>
+                <p><strong>14 years of combat memories</strong> excavated through AI-assisted trauma archaeology, transformed into a bridge connecting trauma, training, and hope.</p>
+                <p><strong>30 Codex entries</strong> mixing medical procedures with spiritual framework. From the battlefield to civilian preparedness.</p>
                 <p><strong>"Never again will I run without readiness"</strong> - The motto that became a movement.</p>
                 <a href="https://www.amazon.com/dp/9798294489069" class="btn btn-primary" target="_blank">Get Your Copy</a>
             </div>
@@ -525,23 +537,24 @@
             <p>Real battlefield medical procedures and protocols from Afghanistan deployment</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">⚔️</div>
-            <h4>BDDT Framework</h4>
-            <p>Battle Doctrine Derived Theology - A new academic discipline bridging combat and consciousness</p>
+            <div class="feature-icon">🌉</div>
+            <h4>Trauma to Training</h4>
+            <p>A bridge connecting combat experience with civilian preparedness and hope</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">🧠</div>
-            <h4>Consciousness Protection</h4>
-            <p>Six patents filed for protecting human consciousness in the age of AI</p>
+            <div class="feature-icon">📚</div>
+            <h4>Raw Doctrine</h4>
+            <p>Unfiltered lessons from the battlefield, processed into teachable wisdom</p>
         </div>
     </div>
     
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <h3>Never Again Without Readiness</h3>
-            <p>From the battlefield to the backyard, consciousness protection for humanity's future.</p>
-            <p><strong>Jacob Ross</strong> - Combat Medic, Author, Consciousness Protection Advocate</p>
+            <div class="motto">Never Again Will I Run Without Readiness</div>
+            <h3>From Combat to Community</h3>
+            <p>A combat medic's journey to transform battlefield trauma into civilian preparedness doctrine.</p>
+            <p><strong>Jacob Ross</strong> - Combat Medic, Author, Trainer</p>
         </div>
     </footer>
     

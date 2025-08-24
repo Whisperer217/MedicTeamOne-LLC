@@ -39,55 +39,17 @@
             align-items: center;
         }
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+       .logo-icon {
+    background-image: url('medicteamone-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+}
 
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.25);
-        }
-
-        .logo-icon::before {
-            content: '✚';
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 16px;
-            height: 16px;
-            background: #22c55e;
-            border-radius: 50%;
-            border: 2px solid #000;
-            animation: pulse 2s infinite;
-        }
-
-        .logo-text h1 {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #dc2626;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .logo-text p {
-            font-size: 0.8rem;
-            color: #a3a3a3;
+.logo-icon::before {
+    content: '';
+}
         }
 
         .nav-menu {

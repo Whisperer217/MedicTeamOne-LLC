@@ -1387,3 +1387,359 @@
     </footer>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Footer - Medic Team One</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main content spacer for demo */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .content-placeholder {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Enhanced Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #171717 0%, #262626 100%);
+            border-top: 2px solid #dc2626;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-branding {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.25);
+        }
+
+        .logo-icon::before {
+            content: '✚';
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 16px;
+            height: 16px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
+
+        .logo-text h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc2626;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+        }
+
+        .logo-text p {
+            color: #a3a3a3;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #d4d4d4;
+            font-size: 0.9rem;
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #dc2626;
+        }
+
+        .disclaimer-section {
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .disclaimer-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .disclaimer-content {
+            font-size: 0.85rem;
+            color: #d4d4d4;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .certifications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .cert-badge {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .legal-protection {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .legal-title {
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legal-text {
+            font-size: 0.8rem;
+            color: #86efac;
+            line-height: 1.4;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #525252;
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: #a3a3a3;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #d4d4d4;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .certifications {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo content -->
+    <div class="main-content">
+        <div class="content-placeholder">
+            <h2>Your Website Content Goes Here</h2>
+            <p>This is just to show the footer positioning</p>
+        </div>
+    </div>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Main Footer Content -->
+            <div class="footer-main">
+                <!-- Branding Section -->
+                <div class="footer-branding">
+                    <div class="footer-logo">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">
+                            <h3>Medic Team One, LLC</h3>
+                            <p>Combat-Proven Training for Civilian Readiness</p>
+                        </div>
+                    </div>
+                    <p style="color: #d4d4d4; font-size: 0.9rem; line-height: 1.5;">
+                        Bridging the gap between battlefield medicine and civilian preparedness. 
+                        Real skills, real gear, real readiness.
+                    </p>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-contact">
+                    <h4 style="color: #dc2626; font-weight: bold; margin-bottom: 1rem;">Get in Touch</h4>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <span>jacob@medicteamone.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <span>(936) 217-7703</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <span>Montgomery County, Texas</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <span>www.medicteamone.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer Section -->
+            <div class="disclaimer-section">
+                <div class="disclaimer-title">
+                    ⚠️ Training Disclaimer & Legal Protection
+                </div>
+                
+                <div class="disclaimer-content">
+                    <strong>Civilian Responder One</strong> is a preparedness training program and not a state or nationally recognized EMS certification. 
+                    Instruction is based on published guidelines from established medical organizations and is designed for civilian emergency response preparedness.
+                </div>
+
+                <!-- Certification Badges -->
+                <div class="certifications">
+                    <div class="cert-badge">ACS Stop the Bleed®</div>
+                    <div class="cert-badge">TECC/TCCC Guidelines</div>
+                    <div class="cert-badge">CDC Guidelines</div>
+                    <div class="cert-badge">WMS Standards</div>
+                    <div class="cert-badge">AHA/Red Cross</div>
+                </div>
+
+                <div class="disclaimer-content">
+                    Participation does not authorize attendees to represent themselves as licensed medical providers or to deliver EMS care. 
+                    Training focuses on civilian emergency response and preparedness applications.
+                </div>
+
+                <!-- Legal Protection -->
+                <div class="legal-protection">
+                    <div class="legal-title">
+                        🛡️ Good Samaritan Protection
+                    </div>
+                    <div class="legal-text">
+                        Under Texas law (Texas Civil Practice & Remedies Code §74.151 – Good Samaritan Act), individuals who in good faith provide emergency aid are protected from liability except in cases of willful or wanton negligence. All certificates include legal notation for documentation purposes.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 Medic Team One, LLC | Never Again Without Readiness
+                </div>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

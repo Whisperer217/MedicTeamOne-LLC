@@ -247,17 +247,24 @@
             left: 100%;
         }
         
-        .btn-primary {
-            background: linear-gradient(45deg, #ff0000, #ff3300);
-            color: #fff;
-            border-color: #ff0000;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        /* Amazon-style button */
+        .btn-amazon {
+            background: linear-gradient(45deg, #ff9900, #ffb347);
+            color: #000;
+            border-color: #ff9900;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+            font-weight: bold;
+            font-size: 1em;
+            white-space: nowrap;
+            display: inline-block;
+            min-width: 280px;
+            text-align: center;
         }
         
-        .btn-primary:hover {
-            background: linear-gradient(45deg, #ff3300, #ff6600);
+        .btn-amazon:hover {
+            background: linear-gradient(45deg, #ffb347, #ffc266);
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 6px 25px rgba(255, 153, 0, 0.5);
         }
         
         .btn-secondary {
@@ -298,6 +305,28 @@
             color: #cccccc;
             text-align: center;
             margin-bottom: 40px;
+        }
+        
+        /* Author Bio Box */
+        .author-bio {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .author-bio h4 {
+            color: #ff0000;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .author-bio p {
+            color: #fff;
+            font-size: 1.1em;
+            margin-bottom: 15px;
         }
         
         /* Book Showcase */
@@ -349,6 +378,18 @@
         .book-info p {
             text-align: left;
             margin-bottom: 20px;
+        }
+        
+        /* Amazon Note */
+        .amazon-note {
+            background: rgba(255, 153, 0, 0.1);
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 0.9em;
+            color: #cccccc;
         }
         
         /* Features Grid */
@@ -475,6 +516,24 @@
             .section {
                 padding: 50px 20px;
             }
+            
+            .btn {
+                font-size: 0.9em;
+                padding: 12px 20px;
+                min-width: 250px;
+                white-space: normal;
+                line-height: 1.2;
+            }
+            
+            .btn-amazon {
+                font-size: 0.9em;
+                min-width: 250px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -502,9 +561,9 @@
         <div class="hero-content">
             <h1>BLOOD, DIRT & DUCT TAPE</h1>
             <p class="subtitle">A Combat Medic's Legacy</p>
-            <p class="tagline">A Bridge Between Trauma, Training, and Hope</p>
+            <p class="tagline">From Battlefield Trauma to Sacred Doctrine</p>
             <div class="cta-buttons">
-                <a href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?dib=eyJ2IjoiMSJ9.MxiaqeX-AhcZve3QWWE_wrGi71nyw7L_63rRyhzKsJ1FmTw4N2bliHCJK-9sKTipo42R6nLuluD3RuuXOjyxMc3vDIL93TaFTZROop6C1OXa31FCK2AB98G3_5DRZQZpS3Z7V0q6kwXov7pe49k1YeA35buI6x2WVY7fyeRnQc8e8PPuxdsKGKXPQA_de_dSe909jlfsnWghkC-fl68Ty4K10Fue3bWh3CbN6SeDXdc.xlpWxbDk0_BgUXTkHw5Rb_LPhMLheR-b06TvKc-n62U&dib_tag=se&keywords=blood+dirt+duct+tape&qid=1756073866&sr=8-3" class="btn btn-primary" target="_blank">Order on Amazon</a>
+                <a href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?utm_source=medicteamone&utm_medium=website&utm_campaign=book_launch" class="btn btn-amazon" target="_blank">Buy on Amazon – Support Veteran Medicine</a>
                 <a href="https://medicteamone.com" class="btn btn-secondary" target="_blank">Medic Training</a>
             </div>
         </div>
@@ -515,36 +574,49 @@
         <h2>The Mission</h2>
         <p>Transform combat trauma into teachable doctrine. Create a movement where veterans share their wounds as wisdom.</p>
         
+        <!-- Author Bio -->
+        <div class="author-bio" id="author">
+            <h4>About the Author</h4>
+            <p><strong>Jacob Ross</strong> is a service-disabled combat medic, educator, and author dedicated to transforming battlefield trauma into civilian preparedness training.</p>
+            <p>Former combat medic with deployment experience in Afghanistan. Current SFC, Army National Guard. Founder of Medic Team One civilian preparedness training.</p>
+        </div>
+        
         <div class="book-showcase">
             <div class="book-cover">
                 <!-- Book cover image will display as background -->
             </div>
             <div class="book-info">
                 <h3>20,000 Words of Raw Doctrine</h3>
-                <p><strong>14 years of combat memories</strong> excavated through AI-assisted trauma archaeology, transformed into a bridge connecting trauma, training, and hope.</p>
-                <p><strong>30 Codex entries</strong> mixing medical procedures with spiritual framework. From the battlefield to civilian preparedness.</p>
-                <p><strong>"Never again will I run without readiness"</strong> - The motto that became a movement.</p>
-                <a href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?dib=eyJ2IjoiMSJ9.MxiaqeX-AhcZve3QWWE_wrGi71nyw7L_63rRyhzKsJ1FmTw4N2bliHCJK-9sKTipo42R6nLuluD3RuuXOjyxMc3vDIL93TaFTZROop6C1OXa31FCK2AB98G3_5DRZQZpS3Z7V0q6kwXov7pe49k1YeA35buI6x2WVY7fyeRnQc8e8PPuxdsKGKXPQA_de_dSe909jlfsnWghkC-fl68Ty4K10Fue3bWh3CbN6SeDXdc.xlpWxbDk0_BgUXTkHw5Rb_LPhMLheR-b06TvKc-n62U&dib_tag=se&keywords=blood+dirt+duct+tape&qid=1756073866&sr=8-3" class="btn btn-primary" target="_blank">Get Your Copy</a>
+                <p><strong>Blood, Dirt & Duct Tape</strong> is a reflective combat medic guide that fuses personal battlefield experiences with improvised medical doctrine. Rooted in trauma, the text transforms hard lessons into actionable field strategies, spiritual reflections, and training blueprints.</p>
+                <p><strong>Dedicated to fallen soldiers like Pfc. Andrew J. Keller</strong>, it confronts loss, guilt, and readiness through stories of near-death, combat failures, and sacred improvisation.</p>
+                <p><strong>The book outlines the evolution</strong> of the author's medical philosophy from a near-tragedy with his son to combat deaths in Afghanistan, culminating in practical doctrines like cache systems, Speedball resupply, and the 8-Bag SOP.</p>
+                <p><strong>"Never again will I run without readiness"</strong> - More than a manual, it's a call to arms for medics to turn trauma into training, memories into doctrine, and silence into survival.</p>
+                
+                <div class="amazon-note">
+                    <em>When you buy through Amazon, they handle the transaction, tax, and fulfillment - you receive the book and support the movement to transform veteran trauma into civilian preparedness doctrine.</em>
+                </div>
+                
+                <a href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?utm_source=medicteamone&utm_medium=website&utm_campaign=book_launch" class="btn btn-amazon" target="_blank">Buy on Amazon – Support Veteran Medicine</a>
             </div>
         </div>
     </section>
     
     <!-- Features -->
-    <div class="features">
+    <div class="features" id="framework">
         <div class="feature-card">
             <div class="feature-icon">🏥</div>
-            <h4>Combat Medicine</h4>
-            <p>Real battlefield medical procedures and protocols from Afghanistan deployment</p>
+            <h4>Combat Medicine Doctrine</h4>
+            <p>Real battlefield medical procedures from Afghanistan deployment transformed into civilian preparedness training</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">🌉</div>
-            <h4>Trauma to Training</h4>
-            <p>A bridge connecting combat experience with civilian preparedness and hope</p>
+            <div class="feature-icon">🧠</div>
+            <h4>Sacred Improvisation</h4>
+            <p>Spiritual reflections and improvised medical doctrine forged in combat, transforming trauma into teachable field strategies</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h4>Raw Doctrine</h4>
-            <p>Unfiltered lessons from the battlefield, processed into teachable wisdom</p>
+            <div class="feature-icon">📋</div>
+            <h4>Practical Doctrines</h4>
+            <p>Cache systems, Speedball resupply, and the 8-Bag SOP - real combat medical protocols for field application</p>
         </div>
     </div>
     
@@ -552,9 +624,10 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="motto">Never Again Will I Run Without Readiness</div>
-            <h3>From Combat to Community</h3>
-            <p>A combat medic's journey to transform battlefield trauma into civilian preparedness doctrine.</p>
-            <p><strong>Jacob Ross</strong> - Combat Medic, Author, Trainer</p>
+            <h3>From Combat Trauma to Field Doctrine</h3>
+            <p>A combat medic's mission to transform battlefield trauma into practical training doctrine.</p>
+            <p>Turn trauma into training, memories into doctrine, and silence into survival.</p>
+            <p><strong>Jacob Ross</strong> - Combat Medic, Author, Field Doctrine Developer</p>
         </div>
     </footer>
     

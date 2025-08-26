@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Waiver & Release - Medic Team One, LLC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #fff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navbar - Simplified */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .logo-icon::before {
+            content: '✚';
+        }
+
+        .logo-text h1 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #dc2626;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: #a3a3a3;
+        }
+
+        .back-link {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .back-link:hover {
+            color: #dc2626;
+            border-color: #dc2626;
+        }
+
+        /* Main Content */
+        .waiver-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .waiver-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .waiver-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .waiver-subtitle {
+            font-size: 1.1rem;
+            color: #d4d4d4;
+            margin-bottom: 1rem;
+        }
+
+        .important-notice {
+            background: #fff2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .notice-title {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .notice-text {
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .waiver-document {
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 4px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .document-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #000;
+        }
+
+        .waiver-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-text {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .legal-citation {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .signature-section {
+            background: #f8f9fa;
+            border: 1px solid #000;
+            border-radius: 4px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .signature-field {
+            margin-bottom: 1.5rem;
+        }
+
+        .field-label {
+            display: block;
+            color: #000;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .signature-line {
+            border-bottom: 2px solid #000;
+            height: 40px;
+            position: relative;
+        }
+
+        .date-field {
+            width: 150px;
+        }
+
+        .guardian-section {
+            grid-column: 1 / -1;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #525252;
+        }
+
+        .guardian-note {
+            color: #f59e0b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(220, 38, 38, 0.4);
+        }
+
+        .print-btn {
+            background: rgba(64, 64, 64, 0.6);
+            border: 1px solid #525252;
+            margin-left: 1rem;
+        }
+
+        .print-btn:hover {
+            background: rgba(64, 64, 64, 0.8);
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #a3a3a3;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #525252;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .waiver-title {
+                font-size: 2rem;
+            }
+            
+            .signature-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .download-btn {
+                margin-bottom: 1rem;
+                margin-left: 0;
+            }
+            
+            .print-btn {
+                margin-left: 0;
+            }
+        }
+
+        @media print {
+            .navbar, .download-section {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .waiver-document, .signature-section, .important-notice {
+                background: white;
+                border: 1px solid #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>Medic Team One, LLC</h1>
+                    <p>Legal Documents</p>
+                </div>
+            </div>
+            <a href="index.html" class="back-link">← Back to Main Site</a>
+        </div>
+    </nav>
+
+    <!-- Waiver Content -->
+    <div class="waiver-container">
+        <div class="waiver-header">
+            <h1 class="waiver-title">Training Waiver & Release</h1>
+            <p class="waiver-subtitle">Civilian Responder One (Basic) Training Program</p>
+        </div>
+
+        <div class="important-notice">
+            <div class="notice-title">IMPORTANT LEGAL NOTICE</div>
+            <div class="notice-text">
+                This document contains a release of legal rights. Please read carefully before signing. 
+                By signing, you acknowledge understanding and agreement to the terms and conditions outlined below.
+            </div>
+        </div>
+
+        <div class="waiver-document">
+            <div class="document-title">
+                CIVILIAN RESPONDER ONE TRAINING<br>
+                WAIVER & RELEASE OF LIABILITY
+            </div>
+
+            <div class="waiver-section">
+                <div class="section-header">1. ACKNOWLEDGMENT OF RISKS & ASSUMPTION OF RISK</div>
+                <div class="section-text">
+                    I, the undersigned, recognize that participation in medical readiness training—including hemorrhage control, 
+                    airway management, chest seal application, and related emergency medical techniques ("Training")—involves inherent 
+                    risks including but not limited to: physical strain, potential injury from training equipment, emotional stress 
+                    from realistic scenarios, and exposure to graphic medical content. <strong>I KNOWINGLY AND VOLUNTARILY ASSUME 
+                    THE RISK OF INJURY OR DEATH</strong> that may result from participating in this Training.
+                </div>
+                <div class="legal-citation">
+                    Texas courts uphold express assumption of risk when participants knowingly accept inherent activity risks. 
+                    (McCurry v. Spangler, 2014 WL 5488411 (Tex. App.))
+                </div>
+            </div>
+
+            <div class="waiver-section">
+                <div class="section-header">2. RELEASE & WAIVER OF CLAIMS</div>
+                <div class="section-text">
+                    In consideration for being permitted to participate in Training, I hereby waive, release, and discharge 
+                    <strong>Medic Team One, LLC, its instructors, agents, employees, and affiliates</strong> from all liability, 
+                    claims, demands, and causes of action arising from <strong>NEGLIGENCE</strong>-related injuries or damages 
+                    resulting from my participation in Training activities. <strong>I RELEASE MEDIC TEAM ONE, LLC FROM ANY 
+                    LIABILITY FOR NEGLIGENCE</strong> in connection with this Training.
+                </div>
+                <div class="legal-citation">
+                    This release complies with Texas express negligence doctrine, which permits waivers of future negligence 
+                    liability when fair notice is provided. (Dresser Indus., Inc. v. Page Petroleum, Inc., 853 S.W.2d 505 (Tex. 1993))
+                </div>
+            </div>
+
+            <div class="waiver-section">
+                <div class="section-header">3. INDEMNIFICATION</div>
+                <div class="section-text">
+                    I agree to indemnify and hold harmless Medic Team One, LLC and associated parties from any damages, 
+                    liabilities, costs, or expenses (including reasonable attorney's fees) arising from my actions, 
+                    conduct, or negligence during Training participation.
+                </div>
+                <div class="legal-citation">
+                    Indemnification clauses are enforceable in Texas when properly disclosed and conspicuous. 
+                    (Ethyl Corp. v. Daniel Constr. Co., 725 S.W.2d 705 (Tex. 1987))
+                </div>
+            </div>
+
+            <div class="waiver-section">
+                <div class="section-header">4. TRAINING LIMITATIONS & MEDICAL DISCLAIMER</div>
+                <div class="section-text">
+                    I acknowledge this Training is <strong>educational only</strong> and does not confer medical licensure, 
+                    EMS certification, or authorization to practice medicine. No guarantees regarding clinical efficacy or 
+                    emergency response outcomes are made or implied. Training content is based on published medical guidelines 
+                    and designed for civilian emergency preparedness. <strong>This Training does not substitute for professional 
+                    medical care, and skills taught are intended for emergency first aid only.</strong>
+                </div>
+            </div>
+
+            <div class="waiver-section">
+                <div class="section-header">5. MEDICAL & FITNESS REPRESENTATIONS</div>
+                <div class="section-text">
+                    I represent that I am physically and mentally fit to participate in Training activities. I have disclosed 
+                    any medical conditions that might affect my participation. I authorize emergency medical treatment if 
+                    needed during Training.
+                </div>
+            </div>
+
+            <div class="waiver-section">
+                <div class="section-header">6. GOOD SAMARITAN LAW PROTECTION</div>
+                <div class="section-text">
+                    I understand that Texas Civil Practice & Remedies Code §74.151 (Good Samaritan Act) provides legal 
+                    protection for individuals offering good-faith emergency aid, except in cases of willful or wanton negligence.
+                </div>
+                <div class="legal-citation">
+                    Texas Good Samaritan Law shields emergency responders from liability for ordinary negligence. 
+                    (Texas Civ. Prac. & Rem. Code § 74.151)
+                </div>
+            </div>
+
+            <div class="waiver-section">
+                <div class="section-header">7. GOVERNING LAW & JURISDICTION</div>
+                <div class="section-text">
+                    This waiver is governed by <strong>Texas state law</strong>. Any disputes arising under this Waiver 
+                    shall be resolved exclusively in the courts of <strong>Montgomery County, Texas</strong>. I understand 
+                    that these liability protections do <strong>NOT</strong> apply to gross negligence, willful misconduct, 
+                    or intentionally harmful actions—Texas courts do not enforce waivers for such conduct.
+                </div>
+                <div class="legal-citation">
+                    Texas law prohibits waiver enforcement for gross negligence or intentional misconduct. Venue clauses 
+                    strengthen enforceability by establishing clear jurisdiction.
+                </div>
+            </div>
+
+            <div class="waiver-section">
+                <div class="section-header">8. VOLUNTARY AGREEMENT & SEVERABILITY</div>
+                <div class="section-text">
+                    I have read this waiver, understand its contents, and sign it freely and voluntarily. No oral 
+                    representations, statements, or inducements have been made apart from this written agreement. 
+                    <strong>If any portion of this Waiver is found unenforceable, the remaining provisions shall 
+                    remain in full force and effect.</strong>
+                </div>
+            </div>
+        <div class="signature-section">
+            <div class="section-header" style="text-align: center; margin-bottom: 1rem;">PARTICIPANT SIGNATURE & INFORMATION</div>
+            
+            <div class="signature-grid">
+                <div class="signature-field">
+                    <label class="field-label">Participant Signature</label>
+                    <div class="signature-line"></div>
+                </div>
+                
+                <div class="signature-field">
+                    <label class="field-label">Date</label>
+                    <div class="signature-line date-field"></div>
+                </div>
+                
+                <div class="signature-field">
+                    <label class="field-label">Printed Full Name</label>
+                    <div class="signature-line"></div>
+                </div>
+                
+                <div class="signature-field">
+                    <label class="field-label">Phone Number</label>
+                    <div class="signature-line"></div>
+                </div>
+            </div>
+            
+            <div class="guardian-section">
+                <div class="guardian-note">
+                    <strong>FOR PARTICIPANTS UNDER 18:</strong> Parent/Guardian signature required below
+                </div>
+                <div class="signature-field">
+                    <label class="field-label">Parent/Guardian Signature</label>
+                    <div class="signature-line"></div>
+                </div>
+                <div class="signature-grid">
+                    <div class="signature-field">
+                        <label class="field-label">Parent/Guardian Printed Name</label>
+                        <div class="signature-line"></div>
+                    </div>
+                    <div class="signature-field">
+                        <label class="field-label">Relationship to Participant</label>
+                        <div class="signature-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <a href="#" class="download-btn" onclick="window.print(); return false;">
+                📄 Print This Waiver
+            </a>
+            <a href="index.html" class="download-btn print-btn">
+                🏠 Return to Training Info
+            </a>
+        </div>
+
+        <div class="footer-note">
+            <strong>Medic Team One, LLC</strong><br>
+            Montgomery County, Texas<br>
+            jacob@medicteamone.com | (936) 217-7703<br><br>
+            <em>This waiver must be completed and signed before participating in any training activities.</em>
+        </div>
+    </div>
+</body>
+</html>

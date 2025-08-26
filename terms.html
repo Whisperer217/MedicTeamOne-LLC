@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Medic Team One, LLC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #fff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navbar - Simplified */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .logo-icon::before {
+            content: '✚';
+        }
+
+        .logo-text h1 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #dc2626;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: #a3a3a3;
+        }
+
+        .back-link {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .back-link:hover {
+            color: #dc2626;
+            border-color: #dc2626;
+        }
+
+        /* Main Content */
+        .terms-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #dc2626;
+        }
+
+        .terms-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .terms-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .effective-date {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .terms-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid #dc2626;
+        }
+
+        .section-content {
+            color: #444;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .section-content a {
+            color: #dc2626;
+            text-decoration: none;
+        }
+
+        .section-content a:hover {
+            text-decoration: underline;
+        }
+
+        .section-content ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-title {
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-details {
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .back-nav {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .terms-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .back-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>Medic Team One, LLC</h1>
+                    <p>Legal Documents</p>
+                </div>
+            </div>
+            <a href="index.html" class="back-link">← Back to Main Site</a>
+        </div>
+    </nav>
+
+    <!-- Terms of Service Content -->
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1 class="terms-title">Terms of Service</h1>
+            <p class="terms-subtitle">Medic Team One, LLC</p>
+            <div class="effective-date">
+                <strong>Effective Date:</strong> August 2025
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">1. Agreement to Terms</h2>
+            <div class="section-content">
+                <p>By accessing our website, enrolling in training, or using our services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our services.</p>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">2. Training Services</h2>
+            <div class="section-content">
+                <p>Medic Team One, LLC provides emergency medical training courses designed for civilian preparedness. Our training includes:</p>
+                <ul>
+                    <li>Civilian Responder One (Basic) certification</li>
+                    <li>ACS Stop the Bleed certification</li>
+                    <li>Hemorrhage control, airway management, and chest seal application</li>
+                </ul>
+                <p>Training is educational only and does not constitute medical practice or professional medical certification.</p>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">3. Registration and Payment</h2>
+            <div class="section-content">
+                <p>Registration requires completion of enrollment forms and signed liability waivers. Payment is due upon confirmation of training dates. We accept various payment methods through secure third-party processors. Refunds are handled on a case-by-case basis depending on circumstances and timing of cancellation requests.</p>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">4. Participant Requirements</h2>
+            <div class="section-content">
+                <p>Participants must:</p>
+                <ul>
+                    <li>Be physically and mentally capable of participating in hands-on training</li>
+                    <li>Complete and sign all required waivers and releases</li>
+                    <li>Participants under 18 require parent/guardian signature</li>
+                    <li>Follow all safety protocols and instructor directions during training</li>
+                    <li>Disclose relevant medical conditions that may affect participation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">5. Liability and Waivers</h2>
+            <div class="section-content">
+                <p>All participants must sign comprehensive liability waivers before training. These waivers include releases of claims for ordinary negligence and assumption of risk. Training involves inherent risks including potential physical injury. Participants acknowledge these risks and agree to hold Medic Team One, LLC harmless from liability except in cases of gross negligence or willful misconduct.</p>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">6. Cancellation and Rescheduling</h2>
+            <div class="section-content">
+                <p>We reserve the right to cancel or reschedule training sessions due to insufficient enrollment, instructor availability, weather, or other circumstances beyond our control. Participants will be notified promptly and offered alternative dates or refunds. Participant-initiated cancellations must be made at least 48 hours before scheduled training for potential refund consideration.</p>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">7. Intellectual Property</h2>
+            <div class="section-content">
+                <p>All training materials, course content, and methodologies are proprietary to Medic Team One, LLC. Participants may not reproduce, distribute, or use training materials for commercial purposes without written permission.</p>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">8. Good Samaritan Protection</h2>
+            <div class="section-content">
+                <p>Training includes information about Texas Good Samaritan laws (Texas Civil Practice & Remedies Code §74.151) which provide legal protection for individuals offering good-faith emergency aid. However, participants should understand the limitations and requirements of such protections.</p>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">9. Governing Law</h2>
+            <div class="section-content">
+                <p>These Terms of Service are governed by Texas state law. Any disputes shall be resolved exclusively in the courts of Montgomery County, Texas. If any provision of these terms is found unenforceable, the remaining provisions shall remain in full force and effect.</p>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2 class="section-title">10. Changes to Terms</h2>
+            <div class="section-content">
+                <p>We may modify these Terms of Service at any time by posting updated terms on our website. Continued use of our services after changes constitutes acceptance of the new terms. Material changes will be communicated to registered participants via email.</p>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-title">Contact Information</div>
+            <div class="contact-details">
+                Questions about these Terms of Service? Contact us:<br><br>
+                <strong>Medic Team One, LLC</strong><br>
+                Montgomery County, Texas<br>
+                Phone: <a href="tel:+19362177703">(936) 217-7703</a><br>
+                Email: <a href="mailto:jacob@medicteamone.com">jacob@medicteamone.com</a>
+            </div>
+        </div>
+
+        <div class="back-nav">
+            <a href="index.html" class="back-btn">
+                Return to Training Information
+            </a>
+        </div>
+    </div>
+</body>
+</html>

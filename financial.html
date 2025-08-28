@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medic Team One - Business Ledger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #333;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            color: #a3a3a3;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: #dc2626;
+            border-bottom-color: #dc2626;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .metric-card h3 {
+            color: #a3a3a3;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-card.income .metric-value { color: #22c55e; }
+        .metric-card.expense .metric-value { color: #dc2626; }
+        .metric-card.profit .metric-value { color: #3b82f6; }
+        .metric-card.balance .metric-value { color: #a855f7; }
+
+        .metric-change {
+            font-size: 0.8rem;
+            color: #a3a3a3;
+        }
+
+        /* Transaction Form */
+        .transaction-form {
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #d4d4d4;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 0.75rem;
+            background: #404040;
+            border: 1px solid #525252;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #dc2626;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Transaction Table */
+        .transaction-table {
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: rgba(220, 38, 38, 0.1);
+            border-bottom: 1px solid #dc2626;
+            padding: 1rem 2rem;
+        }
+
+        .table-header h3 {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        th {
+            background: rgba(38, 38, 38, 0.5);
+            color: #a3a3a3;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        tr:hover {
+            background: rgba(64, 64, 64, 0.2);
+        }
+
+        .amount-positive { color: #22c55e; }
+        .amount-negative { color: #dc2626; }
+
+        /* Categories Section */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .category-section {
+            background: rgba(64, 64, 64, 0.3);
+            border: 1px solid #525252;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .category-section h3 {
+            color: #22c55e;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .category-section h3.expense-header {
+            color: #dc2626;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #333;
+            color: #d4d4d4;
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .export-section {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            margin: 0 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>MEDIC TEAM ONE</h1>
+            <p>Business Financial Management System</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('dashboard')">Dashboard</button>
+            <button class="tab" onclick="showTab('transactions')">Transactions</button>
+            <button class="tab" onclick="showTab('categories')">Categories</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="dashboard-grid">
+                <div class="metric-card income">
+                    <h3>Total Income (Month)</h3>
+                    <div class="metric-value" id="monthlyIncome">$0.00</div>
+                    <div class="metric-change">+$0 from last month</div>
+                </div>
+                <div class="metric-card expense">
+                    <h3>Total Expenses (Month)</h3>
+                    <div class="metric-value" id="monthlyExpenses">$0.00</div>
+                    <div class="metric-change">+$0 from last month</div>
+                </div>
+                <div class="metric-card profit">
+                    <h3>Net Profit</h3>
+                    <div class="metric-value" id="netProfit">$0.00</div>
+                    <div class="metric-change">Income - Expenses</div>
+                </div>
+                <div class="metric-card balance">
+                    <h3>Current Balance</h3>
+                    <div class="metric-value" id="currentBalance">$0.00</div>
+                    <div class="metric-change">Running total</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                <div style="background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 12px; padding: 1.5rem;">
+                    <h3 style="color: #dc2626; margin-bottom: 1rem;">Recent Transactions</h3>
+                    <div id="recentTransactions">
+                        <p style="color: #a3a3a3; text-align: center; padding: 2rem;">No transactions yet</p>
+                    </div>
+                </div>
+                <div style="background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 12px; padding: 1.5rem;">
+                    <h3 style="color: #22c55e; margin-bottom: 1rem;">Top Expense Categories</h3>
+                    <div id="topCategories">
+                        <p style="color: #a3a3a3; text-align: center; padding: 2rem;">No expenses yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Tab -->
+        <div id="transactions" class="tab-content">
+            <!-- Transaction Entry Form -->
+            <div class="transaction-form">
+                <h3 style="color: #dc2626; margin-bottom: 1.5rem;">Add New Transaction</h3>
+                <form id="transactionForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Transaction Type</label>
+                            <select id="type" required>
+                                <option value="">Select Type</option>
+                                <option value="Income">Income</option>
+                                <option value="Expense">Expense</option>
+                                <option value="Owner Contribution">Owner Contribution</option>
+                                <option value="Owner Draw">Owner Draw</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="">Select Category</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment">Payment Method</label>
+                            <select id="payment" required>
+                                <option value="">Select Method</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Card">Card</option>
+                                <option value="ACH">ACH</option>
+                                <option value="PayPal">PayPal</option>
+                                <option value="Square">Square</option>
+                                <option value="Check">Check</option>
+                                <option value="Bank Transfer">Bank Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount ($)</label>
+                            <input type="number" id="amount" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description/Notes</label>
+                            <input type="text" id="description" placeholder="e.g., Blackwood Class - 8 students">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Add Transaction</button>
+                </form>
+            </div>
+
+            <!-- Transaction Table -->
+            <div class="transaction-table">
+                <div class="table-header">
+                    <h3>Transaction Ledger</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Payment</th>
+                            <th>Amount</th>
+                            <th>Balance</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionTableBody">
+                        <tr>
+                            <td colspan="8" style="text-align: center; color: #a3a3a3; padding: 2rem;">
+                                No transactions recorded yet
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Categories Tab -->
+        <div id="categories" class="tab-content">
+            <div class="categories-grid">
+                <div class="category-section">
+                    <h3>Income Categories</h3>
+                    <ul class="category-list">
+                        <li>Training Revenue</li>
+                        <li>Product Sales</li>
+                        <li>Grants / Contributions</li>
+                        <li>Speaking Engagements</li>
+                        <li>Consulting Services</li>
+                    </ul>
+                </div>
+                <div class="category-section">
+                    <h3 class="expense-header">Expense Categories</h3>
+                    <ul class="category-list">
+                        <li>Supplies & Equipment</li>
+                        <li>Travel & Mileage</li>
+                        <li>Marketing/Advertising</li>
+                        <li>Insurance</li>
+                        <li>Professional Services</li>
+                        <li>Training/Certifications</li>
+                        <li>Rent/Facilities</li>
+                        <li>Bank Fees</li>
+                        <li>Office Supplies</li>
+                        <li>Website/Software</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="category-section" style="margin-top: 2rem;">
+                <h3 style="color: #a855f7;">Equity Movements</h3>
+                <ul class="category-list">
+                    <li>Owner Contribution</li>
+                    <li>Owner Draw</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="export-section">
+            <button class="btn export-btn" onclick="exportToCSV()">Export to CSV</button>
+            <button class="btn export-btn" onclick="printReport()">Print Report</button>
+        </div>
+    </div>
+
+    <script>
+        // Global data storage
+        let transactions = JSON.parse(localStorage.getItem('medicTeamOneTransactions') || '[]');
+        let currentBalance = 0;
+
+        // Categories data
+        const categories = {
+            'Income': ['Training Revenue', 'Product Sales', 'Grants / Contributions', 'Speaking Engagements', 'Consulting Services'],
+            'Expense': ['Supplies & Equipment', 'Travel & Mileage', 'Marketing/Advertising', 'Insurance', 'Professional Services', 'Training/Certifications', 'Rent/Facilities', 'Bank Fees', 'Office Supplies', 'Website/Software'],
+            'Owner Contribution': ['Owner Contribution'],
+            'Owner Draw': ['Owner Draw']
+        };
+
+        // Initialize the app
+        function init() {
+            updateCategories();
+            setTodaysDate();
+            calculateBalance();
+            updateDashboard();
+            renderTransactionTable();
+        }
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Update category dropdown based on transaction type
+        function updateCategories() {
+            const typeSelect = document.getElementById('type');
+            const categorySelect = document.getElementById('category');
+
+            typeSelect.addEventListener('change', function() {
+                const selectedType = this.value;
+                categorySelect.innerHTML = '<option value="">Select Category</option>';
+                
+                if (categories[selectedType]) {
+                    categories[selectedType].forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category;
+                        option.textContent = category;
+                        categorySelect.appendChild(option);
+                    });
+                }
+            });
+        }
+
+        // Set today's date as default
+        function setTodaysDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = today;
+        }
+
+        // Calculate running balance
+        function calculateBalance() {
+            currentBalance = 0;
+            transactions.forEach(transaction => {
+                if (transaction.type === 'Income' || transaction.type === 'Owner Contribution') {
+                    currentBalance += parseFloat(transaction.amount);
+                } else {
+                    currentBalance -= parseFloat(transaction.amount);
+                }
+            });
+        }
+
+        // Update dashboard metrics
+        function updateDashboard() {
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            
+            let monthlyIncome = 0;
+            let monthlyExpenses = 0;
+            
+            transactions.forEach(transaction => {
+                const transactionDate = new Date(transaction.date);
+                if (transactionDate.getMonth() === currentMonth && transactionDate.getFullYear() === currentYear) {
+                    if (transaction.type === 'Income') {
+                        monthlyIncome += parseFloat(transaction.amount);
+                    } else if (transaction.type === 'Expense') {
+                        monthlyExpenses += parseFloat(transaction.amount);
+                    }
+                }
+            });
+
+            const netProfit = monthlyIncome - monthlyExpenses;
+
+            document.getElementById('monthlyIncome').textContent = `$${monthlyIncome.toFixed(2)}`;
+            document.getElementById('monthlyExpenses').textContent = `$${monthlyExpenses.toFixed(2)}`;
+            document.getElementById('netProfit').textContent = `$${netProfit.toFixed(2)}`;
+            document.getElementById('currentBalance').textContent = `$${currentBalance.toFixed(2)}`;
+
+            updateRecentTransactions();
+            updateTopCategories();
+        }
+
+        // Update recent transactions display
+        function updateRecentTransactions() {
+            const recentDiv = document.getElementById('recentTransactions');
+            const recent = transactions.slice(-5).reverse();
+            
+            if (recent.length === 0) {
+                recentDiv.innerHTML = '<p style="color: #a3a3a3; text-align: center; padding: 2rem;">No transactions yet</p>';
+                return;
+            }
+
+            recentDiv.innerHTML = recent.map(transaction => `
+                <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #333;">
+                    <div>
+                        <div style="color: #d4d4d4; font-weight: 600;">${transaction.description || transaction.category}</div>
+                        <div style="color: #a3a3a3; font-size: 0.8rem;">${transaction.date}</div>
+                    </div>
+                    <div style="color: ${transaction.type === 'Income' || transaction.type === 'Owner Contribution' ? '#22c55e' : '#dc2626'}; font-weight: 700;">
+                        ${transaction.type === 'Income' || transaction.type === 'Owner Contribution' ? '+' : '-'}$${parseFloat(transaction.amount).toFixed(2)}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update top expense categories
+        function updateTopCategories() {
+            const categoryTotals = {};
+            
+            transactions.forEach(transaction => {
+                if (transaction.type === 'Expense') {
+                    if (!categoryTotals[transaction.category]) {
+                        categoryTotals[transaction.category] = 0;
+                    }
+                    categoryTotals[transaction.category] += parseFloat(transaction.amount);
+                }
+            });
+
+            const topDiv = document.getElementById('topCategories');
+            const sortedCategories = Object.entries(categoryTotals)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+
+            if (sortedCategories.length === 0) {
+                topDiv.innerHTML = '<p style="color: #a3a3a3; text-align: center; padding: 2rem;">No expenses yet</p>';
+                return;
+            }
+
+            topDiv.innerHTML = sortedCategories.map(([category, amount]) => `
+                <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #333;">
+                    <div style="color: #d4d4d4;">${category}</div>
+                    <div style="color: #dc2626; font-weight: 700;">$${amount.toFixed(2)}</div>
+                </div>
+            `).join('');
+        }
+
+        // Handle form submission
+        document.getElementById('transactionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const transaction = {
+                id: Date.now(),
+                date: document.getElementById('date').value,
+                type: document.getElementById('type').value,
+                category: document.getElementById('category').value,
+                description: document.getElementById('description').value,
+                payment: document.getElementById('payment').value,
+                amount: parseFloat(document.getElementById('amount').value)
+            };
+
+            transactions.push(transaction);
+            localStorage.setItem('medicTeamOneTransactions', JSON.stringify(transactions));
+            
+            calculateBalance();
+            updateDashboard();
+            renderTransactionTable();
+            
+            // Reset form
+            this.reset();
+            setTodaysDate();
+            document.getElementById('category').innerHTML = '<option value="">Select Category</option>';
+        });
+
+        // Render transaction table
+        function renderTransactionTable() {
+            const tbody = document.getElementById('transactionTableBody');
+            
+            if (transactions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; color: #a3a3a3; padding: 2rem;">
+                            No transactions recorded yet
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            let runningBalance = 0;
+            const reversedTransactions = [...transactions].reverse();
+            
+            tbody.innerHTML = reversedTransactions.map(transaction => {
+                if (transaction.type === 'Income' || transaction.type === 'Owner Contribution') {
+                    runningBalance += parseFloat(transaction.amount);
+                } else {
+                    runningBalance -= parseFloat(transaction.amount);
+                }
+
+                const amountClass = (transaction.type === 'Income' || transaction.type === 'Owner Contribution') ? 'amount-positive' : 'amount-negative';
+                const amountPrefix = (transaction.type === 'Income' || transaction.type === 'Owner Contribution') ? '+' : '-';
+
+                return `
+                    <tr>
+                        <td>${transaction.date}</td>
+                        <td>${transaction.type}</td>
+                        <td>${transaction.category}</td>
+                        <td>${transaction.description || '-'}</td>
+                        <td>${transaction.payment}</td>
+                        <td class="${amountClass}">${amountPrefix}$${parseFloat(transaction.amount).toFixed(2)}</td>
+                        <td>$${runningBalance.toFixed(2)}</td>
+                        <td>
+                            <button onclick="deleteTransaction(${transaction.id})" style="background: #dc2626; color: white; border: none; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Delete transaction
+        function deleteTransaction(id) {
+            if (confirm('Are you sure you want to delete this transaction?')) {
+                transactions = transactions.filter(t => t.id !== id);
+                localStorage.setItem('medicTeamOneTransactions', JSON.stringify(transactions));
+                calculateBalance();
+                updateDashboard();
+                renderTransactionTable();
+            }
+        }
+
+        // Export to CSV
+        function exportToCSV() {
+            const headers = ['Date', 'Type', 'Category', 'Description', 'Payment Method', 'Amount', 'Balance'];
+            let csvContent = headers.join(',') + '\n';
+            
+            let runningBalance = 0;
+            transactions.forEach(transaction => {
+                if (transaction.type === 'Income' || transaction.type === 'Owner Contribution') {
+                    runningBalance += parseFloat(transaction.amount);
+                } else {
+                    runningBalance -= parseFloat(transaction.amount);
+                }
+                
+                const row = [
+                    transaction.date,
+                    transaction.type,
+                    transaction.category,
+                    `"${transaction.description || ''}"`,
+                    transaction.payment,
+                    transaction.amount,
+                    runningBalance.toFixed(2)
+                ];
+                csvContent += row.join(',') + '\n';
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `medic-team-one-ledger-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Print report
+        function printReport() {
+            window.print();
+        }
+
+        // Initialize the app when page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

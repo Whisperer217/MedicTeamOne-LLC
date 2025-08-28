@@ -106,6 +106,57 @@
             color: #dc2626;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #dc2626;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(220, 38, 38, 0.3);
+            display: none;
+            flex-direction: column;
+            padding: 1rem 2rem;
+            z-index: 100;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #d4d4d4;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: #dc2626;
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
         .nav-buttons {
             display: flex;
             gap: 1rem;
@@ -757,6 +808,10 @@
                 display: none;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             .hero-buttons {
                 flex-direction: column;
             }
@@ -805,7 +860,16 @@
             </div>
             <div class="nav-menu">
                 <a href="#training">Training</a>
-                <a href="#book">Book</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#training">Training</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -1346,10 +1410,126 @@
                     © 2025 Medic Team One, LLC | Never Again Without Readiness
                 </div>
                 <div class="footer-links">
+                    <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
+                    <a href="#" onclick="openModal('termsModal')">Terms of Service</a>
                     <a href="#contact">Contact</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 2rem auto; background: #1a1a1a; border: 2px solid #dc2626; border-radius: 16px; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="color: #dc2626; font-size: 1.5rem; font-weight: bold;">Privacy Policy</h2>
+                <button onclick="closeModal('privacyModal')" style="background: none; border: none; color: #dc2626; font-size: 1.5rem; cursor: pointer;">✕</button>
+            </div>
+            <div style="color: #d4d4d4; line-height: 1.6; font-size: 0.9rem;">
+                <p><strong>Last Updated:</strong> August 27, 2025</p>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Information We Collect</h3>
+                <p>We collect information you provide when you:</p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>Register for training sessions</li>
+                    <li>Contact us via phone, email, or forms</li>
+                    <li>Visit our website (basic analytics only)</li>
+                </ul>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">How We Use Your Information</h3>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>Schedule and conduct training sessions</li>
+                    <li>Issue certificates and maintain training records</li>
+                    <li>Communicate about training updates and safety information</li>
+                    <li>Comply with insurance and legal requirements</li>
+                </ul>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Information Sharing</h3>
+                <p>We do not sell or share your personal information with third parties except:</p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>When required by law</li>
+                    <li>For insurance or liability purposes related to training</li>
+                    <li>With certification bodies (ACS) for official certificates</li>
+                </ul>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Contact</h3>
+                <p>Questions about this privacy policy: jacob@medicteamone.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 2rem auto; background: #1a1a1a; border: 2px solid #dc2626; border-radius: 16px; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="color: #dc2626; font-size: 1.5rem; font-weight: bold;">Terms of Service</h2>
+                <button onclick="closeModal('termsModal')" style="background: none; border: none; color: #dc2626; font-size: 1.5rem; cursor: pointer;">✕</button>
+            </div>
+            <div style="color: #d4d4d4; line-height: 1.6; font-size: 0.9rem;">
+                <p><strong>Last Updated:</strong> August 27, 2025</p>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Training Agreement</h3>
+                <p>By enrolling in Medic Team One training, you acknowledge:</p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>This is preparedness training, not medical licensing</li>
+                    <li>You will not represent yourself as a licensed medical provider</li>
+                    <li>Training focuses on civilian emergency response</li>
+                    <li>Physical participation required - inform us of medical conditions</li>
+                </ul>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Liability</h3>
+                <p>Participants train at their own risk. Texas Good Samaritan laws provide protection when rendering aid in good faith. Medic Team One maintains liability insurance for training activities.</p>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Cancellation Policy</h3>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>48-hour notice required for full refund</li>
+                    <li>24-hour notice: 50% refund</li>
+                    <li>Same-day cancellation: No refund</li>
+                    <li>Weather/emergency cancellations: Full refund or reschedule</li>
+                </ul>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Certification</h3>
+                <p>Certificates issued upon successful completion. Valid for 2 years for ACS Stop the Bleed. No recertification requirement for basic training.</p>
+                
+                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Contact</h3>
+                <p>Questions about terms: jacob@medicteamone.com | (936) 217-7703</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = ['privacyModal', 'termsModal'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    closeModal(modalId);
+                }
+            });
+        }
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

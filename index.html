@@ -111,15 +111,28 @@
             flex-direction: column;
             cursor: pointer;
             padding: 0.5rem;
+            gap: 4px;
         }
 
         .hamburger span {
-            width: 25px;
+            width: 28px;
             height: 3px;
             background: #dc2626;
-            margin: 3px 0;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             border-radius: 2px;
+            display: block;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         .mobile-menu {
@@ -860,7 +873,9 @@
             </div>
             <div class="nav-menu">
                 <a href="#training">Training</a>
+                <a href="book.html">Book</a>
                 <a href="#pricing">Pricing</a>
+                <a href="waiver.html">Waiver</a>
                 <a href="#contact">Contact</a>
             </div>
             <div class="hamburger" onclick="toggleMobileMenu()">
@@ -870,7 +885,9 @@
             </div>
             <div class="mobile-menu" id="mobileMenu">
                 <a href="#training">Training</a>
+                <a href="book.html">Book</a>
                 <a href="#pricing">Pricing</a>
+                <a href="waiver.html">Waiver</a>
                 <a href="#contact">Contact</a>
             </div>
             <div class="nav-buttons">

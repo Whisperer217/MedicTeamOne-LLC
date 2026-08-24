@@ -1,1552 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medic Team One, LLC - Combat-Proven Training for Civilian Readiness</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #000;
-            color: #f5f5f5;
-            overflow-x: hidden;
-        }
-
-        /* Header/Navbar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
-            padding: 1rem 0;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.25);
-        }
-
-        .logo-icon::before {
-            content: '✚';
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 16px;
-            height: 16px;
-            background: #22c55e;
-            border-radius: 50%;
-            border: 2px solid #000;
-            animation: pulse 2s infinite;
-        }
-
-        .logo-text h1 {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #dc2626;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .logo-text p {
-            font-size: 0.8rem;
-            color: #a3a3a3;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: #d4d4d4;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #dc2626;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-            gap: 4px;
-        }
-
-        .hamburger span {
-            width: 28px;
-            height: 3px;
-            background: #dc2626;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-            display: block;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        .mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(220, 38, 38, 0.3);
-            display: none;
-            flex-direction: column;
-            padding: 1rem 2rem;
-            z-index: 100;
-        }
-
-        .mobile-menu.active {
-            display: flex;
-        }
-
-        .mobile-menu a {
-            color: #d4d4d4;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 1rem 0;
-            border-bottom: 1px solid #333;
-            transition: color 0.3s;
-        }
-
-        .mobile-menu a:hover {
-            color: #dc2626;
-        }
-
-        .mobile-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #dc2626;
-            color: #dc2626;
-        }
-
-        .btn-outline:hover {
-            background: rgba(220, 38, 38, 0.1);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: white;
-            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.25);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(220, 38, 38, 0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            padding: 8rem 0 6rem;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.15), transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(220, 38, 38, 0.1), transparent 50%);
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(220, 38, 38, 0.1);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 50px;
-            color: #dc2626;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #d4d4d4;
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        .hero-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .feature-card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(64, 64, 64, 0.3);
-            border: 1px solid #525252;
-            border-radius: 12px;
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .feature-icon.green {
-            background: rgba(34, 197, 94, 0.1);
-            color: #22c55e;
-        }
-
-        .feature-icon.red {
-            background: rgba(220, 38, 38, 0.1);
-            color: #dc2626;
-        }
-
-        .hero-list {
-            list-style: none;
-            margin-bottom: 3rem;
-        }
-
-        .hero-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            color: #d4d4d4;
-        }
-
-        .hero-list li::before {
-            content: '✓';
-            color: #22c55e;
-            font-weight: bold;
-            margin-top: 2px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .legal-notice {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 12px;
-            color: #93c5fd;
-            font-size: 0.9rem;
-        }
-
-        .hero-visual {
-            position: relative;
-        }
-
-        .visual-card {
-            background: rgba(64, 64, 64, 0.5);
-            border: 1px solid #525252;
-            border-radius: 24px;
-            padding: 2rem;
-            backdrop-filter: blur(20px);
-        }
-
-        .instructor-photo {
-            aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #404040, #262626);
-            border: 2px solid #525252;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .instructor-photo::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), transparent);
-        }
-
-        .photo-placeholder {
-            text-align: center;
-            color: #a3a3a3;
-        }
-
-        .credentials-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .credential-item {
-            padding: 0.75rem;
-            background: rgba(64, 64, 64, 0.3);
-            border: 1px solid #525252;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-
-        /* Training Section */
-        .training-section {
-            padding: 6rem 0;
-            background: rgba(23, 23, 23, 0.5);
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .section-header h2 .highlight {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .training-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .training-card {
-            background: rgba(64, 64, 64, 0.3);
-            border: 1px solid #525252;
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .training-card:hover {
-            border-color: #dc2626;
-            box-shadow: 0 8px 40px rgba(220, 38, 38, 0.2);
-        }
-
-        .training-card h3 {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .training-card ul {
-            list-style: none;
-            color: #d4d4d4;
-        }
-
-        .training-card li {
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            position: relative;
-        }
-
-        .training-card li::before {
-            content: '•';
-            color: #dc2626;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 6rem 0;
-            background: rgba(23, 23, 23, 0.5);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info {
-            margin-bottom: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-form {
-            background: rgba(64, 64, 64, 0.3);
-            border: 1px solid #525252;
-            border-radius: 16px;
-            padding: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: white;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            background: #404040;
-            border: 1px solid #525252;
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #dc2626;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
-        }
-
-        /* Enhanced Footer Styles */
-        .footer {
-            background: linear-gradient(135deg, #171717 0%, #262626 100%);
-            border-top: 2px solid #dc2626;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-branding {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-logo .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            position: relative;
-            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.25);
-        }
-
-        .footer-logo .logo-icon::before {
-            content: '✚';
-        }
-
-        .footer-logo .logo-icon::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 16px;
-            height: 16px;
-            background: #22c55e;
-            border-radius: 50%;
-            border: 2px solid #000;
-        }
-
-        .logo-text h3 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #dc2626;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.25rem;
-        }
-
-        .logo-text p {
-            color: #a3a3a3;
-            font-size: 0.9rem;
-        }
-
-        .footer-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .footer-contact .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #d4d4d4;
-            font-size: 0.9rem;
-        }
-
-        .contact-icon {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #dc2626;
-        }
-
-        .disclaimer-section {
-            background: rgba(64, 64, 64, 0.3);
-            border: 1px solid #525252;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .disclaimer-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #dc2626;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .disclaimer-content {
-            font-size: 0.85rem;
-            color: #d4d4d4;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .certifications {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .cert-badge {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.75rem;
-            color: #3b82f6;
-            font-weight: 600;
-        }
-
-        .legal-protection {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        .legal-title {
-            font-weight: bold;
-            color: #22c55e;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .legal-text {
-            font-size: 0.8rem;
-            color: #86efac;
-            line-height: 1.4;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #525252;
-            padding-top: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .copyright {
-            color: #a3a3a3;
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: #d4d4d4;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #dc2626;
-        }
-
-        /* Pricing Cards */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto 4rem;
-        }
-
-        .pricing-card {
-            background: linear-gradient(135deg, rgba(64, 64, 64, 0.5), rgba(38, 38, 38, 0.5));
-            border: 2px solid #525252;
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: #dc2626;
-            transform: scale(1.05);
-        }
-
-        .pricing-card:hover {
-            border-color: #dc2626;
-            box-shadow: 0 8px 40px rgba(220, 38, 38, 0.2);
-        }
-
-        .pricing-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(220, 38, 38, 0.2);
-            border: 1px solid #dc2626;
-            border-radius: 50px;
-            color: #dc2626;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-container,
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-features {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .footer-main {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .certifications {
-                justify-content: center;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .pricing-card.featured {
-                transform: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medic Team One — Operational Medical Training</title>
+  <meta name="description" content="Medic Team One delivers customized operational medical training founded and operated by Jacob Ross, U.S. Army 68W Combat Medic.">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo-section">
-                <div class="logo-icon"></div>
-                <div class="logo-text">
-                    <h1>Medic Team One, LLC</h1>
-                    <p>Combat Medic Certified • ACS Approved</p>
-                </div>
-            </div>
-            <div class="nav-menu">
-                <a href="#training">Training</a>
-                <a href="book.html">Book</a>
-                <a href="#pricing">Pricing</a>
-                <a href="waiver.html">Waiver</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="hamburger" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="#training">Training</a>
-                <a href="book.html">Book</a>
-                <a href="#pricing">Pricing</a>
-                <a href="waiver.html">Waiver</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="nav-buttons">
-                <a href="#contact" class="btn btn-outline">Questions?</a>
-                <a href="#pricing" class="btn btn-primary">Enroll Now</a>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div>
-                <div class="hero-badge">
-                    Civilian Responder One (Basic) • Combat Medic Certified
-                </div>
-                
-                <h1>
-                    From Battlefield<br>
-                    to Backyard:<br>
-                    <span class="highlight">Survival Isn't Optional.</span>
-                </h1>
-                
-                <p>
-                    Learn <strong>massive hemorrhage control</strong>, <strong>basic airway management</strong>, and <strong>chest seal application</strong> from a 
-                    National Guard Combat Medic with multiple combat casualties processed under fire.
-                </p>
-
-                <div class="hero-features">
-                    <div class="feature-card">
-                        <div class="feature-icon red">🩸</div>
-                        <div>
-                            <strong>Hemorrhage Control</strong>
-                            <p style="font-size: 0.9rem; color: #a3a3a3;">Stop life-threatening bleeding</p>
-                        </div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon green">🫁</div>
-                        <div>
-                            <strong>Airway & Chest Seals</strong>
-                            <p style="font-size: 0.9rem; color: #a3a3a3;">Critical trauma interventions</p>
-                        </div>
-                    </div>
-                </div>
-
-                <ul class="hero-list">
-                    <li>Small groups only • <strong>6 students maximum</strong></li>
-                    <li><strong>ACS Stop the Bleed</strong> official certification</li>
-                    <li><strong>Civilian Responder One (Basic)</strong> certificate</li>
-                    <li>Hands-on training with professional medical equipment</li>
-                    <li>Combat-tested techniques adapted for civilians</li>
-                </ul>
-
-                <div class="hero-buttons">
-                    <a href="#pricing" class="btn btn-primary">See Training Options</a>
-                    <a href="#contact" class="btn btn-outline">Ask Questions</a>
-                </div>
-
-                <div class="legal-notice">
-                    <span>🛡️</span>
-                    <span>Protected under Texas Good Samaritan laws • Certificate includes legal notation</span>
-                </div>
-            </div>
-
-            <div class="hero-visual">
-                <div class="visual-card">
-                    <div class="instructor-photo">
-                        <div class="photo-placeholder">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">⚕️</div>
-                            <p style="font-size: 1.2rem; font-weight: 600;">Combat Medic Instructor</p>
-                            <p style="font-size: 1rem; color: #737373;">Afghanistan 2011-2012</p>
-                        </div>
-                    </div>
-                    
-                    <div class="credentials-grid">
-                        <div class="credential-item">
-                            <div style="font-size: 1.2rem; margin-bottom: 0.25rem;">👥</div>
-                            <div>6 Students Max</div>
-                        </div>
-                        <div class="credential-item">
-                            <div style="font-size: 1.2rem; margin-bottom: 0.25rem;">⏰</div>
-                            <div>4 Hours Training</div>
-                        </div>
-                        <div class="credential-item">
-                            <div style="font-size: 1.2rem; margin-bottom: 0.25rem;">🩸</div>
-                            <div>Focus Areas</div>
-                        </div>
-                        <div class="credential-item">
-                            <div style="font-size: 1.2rem; margin-bottom: 0.25rem;">📖</div>
-                            <div>Book Included</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Training Programs -->
-    <section id="training" class="training-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2><span class="highlight">Civilian Responder One</span> (Basic)</h2>
-                <p style="font-size: 1.25rem; color: #d4d4d4; max-width: 800px; margin: 0 auto;">
-                    Three critical skills that can save lives in the first minutes of a traumatic emergency. 
-                    Combat-tested techniques adapted for civilian response.
-                </p>
-            </div>
-
-            <div class="training-grid">
-                <div class="training-card">
-                    <h3>
-                        <div class="card-icon" style="background: rgba(220, 38, 38, 0.1); color: #dc2626;">🩸</div>
-                        Massive Hemorrhage Control
-                    </h3>
-                    <ul>
-                        <li>Tourniquet application (CAT & SOFT)</li>
-                        <li>Pressure dressing techniques</li>
-                        <li>Hemostatic agent usage</li>
-                        <li>Wound packing methods</li>
-                        <li>Improvised hemorrhage control</li>
-                    </ul>
-                </div>
-
-                <div class="training-card">
-                    <h3>
-                        <div class="card-icon" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">🫁</div>
-                        Basic Airway Management
-                    </h3>
-                    <ul>
-                        <li>Airway opening techniques</li>
-                        <li>Recovery positioning</li>
-                        <li>Obstruction clearing methods</li>
-                        <li>Basic airway devices</li>
-                        <li>Recognition of airway compromise</li>
-                    </ul>
-                </div>
-
-                <div class="training-card">
-                    <h3>
-                        <div class="card-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">🛡️</div>
-                        Chest Seal Application
-                    </h3>
-                    <ul>
-                        <li>Sucking chest wound identification</li>
-                        <li>Proper chest seal placement</li>
-                        <li>Improvised chest seal techniques</li>
-                        <li>Tension pneumothorax awareness</li>
-                        <li>Monitoring and reassessment</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing/Schedule Section -->
-    <section id="pricing" style="padding: 6rem 0; background: rgba(23, 23, 23, 0.5);">
-        <div class="section-container">
-            <div class="section-header">
-                <h2>Training Options & Pricing</h2>
-                <p style="font-size: 1.25rem; color: #d4d4d4;">Choose the training format that works best for you</p>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Group Training -->
-                <div class="pricing-card featured">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="pricing-badge">
-                        👥 Group Training
-                    </div>
-                    <h3 style="font-size: 2rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">Group Sessions</h3>
-                    <div style="font-size: 3.5rem; font-weight: 900; color: #22c55e; margin: 1rem 0;">$150</div>
-                    <p style="color: #a3a3a3; margin-bottom: 2rem;">per person • 4-hour training</p>
-                    
-                    <ul style="list-style: none; margin-bottom: 2rem; color: #d4d4d4; text-align: left;">
-                        <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="color: #22c55e; font-weight: bold;">✓</span>
-                            <span>Maximum 6 students per session</span>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="color: #22c55e; font-weight: bold;">✓</span>
-                            <span>Every Saturday in Montgomery County</span>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="color: #22c55e; font-weight: bold;">✓</span>
-                            <span>All certifications included</span>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="color: #22c55e; font-weight: bold;">✓</span>
-                            <span>Shared learning experience</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Individual Training -->
-                <div class="pricing-card">
-                    <div class="pricing-badge">
-                        🎯 Individual Training
-                    </div>
-                    <h3 style="font-size: 2rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">Private Sessions</h3>
-                    <div style="font-size: 3.5rem; font-weight: 900; color: #dc2626; margin: 1rem 0;">$200</div>
-                    <p style="color: #a3a3a3; margin-bottom: 2rem;">per person • 4-hour training</p>
-                    
-                    <ul style="list-style: none; margin-bottom: 2rem; color: #d4d4d4; text-align: left;">
-                        <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="color: #22c55e; font-weight: bold;">✓</span>
-                            <span>One-on-one instruction</span>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="color: #22c55e; font-weight: bold;">✓</span>
-                            <span>Flexible scheduling</span>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="color: #22c55e; font-weight: bold;">✓</span>
-                            <span>Customized pace & focus</span>
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="color: #22c55e; font-weight: bold;">✓</span>
-                            <span>All certifications included</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Both Include -->
-            <div style="max-width: 600px; margin: 0 auto 4rem; background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 16px; padding: 2rem; text-align: center;">
-                <h3 style="color: white; font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">Both Options Include:</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; color: #d4d4d4;">
-                    <div style="text-align: left;">
-                        <p>• Massive hemorrhage control</p>
-                        <p>• Basic airway management</p>
-                        <p>• Chest seal application</p>
-                    </div>
-                    <div style="text-align: left;">
-                        <p>• ACS Stop the Bleed certification</p>
-                        <p>• Civilian Responder One certificate</p>
-                        <p>• Professional medical equipment</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Schedule Section -->
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h3 style="text-align: center; font-size: 2rem; font-weight: bold; margin-bottom: 2rem; color: white;">Upcoming Group Sessions</h3>
-                
-                <div style="background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 16px; padding: 2rem; margin-bottom: 2rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 1rem; background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); border-radius: 8px;">
-                        <span style="font-weight: bold; color: white;"><strong>August 30, 2025</strong> • 9:00 AM - 1:00 PM</span>
-                        <span style="color: #f59e0b; font-weight: 600;">Only 6 Slots - $150/person</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 1rem; background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); border-radius: 8px;">
-                        <span style="font-weight: bold; color: white;"><strong>September 6, 2025</strong> • 9:00 AM - 1:00 PM</span>
-                        <span style="color: #f59e0b; font-weight: 600;">Only 6 Slots - $150/person</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px;">
-                        <span style="color: #d4d4d4;"><strong>September 13, 2025</strong> • Time TBD</span>
-                        <span style="color: #3b82f6; font-weight: 600;">Planning Phase - $150/person</span>
-                    </div>
-                </div>
-
-                <div style="padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; margin-bottom: 2rem;">
-                    <h4 style="color: #3b82f6; font-weight: bold; margin-bottom: 1rem;">Training Details</h4>
-                    <div style="color: #93c5fd; font-size: 0.95rem; line-height: 1.6;">
-                        <p><strong>Group Sessions:</strong> Every Saturday, maximum 6 students, $150 per person</p>
-                        <p><strong>Private Sessions:</strong> Flexible scheduling, one-on-one instruction, $200 per person</p>
-                        <p><strong>Location:</strong> Montgomery County, TX (specific venue provided upon enrollment)</p>
-                        <p><strong>Duration:</strong> 4 hours comprehensive training for both options</p>
-                        <p style="margin-top: 1rem; font-style: italic;">
-                            <strong>Note:</strong> Group sessions fill quickly. Private sessions available any day by appointment.
-                        </p>
-                    </div>
-                </div>
-
-                <div style="text-align: center;">
-                    <a href="#enrollment-form" style="display: inline-flex; align-items: center; justify-content: center; gap: 1rem; padding: 1.25rem 2.5rem; background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 6px 30px rgba(220, 38, 38, 0.4); transition: transform 0.3s;">
-                        Choose Your Training Option
-                    </a>
-                    <p style="color: #a3a3a3; font-size: 0.9rem; margin-top: 1rem;">
-                        Group sessions: $150/person • Private sessions: $200/person
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enrollment Form -->
-    <section id="enrollment-form" style="padding: 4rem 0; background: rgba(23, 23, 23, 0.8);">
-        <div class="section-container">
-            <div style="max-width: 600px; margin: 0 auto;">
-                <div style="text-align: center; margin-bottom: 3rem;">
-                    <h2 style="font-size: 2.5rem; font-weight: bold; color: white; margin-bottom: 1rem;">Reserve Your Training</h2>
-                    <p style="font-size: 1.1rem; color: #d4d4d4;">Fill out the form below and we'll contact you within 24 hours to confirm your preferred training option and provide details.</p>
-                </div>
-
-                <div style="background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 16px; padding: 2rem;">
-                    <form action="https://formspree.io/f/xovlgrbw" method="POST">
-                        <!-- Training Option Selection -->
-                        <div style="margin-bottom: 2rem;">
-                            <label style="display: block; color: white; font-weight: 600; margin-bottom: 1rem;">Select Training Option *</label>
-                            <div style="display: grid; gap: 1rem;">
-                                <label style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(64, 64, 64, 0.3); border: 2px solid #525252; border-radius: 8px; cursor: pointer; color: #d4d4d4; transition: border-color 0.3s;">
-                                    <input type="radio" name="training_option" value="Group Training - $150" required style="accent-color: #dc2626;">
-                                    <div>
-                                        <div style="font-weight: bold; color: white;">Group Training - $150/person</div>
-                                        <div style="font-size: 0.9rem; color: #a3a3a3;">Saturday sessions, max 6 students</div>
-                                    </div>
-                                </label>
-                                <label style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(64, 64, 64, 0.3); border: 2px solid #525252; border-radius: 8px; cursor: pointer; color: #d4d4d4; transition: border-color 0.3s;">
-                                    <input type="radio" name="training_option" value="Private Training - $200" required style="accent-color: #dc2626;">
-                                    <div>
-                                        <div style="font-weight: bold; color: white;">Private Training - $200/person</div>
-                                        <div style="font-size: 0.9rem; color: #a3a3a3;">One-on-one, flexible scheduling</div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Personal Information -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                            <div>
-                                <label style="display: block; color: white; font-weight: 600; margin-bottom: 0.5rem;">First Name *</label>
-                                <input type="text" name="first_name" required style="width: 100%; padding: 0.75rem; background: #404040; border: 1px solid #525252; border-radius: 8px; color: white; font-size: 1rem;">
-                            </div>
-                            <div>
-                                <label style="display: block; color: white; font-weight: 600; margin-bottom: 0.5rem;">Last Name *</label>
-                                <input type="text" name="last_name" required style="width: 100%; padding: 0.75rem; background: #404040; border: 1px solid #525252; border-radius: 8px; color: white; font-size: 1rem;">
-                            </div>
-                        </div>
-
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; color: white; font-weight: 600; margin-bottom: 0.5rem;">Email Address *</label>
-                            <input type="email" name="email" required style="width: 100%; padding: 0.75rem; background: #404040; border: 1px solid #525252; border-radius: 8px; color: white; font-size: 1rem;">
-                        </div>
-
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; color: white; font-weight: 600; margin-bottom: 0.5rem;">Phone Number *</label>
-                            <input type="tel" name="phone" required style="width: 100%; padding: 0.75rem; background: #404040; border: 1px solid #525252; border-radius: 8px; color: white; font-size: 1rem;">
-                        </div>
-
-                        <!-- Date Preferences (for group training) -->
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; color: white; font-weight: 600; margin-bottom: 1rem;">Preferred Dates (for group training)</label>
-                            <div style="display: grid; gap: 0.75rem;">
-                                <label style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 8px; cursor: pointer; color: #d4d4d4;">
-                                    <input type="checkbox" name="preferred_dates" value="August 30, 2025" style="accent-color: #dc2626;">
-                                    <span><strong>August 30, 2025</strong> • 9:00 AM - 1:00 PM</span>
-                                </label>
-                                <label style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 8px; cursor: pointer; color: #d4d4d4;">
-                                    <input type="checkbox" name="preferred_dates" value="September 6, 2025" style="accent-color: #dc2626;">
-                                    <span><strong>September 6, 2025</strong> • 9:00 AM - 1:00 PM</span>
-                                </label>
-                                <label style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 8px; cursor: pointer; color: #d4d4d4;">
-                                    <input type="checkbox" name="preferred_dates" value="September 13, 2025" style="accent-color: #dc2626;">
-                                    <span><strong>September 13, 2025</strong> • Time TBD</span>
-                                </label>
-                                <label style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: rgba(64, 64, 64, 0.3); border: 1px solid #525252; border-radius: 8px; cursor: pointer; color: #d4d4d4;">
-                                    <input type="checkbox" name="preferred_dates" value="Any available Saturday" style="accent-color: #dc2626;">
-                                    <span><strong>Any available Saturday</strong> • Flexible</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Additional Information -->
-                        <div style="margin-bottom: 2rem;">
-                            <label style="display: block; color: white; font-weight: 600; margin-bottom: 0.5rem;">Additional Information (Optional)</label>
-                            <textarea name="additional_info" rows="3" placeholder="Special requirements, questions, preferred times for private training, etc." style="width: 100%; padding: 0.75rem; background: #404040; border: 1px solid #525252; border-radius: 8px; color: white; font-size: 1rem; resize: vertical;"></textarea>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s; box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);">
-                            Reserve My Training
-                        </button>
-
-                        <p style="color: #a3a3a3; font-size: 0.9rem; text-align: center; margin-top: 1rem; line-height: 1.5;">
-                            We'll contact you within 24 hours to confirm your training option, scheduling, and provide venue details. 
-                            Payment is due upon confirmation.
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact-section">
-        <div class="section-container">
-            <div class="contact-grid">
-                <div>
-                    <h2 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 2rem;">Questions? Let's Talk.</h2>
-                    <p style="font-size: 1.25rem; color: #d4d4d4; margin-bottom: 3rem;">
-                        Ready to learn skills that could save lives? Have questions about training options? Get in touch.
-                    </p>
-
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="feature-icon red">📧</div>
-                            <div>
-                                <p style="font-weight: 600; color: white;">Email</p>
-                                <p style="color: #a3a3a3;">jacob@medicteamone.com</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="feature-icon green">📞</div>
-                            <div>
-                                <p style="font-weight: 600; color: white;">Phone</p>
-                                <p style="color: #a3a3a3;">(936) 217-7703</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="feature-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">📍</div>
-                            <div>
-                                <p style="font-weight: 600; color: white;">Location</p>
-                                <p style="color: #a3a3a3;">Montgomery County, Texas</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="feature-icon" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">🌐</div>
-                            <div>
-                                <p style="font-weight: 600; color: white;">Website</p>
-                                <p style="color: #a3a3a3;">www.medicteamone.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <h3 style="color: white; font-size: 1.5rem; font-weight: bold; margin-bottom: 2rem;">Send a Message</h3>
-                    <form action="https://formspree.io/f/xovlgrbw" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone (Optional)</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Questions about training options, scheduling, or group bookings?" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <!-- Main Footer Content -->
-            <div class="footer-main">
-                <!-- Branding Section -->
-                <div class="footer-branding">
-                    <div class="footer-logo">
-                        <div class="logo-icon"></div>
-                        <div class="logo-text">
-                            <h3>Medic Team One, LLC</h3>
-                            <p>Combat-Proven Training for Civilian Readiness</p>
-                        </div>
-                    </div>
-                    <p style="color: #d4d4d4; font-size: 0.9rem; line-height: 1.5;">
-                        Bridging the gap between battlefield medicine and civilian preparedness. 
-                        Real skills, real gear, real readiness.
-                    </p>
-                </div>
-
-                <!-- Contact Section -->
-                <div class="footer-contact">
-                    <h4 style="color: #dc2626; font-weight: bold; margin-bottom: 1rem;">Get in Touch</h4>
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <span>jacob@medicteamone.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <span>(936) 217-7703</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <span>Montgomery County, Texas</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🌐</div>
-                        <span>www.medicteamone.com</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Disclaimer Section -->
-            <div class="disclaimer-section">
-                <div class="disclaimer-title">
-                    Training Disclaimer & Legal Protection
-                </div>
-                
-                <div class="disclaimer-content">
-                    <strong>Civilian Responder One (Basic)</strong> is a preparedness training program and not a state or nationally recognized EMS certification. 
-                    Instruction is based on published guidelines from established medical organizations and is designed for civilian emergency response preparedness.
-                </div>
-
-                <!-- Certification Badges -->
-                <div class="certifications">
-                    <div class="cert-badge">Combat Medic Experience</div>
-                    <div class="cert-badge">TECC/TCCC Guidelines</div>
-                    <div class="cert-badge">CDC Guidelines</div>
-                    <div class="cert-badge">WMS Standards</div>
-                    <div class="cert-badge">AHA/Red Cross</div>
-                </div>
-
-                <div class="disclaimer-content">
-                    Participation does not authorize attendees to represent themselves as licensed medical providers or to deliver EMS care. 
-                    Training focuses on civilian emergency response and preparedness applications.
-                </div>
-
-                <!-- Legal Protection -->
-                <div class="legal-protection">
-                    <div class="legal-title">
-                        Good Samaritan Protection
-                    </div>
-                    <div class="legal-text">
-                        Under Texas law (Texas Civil Practice & Remedies Code §74.151 – Good Samaritan Act), individuals who in good faith provide emergency aid are protected from liability except in cases of willful or wanton negligence. All certificates include legal notation for documentation purposes.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="copyright">
-                    © 2025 Medic Team One, LLC | Never Again Without Readiness
-                </div>
-                <div class="footer-links">
-                    <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
-                    <a href="#" onclick="openModal('termsModal')">Terms of Service</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Privacy Policy Modal -->
-    <div id="privacyModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto;">
-        <div style="max-width: 800px; margin: 2rem auto; background: #1a1a1a; border: 2px solid #dc2626; border-radius: 16px; padding: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <h2 style="color: #dc2626; font-size: 1.5rem; font-weight: bold;">Privacy Policy</h2>
-                <button onclick="closeModal('privacyModal')" style="background: none; border: none; color: #dc2626; font-size: 1.5rem; cursor: pointer;">✕</button>
-            </div>
-            <div style="color: #d4d4d4; line-height: 1.6; font-size: 0.9rem;">
-                <p><strong>Last Updated:</strong> August 27, 2025</p>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Information We Collect</h3>
-                <p>We collect information you provide when you:</p>
-                <ul style="margin: 1rem 0; padding-left: 2rem;">
-                    <li>Register for training sessions</li>
-                    <li>Contact us via phone, email, or forms</li>
-                    <li>Visit our website (basic analytics only)</li>
-                </ul>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">How We Use Your Information</h3>
-                <ul style="margin: 1rem 0; padding-left: 2rem;">
-                    <li>Schedule and conduct training sessions</li>
-                    <li>Issue certificates and maintain training records</li>
-                    <li>Communicate about training updates and safety information</li>
-                    <li>Comply with insurance and legal requirements</li>
-                </ul>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Information Sharing</h3>
-                <p>We do not sell or share your personal information with third parties except:</p>
-                <ul style="margin: 1rem 0; padding-left: 2rem;">
-                    <li>When required by law</li>
-                    <li>For insurance or liability purposes related to training</li>
-                    <li>With certification bodies (ACS) for official certificates</li>
-                </ul>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Contact</h3>
-                <p>Questions about this privacy policy: jacob@medicteamone.com</p>
-            </div>
-        </div>
+  <header class="archive-header">
+    <div class="archive-header__inner">
+      <a href="index.html" class="brand" aria-label="Medic Team One home">Medic <span>Team</span> One</a>
+      <span class="badge">Field Archive</span>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="training.html">Training</a>
+        <a href="about.html">About</a>
+        <a href="doctrine.html">Doctrine</a>
+        <a href="resources.html">Resources</a>
+        <a href="book.html">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a href="training.html" class="header-action">Configure Training</a>
     </div>
+  </header>
 
-    <!-- Terms of Service Modal -->
-    <div id="termsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto;">
-        <div style="max-width: 800px; margin: 2rem auto; background: #1a1a1a; border: 2px solid #dc2626; border-radius: 16px; padding: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <h2 style="color: #dc2626; font-size: 1.5rem; font-weight: bold;">Terms of Service</h2>
-                <button onclick="closeModal('termsModal')" style="background: none; border: none; color: #dc2626; font-size: 1.5rem; cursor: pointer;">✕</button>
-            </div>
-            <div style="color: #d4d4d4; line-height: 1.6; font-size: 0.9rem;">
-                <p><strong>Last Updated:</strong> August 27, 2025</p>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Training Agreement</h3>
-                <p>By enrolling in Medic Team One training, you acknowledge:</p>
-                <ul style="margin: 1rem 0; padding-left: 2rem;">
-                    <li>This is preparedness training, not medical licensing</li>
-                    <li>You will not represent yourself as a licensed medical provider</li>
-                    <li>Training focuses on civilian emergency response</li>
-                    <li>Physical participation required - inform us of medical conditions</li>
-                </ul>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Liability</h3>
-                <p>Participants train at their own risk. Texas Good Samaritan laws provide protection when rendering aid in good faith. Medic Team One maintains liability insurance for training activities.</p>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Cancellation Policy</h3>
-                <ul style="margin: 1rem 0; padding-left: 2rem;">
-                    <li>48-hour notice required for full refund</li>
-                    <li>24-hour notice: 50% refund</li>
-                    <li>Same-day cancellation: No refund</li>
-                    <li>Weather/emergency cancellations: Full refund or reschedule</li>
-                </ul>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Certification</h3>
-                <p>Certificates issued upon successful completion. Valid for 2 years for ACS Stop the Bleed. No recertification requirement for basic training.</p>
-                
-                <h3 style="color: #22c55e; margin: 1.5rem 0 1rem 0;">Contact</h3>
-                <p>Questions about terms: jacob@medicteamone.com | (936) 217-7703</p>
-            </div>
+  <main>
+    <section class="dossier-hero" aria-labelledby="hero-title">
+      <div class="dossier-hero__grid">
+        <div class="hero-visual">
+          <div class="hero-visual__placeholder">
+            <p>Authorized imagery well
+pending provenance</p>
+          </div>
+          <span class="hero-visual__stamp">Verified — U.S. Army 68W</span>
         </div>
+        <div class="hero-content">
+          <span class="provenance">Source: Founder record / Jacob Ross</span>
+          <h1 id="hero-title">Experience becomes <em>doctrine</em>, doctrine becomes <em>application</em>.</h1>
+          <p class="lead">
+            Medic Team One is founded and operated by Jacob Ross, a U.S. Army 68W Combat Medic with 15 years of service. Training is built around the client: your requirement, your environment, your timeline.
+          </p>
+          <div class="hero-meta">
+            <div class="hero-meta__item">
+              <span class="hero-meta__label">Service</span>
+              <span class="hero-meta__value">15 Years Army</span>
+            </div>
+            <div class="hero-meta__item">
+              <span class="hero-meta__label">MOS</span>
+              <span class="hero-meta__value">68W Combat Medic</span>
+            </div>
+            <div class="hero-meta__item">
+              <span class="hero-meta__label">Model</span>
+              <span class="hero-meta__value">Client-Led Training</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lineage-strip" aria-label="Founder lineage">
+      <div class="lineage-strip__track">
+        <article class="lineage-item">
+          <span class="lineage-item__number">01</span>
+          <h2 class="lineage-item__title">15 Years Army</h2>
+          <p class="lineage-item__note">Documented service record</p>
+        </article>
+        <article class="lineage-item">
+          <span class="lineage-item__number">02</span>
+          <h2 class="lineage-item__title">68W Combat Medic</h2>
+          <p class="lineage-item__note">MOS-qualified operational care</p>
+        </article>
+        <article class="lineage-item">
+          <span class="lineage-item__number">03</span>
+          <h2 class="lineage-item__title">Operational Experience</h2>
+          <p class="lineage-item__note">Field-proven under operational conditions</p>
+        </article>
+        <article class="lineage-item">
+          <span class="lineage-item__number">04</span>
+          <h2 class="lineage-item__title">Instruction</h2>
+          <p class="lineage-item__note">Experience translated into teaching</p>
+        </article>
+        <article class="lineage-item">
+          <span class="lineage-item__number">05</span>
+          <h2 class="lineage-item__title">Authored Work</h2>
+          <p class="lineage-item__note">Doctrine, book, and resources</p>
+        </article>
+        <article class="lineage-item">
+          <span class="lineage-item__number">06</span>
+          <h2 class="lineage-item__title">Civilian Training</h2>
+          <p class="lineage-item__note">Customized client delivery</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="archive-section training-preview" aria-labelledby="training-title">
+      <div class="training-preview__grid">
+        <div class="archive-section__header">
+          <div>
+            <span class="section-eyebrow">Training Configuration</span>
+            <h2 id="training-title" class="section-title">Built around your requirement, not a calendar.</h2>
+            <p class="section-intro">
+              A client request establishes the session. Additional participants are accommodated when appropriate. Pricing is transparent and scales to the format.
+            </p>
+          </div>
+        </div>
+        <div class="training-modes">
+          <a href="training.html?type=individual" class="mode-card">
+            <span class="mode-card__type">01 — Individual</span>
+            <h3 class="mode-card__title">Solo Operator</h3>
+            <p class="mode-card__price">$200</p>
+            <p class="mode-card__note">One student, one requirement, direct instruction.</p>
+          </a>
+          <a href="training.html?type=group" class="mode-card">
+            <span class="mode-card__type">02 — Group</span>
+            <h3 class="mode-card__title">Small Unit</h3>
+            <p class="mode-card__price">$150 / person</p>
+            <p class="mode-card__note">Up to six participants. Pricing adjusts automatically.</p>
+          </a>
+          <a href="training.html?type=workplace" class="mode-card">
+            <span class="mode-card__type">03 — Workplace</span>
+            <h3 class="mode-card__title">Organization</h3>
+            <p class="mode-card__price">Custom</p>
+            <p class="mode-card__note">Employer-hosted training designed around the workplace.</p>
+          </a>
+          <a href="training.html?type=customized" class="mode-card">
+            <span class="mode-card__type">04 — Customized</span>
+            <h3 class="mode-card__title">Mission Profile</h3>
+            <p class="mode-card__price">Contact</p>
+            <p class="mode-card__note">Training built around a specialized requirement, environment, equipment, or objective.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="archive-section doctrine-preview" aria-labelledby="doctrine-title">
+      <div class="doctrine-preview__layout">
+        <div>
+          <span class="section-eyebrow">Doctrine</span>
+          <h2 id="doctrine-title" class="section-title">Why this training exists.</h2>
+          <p class="section-intro">
+            Doctrine is authored intellectual work: where the methodology comes from, how operational experience becomes instruction, and what students are prepared to apply.
+          </p>
+          <ol class="doctrine-list">
+            <li>
+              <span class="doctrine-list__num">I.</span>
+              <span class="doctrine-list__text">Experience is verified before it is taught.</span>
+            </li>
+            <li>
+              <span class="doctrine-list__num">II.</span>
+              <span class="doctrine-list__text">Instruction follows a clear chain: capability, doctrine, application.</span>
+            </li>
+            <li>
+              <span class="doctrine-list__num">III.</span>
+              <span class="doctrine-list__text">Every student leaves with a requirement met, not a certificate chased.</span>
+            </li>
+          </ol>
+        </div>
+        <div class="doctrine-visual">
+          <p class="doctrine-visual__label">Doctrine imagery / documents well
+pending provenance and authorization</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="archive-section book-feature" aria-labelledby="book-title">
+      <div class="book-feature__layout">
+        <div class="book-cover-well">
+          <img src="book-cover.jpg" alt="Medic Team One book cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <p class="book-cover-well__fallback" style="display:none;">Book cover asset: book-cover.jpg</p>
+        </div>
+        <div class="book-details">
+          <span class="section-eyebrow">Authored Work</span>
+          <h2 id="book-title" class="section-title">The book is part of the doctrine.</h2>
+          <p>
+            Written by Jacob Ross, the book extends the training into a permanent reference. It is treated as authored intellectual work, not a product card.
+          </p>
+          <a href="book.html" class="btn">View Book Details</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="archive-section field-report" aria-labelledby="contact-title">
+      <div class="field-report__grid">
+        <div>
+          <span class="section-eyebrow">Field Report</span>
+          <h2 id="contact-title" class="section-title">Start the requirement.</h2>
+          <p class="section-intro">
+            Describe who you are training, where, and what capability you need. A client request initiates the design and scheduling process.
+          </p>
+        </div>
+        <form class="field-report__form" action="https://formspree.io/f/xovlgrbw" method="POST">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-row">
+            <label for="training-type">Training Type</label>
+            <select id="training-type" name="training-type">
+              <option value="individual">Individual — $200</option>
+              <option value="group">Group — $150/person</option>
+              <option value="workplace">Workplace — Custom</option>
+              <option value="customized">Customized — Contact for pricing</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="message">Requirement</label>
+            <textarea id="message" name="message" placeholder="Who are you training? What capability do you need? Where and when?" required></textarea>
+          </div>
+          <button type="submit" class="btn">Submit Request</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="archive-footer">
+    <div class="archive-footer__inner">
+      <div class="archive-footer__top">
+        <div class="footer-block">
+          <h3 class="footer-block__title">Medic Team One</h3>
+          <p>Operational medical training founded and operated by Jacob Ross, U.S. Army 68W Combat Medic.</p>
+        </div>
+        <div class="footer-block">
+          <h3 class="footer-block__title">Contact</h3>
+          <a href="mailto:contact@medicteamone.com">contact@medicteamone.com</a>
+        </div>
+        <div class="footer-block">
+          <h3 class="footer-block__title">Explore</h3>
+          <a href="training.html">Training</a>
+          <a href="about.html">About</a>
+          <a href="doctrine.html">Doctrine</a>
+          <a href="resources.html">Resources</a>
+          <a href="book.html">Book</a>
+        </div>
+      </div>
+      <div class="archive-footer__legal">
+        <p>&copy; Medic Team One. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="waiver.html">Waiver</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
     </div>
+  </footer>
 
-    <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
-        }
-
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modals = ['privacyModal', 'termsModal'];
-            modals.forEach(modalId => {
-                const modal = document.getElementById(modalId);
-                if (event.target === modal) {
-                    closeModal(modalId);
-                }
-            });
-        }
-
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobileMenu').classList.remove('active');
-            });
-        });
-    </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

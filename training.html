@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Training — Medic Team One</title>
+  <meta name="description" content="Configure customized operational medical training with Medic Team One." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="archive-header">
+    <div class="archive-header__inner">
+      <a href="index.html" class="brand" aria-label="Medic Team One home">Medic <span>Team</span> One</a>
+      <span class="badge">Field Archive</span>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="training.html" aria-current="page">Training</a>
+        <a href="about.html">About</a>
+        <a href="doctrine.html">Doctrine</a>
+        <a href="resources.html">Resources</a>
+        <a href="book.html">Book</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a href="contact.html" class="header-action">Request Training</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="configurator-hero" aria-labelledby="config-title">
+      <div class="configurator-hero__inner">
+        <span class="provenance">Source: Client request workflow</span>
+        <h1 id="config-title">Configure a training requirement.</h1>
+        <p class="lead">
+          Training is organized around the client, not a permanent public calendar. Select a training type to reveal relevant options, pricing, and the delivery pipeline.
+        </p>
+      </div>
+    </section>
+
+    <section class="configurator-stage" data-configurator>
+      <div class="stage-question">
+        <span class="stage-question__label">Step 01 — Requirement</span>
+        <h2 class="stage-question__title">Who are you training?</h2>
+      </div>
+
+      <div class="type-selector" role="radiogroup" aria-label="Training type">
+        <button type="button" class="type-option active" data-type="individual" aria-pressed="true">
+          <span class="type-option__name">Individual</span>
+          <span class="type-option__price">$200</span>
+          <p class="type-option__desc">One student. One focused session. Direct instruction.</p>
+        </button>
+        <button type="button" class="type-option" data-type="group" aria-pressed="false">
+          <span class="type-option__name">Group</span>
+          <span class="type-option__price">$150 / person</span>
+          <p class="type-option__desc">Up to six participants. Pricing scales automatically.</p>
+        </button>
+        <button type="button" class="type-option" data-type="workplace" aria-pressed="false">
+          <span class="type-option__name">Workplace</span>
+          <span class="type-option__price">Custom</span>
+          <p class="type-option__desc">Employer-hosted training built around the organization.</p>
+        </button>
+        <button type="button" class="type-option" data-type="customized" aria-pressed="false">
+          <span class="type-option__name">Customized</span>
+          <span class="type-option__price">Contact</span>
+          <p class="type-option__desc">Training built around a specialized requirement, environment, equipment, or objective.</p>
+        </button>
+      </div>
+
+      <!-- Individual Panel -->
+      <div class="disclosure-panel active" data-panel="individual">
+        <div class="stage-question" style="margin-top: 3rem;">
+          <span class="stage-question__label">Step 02 — Individual Session</span>
+          <h2 class="stage-question__title">One student. One requirement.</h2>
+        </div>
+        <p class="section-intro">
+          The individual session is a single-seat training event. You define the capability; instruction is calibrated to your level and environment.
+        </p>
+        <div class="group-summary" style="max-width:480px;">
+          <div class="group-summary__item">
+            <span class="group-summary__label">Seat</span>
+            <span class="group-summary__value">1</span>
+          </div>
+          <div class="group-summary__item">
+            <span class="group-summary__label">Rate</span>
+            <span class="group-summary__value">$200</span>
+          </div>
+          <div class="group-summary__item">
+            <span class="group-summary__label">Total</span>
+            <span class="group-summary__value">$200</span>
+          </div>
+        </div>
+        <div class="action-bar">
+          <a href="contact.html?type=individual" data-request data-type="individual" class="btn">Request Individual Session</a>
+          <span class="status-note">A client request initiates scheduling and capacity confirmation.</span>
+        </div>
+      </div>
+
+      <!-- Group Panel -->
+      <div class="disclosure-panel" data-panel="group">
+        <div class="stage-question" style="margin-top: 3rem;">
+          <span class="stage-question__label">Step 02 — Group Size</span>
+          <h2 class="stage-question__title">Select up to six participants.</h2>
+        </div>
+        <p class="section-intro">
+          Group training scales at $150 per person. Adjust the participant count to see the total update in real time. Additional participants may be accommodated when appropriate.
+        </p>
+        <div class="participant-control">
+          <label for="group-size" class="sr-only">Group size</label>
+          <input type="range" id="group-size" name="group-size" min="1" max="6" value="3" data-participant-range>
+          <span class="participant-count" data-participant-count>3</span>
+        </div>
+        <div class="group-summary">
+          <div class="group-summary__item">
+            <span class="group-summary__label">Participants</span>
+            <span class="group-summary__value" data-participant-count>3</span>
+          </div>
+          <div class="group-summary__item">
+            <span class="group-summary__label">Rate / Person</span>
+            <span class="group-summary__value">$150</span>
+          </div>
+          <div class="group-summary__item">
+            <span class="group-summary__label">Total</span>
+            <span class="group-summary__value" data-participant-total>$450</span>
+          </div>
+        </div>
+        <p class="provenance" style="margin-top:1rem;" data-participant-max>6 max</p>
+        <div class="action-bar">
+          <a href="contact.html?type=group" data-request data-type="group" class="btn">Request Group Session</a>
+          <span class="status-note">Capacity is confirmed after the requirement is defined.</span>
+        </div>
+      </div>
+
+      <!-- Workplace Panel -->
+      <div class="disclosure-panel" data-panel="workplace">
+        <div class="stage-question" style="margin-top: 3rem;">
+          <span class="stage-question__label">Step 02 — Workplace Assessment</span>
+          <h2 class="stage-question__title">Define the organization and environment.</h2>
+        </div>
+        <p class="section-intro">
+          Workplace training is customized around the employer: team size, risk profile, equipment, location, and schedule. Pricing is established after the assessment.
+        </p>
+        <div class="action-bar">
+          <a href="contact.html?type=workplace" data-request data-type="workplace" class="btn">Start Workplace Assessment</a>
+          <span class="status-note">A client request establishes the training design.</span>
+        </div>
+      </div>
+
+      <!-- Customized Panel -->
+      <div class="disclosure-panel" data-panel="customized">
+        <div class="stage-question" style="margin-top: 3rem;">
+          <span class="stage-question__label">Step 02 — Custom Mission Profile</span>
+          <h2 class="stage-question__title">Describe the specialized requirement.</h2>
+        </div>
+        <p class="section-intro">
+          Customized training covers specialized curriculum, equipment integration, non-standard environments, or unique scheduling. Contact for pricing and feasibility.
+        </p>
+        <div class="action-bar">
+          <a href="contact.html?type=customized" data-request data-type="customized" class="btn">Submit Custom Requirement</a>
+          <span class="status-note">All custom requests are reviewed against operational feasibility.</span>
+        </div>
+      </div>
+
+      <div class="delivery-pipeline">
+        <h3 class="delivery-pipeline__title">Client Request → Training Design → Scheduling → Capacity → Delivery</h3>
+        <div class="pipeline-stages">
+          <div class="pipeline-stage active" data-pipeline-stage="1">
+            <h4 class="pipeline-stage__name">Client Requirement</h4>
+            <p class="pipeline-stage__desc">Type, scale, and capability needed.</p>
+          </div>
+          <div class="pipeline-stage" data-pipeline-stage="2">
+            <h4 class="pipeline-stage__name">Training Design</h4>
+            <p class="pipeline-stage__desc">Curriculum matched to the requirement.</p>
+          </div>
+          <div class="pipeline-stage" data-pipeline-stage="3">
+            <h4 class="pipeline-stage__name">Scheduling</h4>
+            <p class="pipeline-stage__desc">Dates and location confirmed.</p>
+          </div>
+          <div class="pipeline-stage" data-pipeline-stage="4">
+            <h4 class="pipeline-stage__name">Capacity</h4>
+            <p class="pipeline-stage__desc">Seats and resources allocated.</p>
+          </div>
+          <div class="pipeline-stage" data-pipeline-stage="5">
+            <h4 class="pipeline-stage__name">Delivery</h4>
+            <p class="pipeline-stage__desc">Instruction executed on site.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="archive-footer">
+    <div class="archive-footer__inner">
+      <div class="archive-footer__top">
+        <div class="footer-block">
+          <h3 class="footer-block__title">Medic Team One</h3>
+          <p>Operational medical training founded and operated by Jacob Ross, U.S. Army 68W Combat Medic.</p>
+        </div>
+        <div class="footer-block">
+          <h3 class="footer-block__title">Contact</h3>
+          <a href="mailto:contact@medicteamone.com">contact@medicteamone.com</a>
+        </div>
+        <div class="footer-block">
+          <h3 class="footer-block__title">Explore</h3>
+          <a href="training.html">Training</a>
+          <a href="about.html">About</a>
+          <a href="doctrine.html">Doctrine</a>
+          <a href="resources.html">Resources</a>
+          <a href="book.html">Book</a>
+        </div>
+      </div>
+      <div class="archive-footer__legal">
+        <p>&copy; Medic Team One. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="waiver.html">Waiver</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,518 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Civilian Responder One: The Difference is Readiness</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
-            color: #f5f5f5;
-            line-height: 1.4;
-            padding: 0;
-        }
-
-        .handout {
-            max-width: 8.5in;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #171717 0%, #262626 100%);
-            border: 2px solid #dc2626;
-            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.3);
-            min-height: 11in;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            padding: 1rem;
-            text-align: center;
-            border-bottom: 2px solid #525252;
-        }
-
-        .main-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            color: #fecaca;
-            font-style: italic;
-            font-weight: 600;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.3;
-        }
-
-        .content {
-            padding: 1rem;
-        }
-
-        .section {
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: #dc2626;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #dc2626;
-            padding-bottom: 0.5rem;
-        }
-
-        .risks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .risk-card {
-            background: rgba(64, 64, 64, 0.3);
-            border: 1px solid #525252;
-            border-radius: 12px;
-            padding: 1.5rem;
-            border-left: 4px solid #dc2626;
-            transition: all 0.3s ease;
-        }
-
-        .risk-card:hover {
-            border-color: #dc2626;
-            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.2);
-        }
-
-        .risk-title {
-            font-weight: bold;
-            color: #dc2626;
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        .risk-description {
-            color: #d4d4d4;
-            line-height: 1.5;
-        }
-
-        .comparison-table {
-            background: rgba(23, 23, 23, 0.8);
-            border: 1px solid #525252;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 2rem 0;
-        }
-
-        .table-header {
-            background: linear-gradient(135deg, #404040, #262626);
-            padding: 1rem;
-            display: grid;
-            grid-template-columns: 2fr 3fr 3fr;
-            gap: 1rem;
-            border-bottom: 2px solid #525252;
-        }
-
-        .table-header div {
-            font-weight: bold;
-            text-align: center;
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        .scenario-header {
-            color: #3b82f6;
-        }
-
-        .without-header {
-            color: #dc2626;
-        }
-
-        .with-header {
-            color: #22c55e;
-        }
-
-        .table-row {
-            display: grid;
-            grid-template-columns: 2fr 3fr 3fr;
-            gap: 1rem;
-            padding: 1.5rem 1rem;
-            border-bottom: 1px solid #404040;
-        }
-
-        .table-row:hover {
-            background: rgba(64, 64, 64, 0.2);
-        }
-
-        .scenario-cell {
-            font-weight: bold;
-            color: #3b82f6;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .scenario-title {
-            font-size: 1rem;
-            color: #93c5fd;
-        }
-
-        .scenario-subtitle {
-            font-size: 0.85rem;
-            color: #737373;
-            font-style: italic;
-        }
-
-        .without-cell {
-            color: #fca5a5;
-            background: rgba(220, 38, 38, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 3px solid #dc2626;
-        }
-
-        .with-cell {
-            color: #86efac;
-            background: rgba(34, 197, 94, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 3px solid #22c55e;
-        }
-
-        .response-type {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .without-cell .response-type {
-            color: #dc2626;
-        }
-
-        .with-cell .response-type {
-            color: #22c55e;
-        }
-
-        .response-description {
-            font-size: 0.95rem;
-            line-height: 1.4;
-            margin-bottom: 0.75rem;
-        }
-
-        .outcome {
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 0.5rem;
-            border-radius: 6px;
-            text-align: center;
-            margin-top: 0.5rem;
-        }
-
-        .positive-outcome {
-            background: rgba(34, 197, 94, 0.2);
-            border: 1px solid #22c55e;
-            color: #22c55e;
-        }
-
-        .bottom-line {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(34, 197, 94, 0.1));
-            border: 2px solid #dc2626;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .bottom-line-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #dc2626;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .comparison-points {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .before-point {
-            background: rgba(220, 38, 38, 0.1);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 8px;
-            padding: 1.5rem;
-            border-left: 4px solid #dc2626;
-        }
-
-        .after-point {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 8px;
-            padding: 1.5rem;
-            border-left: 4px solid #22c55e;
-        }
-
-        .point-title {
-            font-weight: bold;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .before-point .point-title {
-            color: #dc2626;
-        }
-
-        .after-point .point-title {
-            color: #22c55e;
-        }
-
-        .point-description {
-            color: #d4d4d4;
-            line-height: 1.5;
-        }
-
-        .call-to-action {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            border-radius: 12px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 6px 25px rgba(220, 38, 38, 0.4);
-        }
-
-        .footer {
-            background: #171717;
-            padding: 1.5rem;
-            text-align: center;
-            border-top: 1px solid #525252;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .footer-text {
-            color: #a3a3a3;
-            font-size: 0.9rem;
-        }
-
-        @media print {
-            body {
-                background: white;
-                color: black;
-            }
-            
-            .handout {
-                box-shadow: none;
-                border: 2px solid #000;
-            }
-            
-            .header {
-                background: #dc2626;
-                -webkit-print-color-adjust: exact;
-                color-adjust: exact;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 1rem;
-            }
-            
-            .main-title {
-                font-size: 2rem;
-            }
-            
-            .table-header,
-            .table-row {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .comparison-points {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .risks-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctrine — Medic Team One, LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <div class="handout">
-        <div class="header">
-            <h1 class="main-title">Civilian Responder One: The Difference is Readiness</h1>
-            <p class="subtitle">A critical incident in the outdoors lasts minutes. Professional help is often hours away. The gap is you.</p>
-        </div>
 
-        <div class="content">
-            <!-- Risks Section -->
-            <div class="section">
-                <h2 class="section-title">The Risks Are Real: Common Dangers for Hunters, Fishers & Shooters</h2>
-                <div class="risks-grid">
-                    <div class="risk-card">
-                        <div class="risk-title">Falls from Tree Stands & Slips on Deck</div>
-                        <div class="risk-description">The #1 cause of serious injury. Leads to broken bones, spinal damage, and internal bleeding.</div>
-                    </div>
-                    <div class="risk-card">
-                        <div class="risk-title">Firearm & Broadhead Accidents</div>
-                        <div class="risk-description">Low probability, but catastrophic consequences. Causes massive, life-ending hemorrhage in minutes.</div>
-                    </div>
-                    <div class="risk-card">
-                        <div class="risk-title">Environmental Exposure</div>
-                        <div class="risk-description">Drowning, hypothermia, and heat stroke are silent, constant threats that can incapacitate and kill.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Comparison Table -->
-            <div class="section">
-                <h2 class="section-title">The Outcome: Before vs. After Training</h2>
-                <p style="color: #d4d4d4; margin-bottom: 0.75rem; text-align: center; font-style: italic; font-size: 0.9rem;">
-                    This table shows the stark reality of what happens in the first 5 minutes of a crisis.
-                </p>
-
-                <div class="comparison-table">
-                    <div class="table-header">
-                        <div class="scenario-header">Scenario</div>
-                        <div class="without-header">WITHOUT Training (The Unprepared Response)</div>
-                        <div class="with-header">WITH Training (The Civilian Responder One Doctrine)</div>
-                    </div>
-
-                    <div class="table-row">
-                        <div class="scenario-cell">
-                            <div class="scenario-title">The Mindset</div>
-                        </div>
-                        <div class="without-cell">
-                            <div class="response-type">Panic & Confusion.</div>
-                            <div class="response-description">"What do I do first?! He's bleeding and his leg is bent the wrong way! I don't know where to start!"</div>
-                        </div>
-                        <div class="with-cell">
-                            <div class="response-type">Clarity & Purpose.</div>
-                            <div class="response-description">"Okay, stay calm. Follow the sequence. Blood Before Bones."</div>
-                        </div>
-                    </div>
-
-                    <div class="table-row">
-                        <div class="scenario-cell">
-                            <div class="scenario-title">Massive Bleeding</div>
-                            <div class="scenario-subtitle">(Gunshot, Deep Cut)</div>
-                        </div>
-                        <div class="without-cell">
-                            <div class="response-type">Ineffective Action.</div>
-                            <div class="response-description">Wasting time on small bandages. Victim bleeds out.</div>
-                        </div>
-                        <div class="with-cell">
-                            <div class="response-type">Decisive Action.</div>
-                            <div class="response-description">Tourniquet applied immediately. Bleeding stops.</div>
-                            <div class="outcome positive-outcome">LIFE SAVED</div>
-                        </div>
-                    </div>
-
-                    <div class="table-row">
-                        <div class="scenario-cell">
-                            <div class="scenario-title">Chest Injury</div>
-                            <div class="scenario-subtitle">(Fall, Puncture)</div>
-                        </div>
-                        <div class="without-cell">
-                            <div class="response-type">Misses Threat.</div>
-                            <div class="response-description">Focuses on visible injury while lung collapses.</div>
-                        </div>
-                        <div class="with-cell">
-                            <div class="response-type">Recognizes & Acts.</div>
-                            <div class="response-description">Applies chest seal. Breathing maintained.</div>
-                            <div class="outcome positive-outcome">BREATHING STABILIZED</div>
-                        </div>
-                    </div>
-
-                    <div class="table-row">
-                        <div class="scenario-cell">
-                            <div class="scenario-title">Snakebite</div>
-                        </div>
-                        <div class="without-cell">
-                            <div class="response-type">Harmful Myths.</div>
-                            <div class="response-description">Cuts wound, applies tourniquet. More damage.</div>
-                        </div>
-                        <div class="with-cell">
-                            <div class="response-type">Correct Protocol.</div>
-                            <div class="response-description">Immobilizes, plans evacuation for antivenom.</div>
-                            <div class="outcome positive-outcome">LIMB & LIFE SAVED</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Line -->
-            <div class="bottom-line">
-                <h2 class="bottom-line-title">The Bottom Line: What You Gain is Control</h2>
-                
-                <div class="comparison-points">
-                    <div class="before-point">
-                        <div class="point-title">Before Training:</div>
-                        <div class="point-description">
-                            You are a spectator to a tragedy. You are forced to wait, helpless, for professionals to arrive, which may be too late. Your actions, however well-intentioned, are likely to be chaotic and ineffective.
-                        </div>
-                    </div>
-                    
-                    <div class="after-point">
-                        <div class="point-title">After Training:</div>
-                        <div class="point-description">
-                            You become an effective first responder. You gain the clarity to <strong>ignore distractions</strong> and the confidence to <strong>execute life-saving skills</strong> in the correct order. You don't replace professional help, but you give your friend, your family member, or yourself the greatest possible chance of being alive when it arrives.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="call-to-action">
-                    Don't just be present. Be prepared.
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-logo">
-                <div class="logo-icon">✚</div>
-                <div>
-                    <div style="font-weight: bold; color: #dc2626;">MEDIC TEAM ONE, LLC</div>
-                    <div class="footer-text">Combat-Proven Training for Civilian Readiness</div>
-                </div>
-            </div>
-            <div class="footer-text">© 2025 Medic Team One, LLC | Never Again Without Readiness</div>
-        </div>
+<header>
+  <div class="wrap nav">
+    <a class="word" href="index.html">MEDIC TEAM <b>ONE</b></a>
+    <ul class="navlinks">
+      <li><a href="training.html">Training</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="doctrine.html" aria-current="page">Doctrine</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="book.html">Book</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="navcta">
+      <a class="btn btn-solid" href="index.html#contact">Reserve Training</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
+  </div>
+  <nav class="mobilemenu" id="mobileMenu">
+    <a href="training.html">Training</a>
+    <a href="about.html">About</a>
+    <a href="doctrine.html">Doctrine</a>
+    <a href="resources.html">Resources</a>
+    <a href="book.html">Book</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap reveal is-visible">
+      <p class="eyebrow">Doctrine</p>
+      <h1>Where this training comes from.</h1>
+      <p class="lede">Not a certification claim — a lineage. Doctrine here means the reasoning behind the curriculum: why these techniques, in this order, taught this way.</p>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="chain reveal">
+        <div class="chain-step"><span class="n">01</span><h4>15 Years, Army</h4><p>National Guard service</p></div>
+        <div class="chain-step"><span class="n">02</span><h4>68W</h4><p>Combat Medic Specialist (MOS)</p></div>
+        <div class="chain-step"><span class="n">03</span><h4>Operational Experience</h4><p>Afghanistan deployment, 2011–2012</p></div>
+        <div class="chain-step"><span class="n">04</span><h4>Instruction</h4><p>ACS Stop the Bleed Approved Instructor</p></div>
+        <div class="chain-step"><span class="n">05</span><h4>Authored Doctrine</h4><p><em style="font-style:italic">Blood, Dirt &amp; Duct Tape</em></p></div>
+        <div class="chain-step"><span class="n">06</span><h4>Civilian Training</h4><p>Medic Team One, LLC</p></div>
+      </div>
+
+      <div class="pending-block reveal">
+        <span class="pending-tag">Content pending</span>
+        <p>The full account of why this training takes the shape it does — the reasoning connecting each stage above — is still being written. This section will carry that in Jacob's own words.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Field Comparison</p>
+        <h2>Civilian Responder One: the difference is readiness.</h2>
+        <p>A critical incident in the outdoors lasts minutes. Professional help is often hours away. The gap is you.</p>
+      </div>
+
+      <div class="risk-grid reveal stagger">
+        <div class="risk-card" style="--i:0"><h4>Falls from Tree Stands &amp; Slips on Deck</h4><p>The #1 cause of serious injury. Leads to broken bones, spinal damage, and internal bleeding.</p></div>
+        <div class="risk-card" style="--i:1"><h4>Firearm &amp; Broadhead Accidents</h4><p>Low probability, but catastrophic consequences. Causes massive, life-ending hemorrhage in minutes.</p></div>
+        <div class="risk-card" style="--i:2"><h4>Environmental Exposure</h4><p>Drowning, hypothermia, and heat stroke are silent, constant threats that can incapacitate and kill.</p></div>
+      </div>
+
+      <div class="compare reveal" style="margin-top:var(--gap-lg);">
+        <div class="compare-row head">
+          <div>Scenario</div><div>Without training</div><div>With training</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-scenario">The Mindset</div>
+          <div class="compare-without"><span class="lbl">Panic &amp; Confusion</span>"What do I do first?! He's bleeding and his leg is bent the wrong way! I don't know where to start!"</div>
+          <div class="compare-with"><span class="lbl">Clarity &amp; Purpose</span>"Okay, stay calm. Follow the sequence. Blood Before Bones."</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-scenario">Massive Bleeding<br><small>Gunshot, deep cut</small></div>
+          <div class="compare-without"><span class="lbl">Ineffective Action</span>Wasting time on small bandages. Victim bleeds out.</div>
+          <div class="compare-with"><span class="lbl">Decisive Action</span>Tourniquet applied immediately. Bleeding stops.<span class="compare-outcome">Life saved</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-scenario">Chest Injury<br><small>Fall, puncture</small></div>
+          <div class="compare-without"><span class="lbl">Misses Threat</span>Focuses on visible injury while lung collapses.</div>
+          <div class="compare-with"><span class="lbl">Recognizes &amp; Acts</span>Applies chest seal. Breathing maintained.<span class="compare-outcome">Breathing stabilized</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-scenario">Snakebite</div>
+          <div class="compare-without"><span class="lbl">Harmful Myths</span>Cuts wound, applies tourniquet. More damage.</div>
+          <div class="compare-with"><span class="lbl">Correct Protocol</span>Immobilizes, plans evacuation for antivenom.<span class="compare-outcome">Limb &amp; life saved</span></div>
+        </div>
+      </div>
+
+      <div class="bottom-line reveal">
+        <div class="bottom-line-grid">
+          <div class="bl-col before">
+            <h5>Before Training</h5>
+            <p>You are a spectator to a tragedy — forced to wait, helpless, for professionals who may arrive too late. Your actions, however well-intentioned, are likely to be chaotic and ineffective.</p>
+          </div>
+          <div class="bl-col after">
+            <h5>After Training</h5>
+            <p>You become an effective first responder — with the clarity to ignore distractions and the confidence to execute life-saving skills in the correct order.</p>
+          </div>
+        </div>
+        <p class="cta-line">Don't just be present. Be prepared.</p>
+      </div>
+
+      <p class="reveal" style="margin-top:var(--gap-lg);"><a class="btn btn-solid" href="training.html">See training options →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="word" href="index.html">MEDIC TEAM <b>ONE</b></a>
+        <p style="margin-top:1rem; color:var(--text-dim); max-width:26rem; font-size:.95rem;">Bridging battlefield medicine and civilian preparedness. Montgomery County, Texas.</p>
+      </div>
+      <p class="foot-legal">
+        <strong>Civilian Responder One (Basic)</strong> is a preparedness training program, not a state or nationally recognized EMS certification. Participation does not authorize attendees to represent themselves as licensed medical providers. Under Texas law (Tex. Civ. Prac. &amp; Rem. Code §74.151 — Good Samaritan Act), individuals who in good faith provide emergency aid are protected from liability except in cases of willful or wanton negligence.
+      </p>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Medic Team One, LLC</span>
+      <ul class="foot-links">
+        <li><a href="waiver.html">Waiver</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
 </body>
 </html>

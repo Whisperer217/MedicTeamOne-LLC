@@ -1,254 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Medic Team One — Operational Medical Training</title>
-  <meta name="description" content="Medic Team One delivers customized operational medical training founded and operated by Jacob Ross, U.S. Army 68W Combat Medic.">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medic Team One, LLC — Combat-Proven Training for Civilian Readiness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
-  <header class="archive-header">
-    <div class="archive-header__inner">
-      <a href="index.html" class="brand" aria-label="Medic Team One home">Medic <span>Team</span> One</a>
-      <span class="badge">Field Archive</span>
-      <nav class="main-nav" aria-label="Primary">
-        <a href="training.html">Training</a>
-        <a href="about.html">About</a>
-        <a href="doctrine.html">Doctrine</a>
-        <a href="resources.html">Resources</a>
-        <a href="book.html">Book</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <a href="training.html" class="header-action">Configure Training</a>
+<header>
+  <div class="wrap nav">
+    <a class="word" href="index.html">MEDIC TEAM <b>ONE</b></a>
+    <ul class="navlinks">
+      <li><a href="training.html">Training</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="doctrine.html">Doctrine</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="book.html">Book</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="navcta">
+      <a class="btn btn-solid" href="#contact">Reserve Training</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
-  </header>
+  </div>
+  <nav class="mobilemenu" id="mobileMenu">
+    <a href="training.html">Training</a>
+    <a href="about.html">About</a>
+    <a href="doctrine.html">Doctrine</a>
+    <a href="resources.html">Resources</a>
+    <a href="book.html">Book</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <main>
-    <section class="dossier-hero" aria-labelledby="hero-title">
-      <div class="dossier-hero__grid">
-        <div class="hero-visual">
-          <div class="hero-visual__placeholder">
-            <p>Authorized imagery well
-pending provenance</p>
-          </div>
-          <span class="hero-visual__stamp">Verified — U.S. Army 68W</span>
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal is-visible">
+        <p class="eyebrow">Civilian Trauma Training · Montgomery County, TX</p>
+        <h1 style="margin-top:1rem;">From battlefield<br>to backyard: <em>survival<br>isn't optional.</em></h1>
+        <p class="lede">Learn massive hemorrhage control, basic airway management, and chest seal application from a National Guard Combat Medic with real deployment experience. Real skills. Real gear. Real readiness.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="training.html">See training options</a>
+          <a class="btn" href="#contact">Ask a question</a>
         </div>
-        <div class="hero-content">
-          <span class="provenance">Source: Founder record / Jacob Ross</span>
-          <h1 id="hero-title">Experience becomes <em>doctrine</em>, doctrine becomes <em>application</em>.</h1>
-          <p class="lead">
-            Medic Team One is founded and operated by Jacob Ross, a U.S. Army 68W Combat Medic with 15 years of service. Training is built around the client: your requirement, your environment, your timeline.
-          </p>
-          <div class="hero-meta">
-            <div class="hero-meta__item">
-              <span class="hero-meta__label">Service</span>
-              <span class="hero-meta__value">15 Years Army</span>
-            </div>
-            <div class="hero-meta__item">
-              <span class="hero-meta__label">MOS</span>
-              <span class="hero-meta__value">68W Combat Medic</span>
-            </div>
-            <div class="hero-meta__item">
-              <span class="hero-meta__label">Model</span>
-              <span class="hero-meta__value">Client-Led Training</span>
-            </div>
-          </div>
+        <p class="legal-pill">Protected under Texas Good Samaritan law (Tex. Civ. Prac. &amp; Rem. Code §74.151). Certificates include legal notation.</p>
+      </div>
+      <div class="reveal">
+        <div class="photo-well ambient">
+          <div class="photo-caption">Photography pending — training session, Montgomery County</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="lineage-strip" aria-label="Founder lineage">
-      <div class="lineage-strip__track">
-        <article class="lineage-item">
-          <span class="lineage-item__number">01</span>
-          <h2 class="lineage-item__title">15 Years Army</h2>
-          <p class="lineage-item__note">Documented service record</p>
-        </article>
-        <article class="lineage-item">
-          <span class="lineage-item__number">02</span>
-          <h2 class="lineage-item__title">68W Combat Medic</h2>
-          <p class="lineage-item__note">MOS-qualified operational care</p>
-        </article>
-        <article class="lineage-item">
-          <span class="lineage-item__number">03</span>
-          <h2 class="lineage-item__title">Operational Experience</h2>
-          <p class="lineage-item__note">Field-proven under operational conditions</p>
-        </article>
-        <article class="lineage-item">
-          <span class="lineage-item__number">04</span>
-          <h2 class="lineage-item__title">Instruction</h2>
-          <p class="lineage-item__note">Experience translated into teaching</p>
-        </article>
-        <article class="lineage-item">
-          <span class="lineage-item__number">05</span>
-          <h2 class="lineage-item__title">Authored Work</h2>
-          <p class="lineage-item__note">Doctrine, book, and resources</p>
-        </article>
-        <article class="lineage-item">
-          <span class="lineage-item__number">06</span>
-          <h2 class="lineage-item__title">Civilian Training</h2>
-          <p class="lineage-item__note">Customized client delivery</p>
-        </article>
+  <div class="strip reveal">
+    <div class="wrap">
+      <ul>
+        <li>Combat Medic Experience</li>
+        <li>TECC / TCCC Guidelines</li>
+        <li>CDC Guidelines</li>
+        <li>WMS Standards</li>
+        <li>AHA / Red Cross</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Training Model</p>
+        <h2>Customized medical training,<br>not a course catalog.</h2>
+        <p>Individual, group, workplace, and customized training — built around who you are, not a fixed public class schedule.</p>
       </div>
-    </section>
 
-    <section class="archive-section training-preview" aria-labelledby="training-title">
-      <div class="training-preview__grid">
-        <div class="archive-section__header">
+      <div class="track-cards reveal stagger">
+        <div class="track-card" style="--i:0">
+          <h3>Individual</h3>
+          <p>One-on-one instruction, flexible scheduling.</p>
+          <span class="price">$200 / person</span>
+        </div>
+        <div class="track-card" style="--i:1">
+          <h3>Group</h3>
+          <p>Up to 6 students, scheduled by appointment.</p>
+          <span class="price">$150 / person</span>
+        </div>
+        <div class="track-card" style="--i:2">
+          <h3>Workplace Training</h3>
+          <p>Delivered on-site for your organization.</p>
+          <span class="price">Contact for pricing</span>
+        </div>
+        <div class="track-card" style="--i:3">
+          <h3>Customized Solutions</h3>
+          <p>Curriculum tailored to your requirements.</p>
+          <span class="price">Contact for pricing</span>
+        </div>
+      </div>
+
+      <p class="reveal" style="margin-top:2rem;"><a class="btn" href="training.html">Full training details &amp; scheduling philosophy →</a></p>
+    </div>
+  </section>
+
+  <section class="pullquote tight">
+    <div class="wrap reveal">
+      <blockquote>“Every technique I teach has been tested under fire. This isn't theory – it's what works when someone's life is in your hands and seconds matter.”</blockquote>
+      <cite>— Jacob Ross, Combat Medic Instructor</cite>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Reserve Training</p>
+        <h2>Tell us what you need.</h2>
+        <p>We'll follow up to confirm your training option and schedule it around your availability.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <dl>
+            <dt>Phone</dt><dd><a href="tel:+19362177703">(936) 217-7703</a></dd>
+            <dt>Email</dt><dd><a href="mailto:jacob@medicteamone.com">jacob@medicteamone.com</a></dd>
+            <dt>Location</dt><dd>Montgomery County, Texas</dd>
+          </dl>
+        </div>
+
+        <form class="reveal" action="https://formspree.io/f/xovlgrbw" method="POST">
+          <fieldset>
+            <legend>Select training option *</legend>
+            <label class="radio-row"><input type="radio" name="training_option" value="Individual - $200" required><span><span class="t">Individual — $200/person</span><br><span class="s">One-on-one, flexible scheduling</span></span></label>
+            <label class="radio-row"><input type="radio" name="training_option" value="Group - $150" required><span><span class="t">Group — $150/person</span><br><span class="s">Up to 6 students, scheduled by appointment</span></span></label>
+            <label class="radio-row"><input type="radio" name="training_option" value="Workplace Training" required><span><span class="t">Workplace Training</span><br><span class="s">On-site for your organization — contact for pricing</span></span></label>
+            <label class="radio-row"><input type="radio" name="training_option" value="Customized Training Solutions" required><span><span class="t">Customized Training Solutions</span><br><span class="s">Built around your requirements — contact for pricing</span></span></label>
+          </fieldset>
+
+          <div class="field-row">
+            <div><label for="fn">First name *</label><input id="fn" name="first_name" required></div>
+            <div><label for="ln">Last name *</label><input id="ln" name="last_name" required></div>
+          </div>
+          <div class="field-row">
+            <div><label for="em">Email *</label><input id="em" type="email" name="email" required></div>
+            <div><label for="ph">Phone *</label><input id="ph" type="tel" name="phone" required></div>
+          </div>
           <div>
-            <span class="section-eyebrow">Training Configuration</span>
-            <h2 id="training-title" class="section-title">Built around your requirement, not a calendar.</h2>
-            <p class="section-intro">
-              A client request establishes the session. Additional participants are accommodated when appropriate. Pricing is transparent and scales to the format.
-            </p>
+            <label for="add">Additional information (optional)</label>
+            <textarea id="add" name="additional_info" rows="3" placeholder="Preferred timing, location details, group size, or specific training needs..."></textarea>
           </div>
-        </div>
-        <div class="training-modes">
-          <a href="training.html?type=individual" class="mode-card">
-            <span class="mode-card__type">01 — Individual</span>
-            <h3 class="mode-card__title">Solo Operator</h3>
-            <p class="mode-card__price">$200</p>
-            <p class="mode-card__note">One student, one requirement, direct instruction.</p>
-          </a>
-          <a href="training.html?type=group" class="mode-card">
-            <span class="mode-card__type">02 — Group</span>
-            <h3 class="mode-card__title">Small Unit</h3>
-            <p class="mode-card__price">$150 / person</p>
-            <p class="mode-card__note">Up to six participants. Pricing adjusts automatically.</p>
-          </a>
-          <a href="training.html?type=workplace" class="mode-card">
-            <span class="mode-card__type">03 — Workplace</span>
-            <h3 class="mode-card__title">Organization</h3>
-            <p class="mode-card__price">Custom</p>
-            <p class="mode-card__note">Employer-hosted training designed around the workplace.</p>
-          </a>
-          <a href="training.html?type=customized" class="mode-card">
-            <span class="mode-card__type">04 — Customized</span>
-            <h3 class="mode-card__title">Mission Profile</h3>
-            <p class="mode-card__price">Contact</p>
-            <p class="mode-card__note">Training built around a specialized requirement, environment, equipment, or objective.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="archive-section doctrine-preview" aria-labelledby="doctrine-title">
-      <div class="doctrine-preview__layout">
-        <div>
-          <span class="section-eyebrow">Doctrine</span>
-          <h2 id="doctrine-title" class="section-title">Why this training exists.</h2>
-          <p class="section-intro">
-            Doctrine is authored intellectual work: where the methodology comes from, how operational experience becomes instruction, and what students are prepared to apply.
-          </p>
-          <ol class="doctrine-list">
-            <li>
-              <span class="doctrine-list__num">I.</span>
-              <span class="doctrine-list__text">Experience is verified before it is taught.</span>
-            </li>
-            <li>
-              <span class="doctrine-list__num">II.</span>
-              <span class="doctrine-list__text">Instruction follows a clear chain: capability, doctrine, application.</span>
-            </li>
-            <li>
-              <span class="doctrine-list__num">III.</span>
-              <span class="doctrine-list__text">Every student leaves with a requirement met, not a certificate chased.</span>
-            </li>
-          </ol>
-        </div>
-        <div class="doctrine-visual">
-          <p class="doctrine-visual__label">Doctrine imagery / documents well
-pending provenance and authorization</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="archive-section book-feature" aria-labelledby="book-title">
-      <div class="book-feature__layout">
-        <div class="book-cover-well">
-          <img src="book-cover.jpg" alt="Medic Team One book cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-          <p class="book-cover-well__fallback" style="display:none;">Book cover asset: book-cover.jpg</p>
-        </div>
-        <div class="book-details">
-          <span class="section-eyebrow">Authored Work</span>
-          <h2 id="book-title" class="section-title">The book is part of the doctrine.</h2>
-          <p>
-            Written by Jacob Ross, the book extends the training into a permanent reference. It is treated as authored intellectual work, not a product card.
-          </p>
-          <a href="book.html" class="btn">View Book Details</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="archive-section field-report" aria-labelledby="contact-title">
-      <div class="field-report__grid">
-        <div>
-          <span class="section-eyebrow">Field Report</span>
-          <h2 id="contact-title" class="section-title">Start the requirement.</h2>
-          <p class="section-intro">
-            Describe who you are training, where, and what capability you need. A client request initiates the design and scheduling process.
-          </p>
-        </div>
-        <form class="field-report__form" action="https://formspree.io/f/xovlgrbw" method="POST">
-          <div class="form-row">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-row">
-            <label for="training-type">Training Type</label>
-            <select id="training-type" name="training-type">
-              <option value="individual">Individual — $200</option>
-              <option value="group">Group — $150/person</option>
-              <option value="workplace">Workplace — Custom</option>
-              <option value="customized">Customized — Contact for pricing</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="message">Requirement</label>
-            <textarea id="message" name="message" placeholder="Who are you training? What capability do you need? Where and when?" required></textarea>
-          </div>
-          <button type="submit" class="btn">Submit Request</button>
+          <button class="btn btn-solid" type="submit">Reserve my training</button>
+          <p class="formnote">We'll contact you within 24 hours to confirm your training option, scheduling, and provide venue details. Payment is due upon confirmation.</p>
         </form>
       </div>
-    </section>
-  </main>
-
-  <footer class="archive-footer">
-    <div class="archive-footer__inner">
-      <div class="archive-footer__top">
-        <div class="footer-block">
-          <h3 class="footer-block__title">Medic Team One</h3>
-          <p>Operational medical training founded and operated by Jacob Ross, U.S. Army 68W Combat Medic.</p>
-        </div>
-        <div class="footer-block">
-          <h3 class="footer-block__title">Contact</h3>
-          <a href="mailto:contact@medicteamone.com">contact@medicteamone.com</a>
-        </div>
-        <div class="footer-block">
-          <h3 class="footer-block__title">Explore</h3>
-          <a href="training.html">Training</a>
-          <a href="about.html">About</a>
-          <a href="doctrine.html">Doctrine</a>
-          <a href="resources.html">Resources</a>
-          <a href="book.html">Book</a>
-        </div>
-      </div>
-      <div class="archive-footer__legal">
-        <p>&copy; Medic Team One. All rights reserved.</p>
-        <div class="legal-links">
-          <a href="waiver.html">Waiver</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-        </div>
-      </div>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <script src="js/main.js"></script>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="word" href="index.html">MEDIC TEAM <b>ONE</b></a>
+        <p style="margin-top:1rem; color:var(--text-dim); max-width:26rem; font-size:.95rem;">Bridging battlefield medicine and civilian preparedness. Montgomery County, Texas.</p>
+      </div>
+      <p class="foot-legal">
+        <strong>Civilian Responder One (Basic)</strong> is a preparedness training program, not a state or nationally recognized EMS certification. Participation does not authorize attendees to represent themselves as licensed medical providers. Under Texas law (Tex. Civ. Prac. &amp; Rem. Code §74.151 — Good Samaritan Act), individuals who in good faith provide emergency aid are protected from liability except in cases of willful or wanton negligence.
+      </p>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Medic Team One, LLC</span>
+      <ul class="foot-links">
+        <li><a href="waiver.html">Waiver</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
 </body>
 </html>

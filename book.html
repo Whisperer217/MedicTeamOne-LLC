@@ -307,28 +307,77 @@
             margin-bottom: 40px;
         }
         
-        /* Author Bio Box */
-        .author-bio {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-            text-align: center;
+        .hero .author-eyebrow {
+            font-size: 1em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #e8e8e8;
+            margin-bottom: 18px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,.9);
         }
-        
-        .author-bio h4 {
-            color: #ff0000;
-            font-size: 1.5em;
-            margin-bottom: 15px;
+
+        /* keep anchor targets clear of the sticky header */
+        #book, #author, #framework { scroll-margin-top: 110px; }
+
+        /* Author's Note */
+        .author-note {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            align-items: start;
+            max-width: 1100px;
+            margin: 0 auto 70px;
         }
-        
-        .author-bio p {
-            color: #fff;
-            font-size: 1.1em;
-            margin-bottom: 15px;
+        .author-portrait {
+            position: relative;
+            aspect-ratio: 1/1;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.14);
         }
-        
+        .author-portrait img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .author-portrait figcaption {
+            position: absolute; left: 0; right: 0; bottom: 0;
+            padding: 10px 12px;
+            font-size: .72em; letter-spacing: .06em; text-transform: uppercase;
+            color: #f1ece3;
+            background: linear-gradient(0deg, rgba(0,0,0,.72), transparent);
+        }
+        .author-note .note-body p {
+            text-align: left;
+            font-size: 1.15em;
+            line-height: 1.75;
+            color: #d8d8d8;
+            margin-bottom: 20px;
+        }
+        .author-note .note-lede {
+            font-size: 1.3em !important;
+            color: #fff !important;
+        }
+        .author-note .note-vow {
+            font-size: 1.25em !important;
+            color: #fff !important;
+            font-style: italic;
+            border-left: 3px solid rgba(255,0,0,.55);
+            padding-left: 18px;
+            margin-top: 30px !important;
+        }
+        .author-note .note-sign {
+            font-size: .95em !important;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #9a9a9a !important;
+            margin-top: 18px !important;
+        }
+        @media (max-width: 820px) {
+            .author-note { grid-template-columns: 1fr; gap: 28px; }
+            .author-portrait { max-width: 320px; }
+        }
+
         /* Book Showcase */
         .book-showcase {
             display: grid;
@@ -438,12 +487,6 @@
             transform: translateY(-10px);
             border-color: rgba(255, 0, 0, 0.8);
             box-shadow: 0 15px 30px rgba(255, 0, 0, 0.3);
-        }
-        
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-            color: #00ff00;
         }
         
         .feature-card h4 {
@@ -559,9 +602,10 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>BLOOD, DIRT & DUCT TAPE</h1>
+            <p class="author-eyebrow">Jacob Ross &middot; Combat Medic, Author</p>
+            <h1>BLOOD, DIRT &amp; DUCT TAPE</h1>
             <p class="subtitle">A Combat Medic's Legacy</p>
-            <p class="tagline">From Battlefield Trauma to Sacred Doctrine</p>
+            <p class="subtitle" style="font-style:italic; color:#fff;">&ldquo;Never again will I run without readiness.&rdquo;</p>
             <div class="cta-buttons">
                 <a href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?utm_source=medicteamone&utm_medium=website&utm_campaign=book_launch" class="btn btn-amazon" target="_blank">Buy on Amazon – Support Veteran Medicine</a>
                 <a href="https://medicteamone.com" class="btn btn-secondary" target="_blank">Medic Training</a>
@@ -571,14 +615,34 @@
     
     <!-- Book Section -->
     <section class="section" id="book">
-        <h2>The Mission</h2>
-        <p>Transform combat trauma into teachable doctrine. Create a movement where veterans share their wounds as wisdom.</p>
-        
-        <!-- Author Bio -->
-        <div class="author-bio" id="author">
-            <h4>About the Author</h4>
-            <p><strong>Jacob Ross</strong> is a service-disabled combat medic, educator, and author dedicated to transforming battlefield trauma into civilian preparedness training.</p>
-            <p>Former combat medic with deployment experience in Afghanistan. Current SFC, Army National Guard. Founder of Medic Team One civilian preparedness training.</p>
+        <h2>Why I Wrote It</h2>
+
+        <!-- Author's Note -->
+        <div class="author-note" id="author">
+            <figure class="author-portrait">
+                <img src="assets/img/instructor-portrait-800.webp"
+                     srcset="assets/img/instructor-portrait-600.webp 600w,
+                             assets/img/instructor-portrait-800.webp 800w,
+                             assets/img/instructor-portrait-1200.webp 1200w"
+                     sizes="(max-width: 820px) 80vw, 300px"
+                     width="1500" height="1500" loading="lazy" decoding="async"
+                     alt="Jacob Ross in combat uniform and helmet during deployment in Afghanistan."
+                     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+                <figcaption>Afghanistan &mdash; deployment</figcaption>
+            </figure>
+
+            <div class="note-body">
+                <p class="note-lede">I'm Jacob Ross. I served as a combat medic in Afghanistan, I'm a Sergeant First Class in the Army National Guard, and I founded Medic Team One to teach civilians what I learned out there.</p>
+
+                <p>This book started with a near-tragedy involving my son. It was finished by what I saw in Afghanistan. Between those two things, everything I believed about being ready changed.</p>
+
+                <p>I wrote it for Pfc. Andrew J. Keller, and for the others who didn't come home. It deals with loss, guilt, and readiness &mdash; not as ideas, but as the things that decide whether somebody lives.</p>
+
+                <p>Twenty thousand words. Part of it is what I carry. The rest is doctrine you can actually use: cache systems, Speedball resupply, the 8-Bag SOP.</p>
+
+                <p class="note-vow">Never again will I run without readiness.</p>
+                <p class="note-sign">&mdash; Jacob Ross, service-disabled combat medic</p>
+            </div>
         </div>
         
         <div class="book-showcase">
@@ -586,11 +650,11 @@
                 <!-- Book cover image will display as background -->
             </div>
             <div class="book-info">
-                <h3>20,000 Words of Raw Doctrine</h3>
-                <p><strong>Blood, Dirt & Duct Tape</strong> is a reflective combat medic guide that fuses personal battlefield experiences with improvised medical doctrine. Rooted in trauma, the text transforms hard lessons into actionable field strategies, spiritual reflections, and training blueprints.</p>
-                <p><strong>Dedicated to fallen soldiers like Pfc. Andrew J. Keller</strong>, it confronts loss, guilt, and readiness through stories of near-death, combat failures, and sacred improvisation.</p>
-                <p><strong>The book outlines the evolution</strong> of the author's medical philosophy from a near-tragedy with his son to combat deaths in Afghanistan, culminating in practical doctrines like cache systems, Speedball resupply, and the 8-Bag SOP.</p>
-                <p><strong>"Never again will I run without readiness"</strong> - More than a manual, it's a call to arms for medics to turn trauma into training, memories into doctrine, and silence into survival.</p>
+                <h3>What's Inside</h3>
+                <p>Twenty thousand words, split between the things I carried out of Afghanistan and the doctrine I built from them. It's not a textbook and it isn't a memoir &mdash; it's what I learned, written down so somebody else doesn't have to learn it the same way.</p>
+                <p>It's dedicated to <strong>Pfc. Andrew J. Keller</strong> and the other soldiers we lost. I write about near-death, about the calls I got wrong, and about improvising when the right answer wasn't available.</p>
+                <p>The through-line is how my thinking changed &mdash; from a near-tragedy with my son, through combat deaths in Afghanistan, to the systems I teach now: <strong>cache systems, Speedball resupply, and the 8-Bag SOP</strong>.</p>
+                <p>If you take one thing from it, take this: turn trauma into training, memories into doctrine, and silence into survival.</p>
                 
                 <div class="amazon-note">
                     <em>When you buy through Amazon, they handle the transaction, tax, and fulfillment - you receive the book and support the movement to transform veteran trauma into civilian preparedness doctrine.</em>
@@ -604,19 +668,16 @@
     <!-- Features -->
     <div class="features" id="framework">
         <div class="feature-card">
-            <div class="feature-icon">🏥</div>
-            <h4>Combat Medicine Doctrine</h4>
-            <p>Real battlefield medical procedures from Afghanistan deployment transformed into civilian preparedness training</p>
+            <h4>The Medicine</h4>
+            <p>The procedures I actually used in Afghanistan, rewritten for people who aren't medics and won't have a team behind them.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">🧠</div>
-            <h4>Sacred Improvisation</h4>
-            <p>Spiritual reflections and improvised medical doctrine forged in combat, transforming trauma into teachable field strategies</p>
+            <h4>The Cost</h4>
+            <p>What it took to learn this, and what I still carry from it. The parts most manuals leave out.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">📋</div>
-            <h4>Practical Doctrines</h4>
-            <p>Cache systems, Speedball resupply, and the 8-Bag SOP - real combat medical protocols for field application</p>
+            <h4>The Systems</h4>
+            <p>Cache systems, Speedball resupply, the 8-Bag SOP &mdash; the doctrine I built so I'd never be caught unready again.</p>
         </div>
     </div>
     
@@ -625,9 +686,8 @@
         <div class="footer-content">
             <div class="motto">Never Again Will I Run Without Readiness</div>
             <h3>From Combat Trauma to Field Doctrine</h3>
-            <p>A combat medic's mission to transform battlefield trauma into practical training doctrine.</p>
-            <p>Turn trauma into training, memories into doctrine, and silence into survival.</p>
-            <p><strong>Jacob Ross</strong> - Combat Medic, Author, Field Doctrine Developer</p>
+            <p>I turned what happened to me into something teachable. That's the whole point of the book.</p>
+            <p><strong>Jacob Ross</strong> &mdash; Combat Medic, Author, Founder of Medic Team One</p>
         </div>
     </footer>
     

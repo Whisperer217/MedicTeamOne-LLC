@@ -1,783 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blood, Dirt & Duct Tape - A Combat Medic's Legacy</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 11pt;
-            line-height: 1.4;
-            margin: 0;
-            padding: 20px;
-            color: #000;
-            background-color: #fff;
-            overflow-x: hidden;
-        }
-        
-        /* Animated Background */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 255, 198, 0.2) 0%, transparent 50%),
-                linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0a0a 100%);
-            animation: backgroundShift 20s ease-in-out infinite;
-            z-index: -2;
-        }
-        
-        @keyframes backgroundShift {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(90deg); }
-        }
-        
-        /* Particle System */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-        
-        .particle:nth-child(odd) {
-            background: rgba(255, 0, 0, 0.2);
-        }
-        
-        .particle:nth-child(even) {
-            background: rgba(0, 255, 0, 0.2);
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0px) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid rgba(255, 0, 0, 0.3);
-            padding: 15px 50px;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ff0000;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a:hover {
-            color: #00ff00;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #ff0000, #00ff00);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background: 
-                linear-gradient(45deg, transparent 30%, rgba(255, 0, 0, 0.1) 50%, transparent 70%),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            z-index: 10;
-            animation: heroEntry 2s ease-out;
-        }
-        
-        @keyframes heroEntry {
-            0% {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        .hero h1 {
-            font-size: 4em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ff0000, #ffffff, #00ff00);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            animation: textGlow 3s ease-in-out infinite alternate;
-        }
-        
-        @keyframes textGlow {
-            0% { filter: brightness(1) contrast(1); }
-            100% { filter: brightness(1.2) contrast(1.3); }
-        }
-        
-        .hero .subtitle {
-            font-size: 1.5em;
-            color: #cccccc;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-        }
-        
-        .hero .tagline {
-            font-size: 1.2em;
-            color: #00ff00;
-            font-weight: bold;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        /* CTA Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 15px 30px;
-            font-size: 1.1em;
-            font-weight: bold;
-            text-decoration: none;
-            border: 2px solid;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.5s ease;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        /* Amazon-style button */
-        .btn-amazon {
-            background: linear-gradient(45deg, #ff9900, #ffb347);
-            color: #000;
-            border-color: #ff9900;
-            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
-            font-weight: bold;
-            font-size: 1em;
-            white-space: nowrap;
-            display: inline-block;
-            min-width: 280px;
-            text-align: center;
-        }
-        
-        .btn-amazon:hover {
-            background: linear-gradient(45deg, #ffb347, #ffc266);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 153, 0, 0.5);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: #00ff00;
-            border-color: #00ff00;
-            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.2);
-        }
-        
-        .btn-secondary:hover {
-            background: #00ff00;
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0, 255, 0, 0.4);
-        }
-        
-        /* Content Sections */
-        .section {
-            padding: 100px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .section h2 {
-            font-size: 3em;
-            margin-bottom: 30px;
-            text-align: center;
-            background: linear-gradient(45deg, #ff0000, #ffffff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .section p {
-            font-size: 1.2em;
-            line-height: 1.8;
-            color: #cccccc;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .hero .author-eyebrow {
-            font-size: 1em;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #e8e8e8;
-            margin-bottom: 18px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,.9);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood, Dirt &amp; Duct Tape — Medic Team One, LLC</title>
+<meta name="description" content="Blood, Dirt &amp; Duct Tape: A Combat Medic's Legacy — by Jacob Ross, National Guard combat medic and founder of Medic Team One.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=2">
+<style>
+/* ===== book page ===== */
+.bk-hero{
+  position:relative; overflow:hidden; padding-block:0;
+  background:var(--ink); color:var(--bone);
+  border-bottom:1px solid #33383D;
+}
+.bk-hero::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(120% 90% at 78% 15%, rgba(198,84,74,.20), transparent 60%),
+    radial-gradient(90% 70% at 10% 90%, rgba(123,163,157,.12), transparent 60%);
+}
+.bk-hero .wrap{position:relative;}
+.bk-grid{
+  display:grid; grid-template-columns:1.25fr .75fr; gap:var(--gap-lg);
+  align-items:center; padding-block:var(--gap-lg) var(--gap-xl);
+}
+.bk-eyebrow{
+  font-family:var(--mono); font-size:.76rem; letter-spacing:.16em;
+  text-transform:uppercase; color:#C6544A; margin:0 0 1.4rem;
+}
+.bk-eyebrow::before{content:"—— "; opacity:.6;}
+.bk-title{
+  font-family:var(--serif); font-weight:500; line-height:.98;
+  font-size:clamp(2.7rem,6.4vw,5rem); letter-spacing:-.02em;
+  margin:0 0 1rem; color:var(--bone);
+}
+.bk-title em{font-style:italic; color:#C6544A; display:block;}
+.bk-sub{
+  font-family:var(--mono); font-size:.82rem; letter-spacing:.1em;
+  text-transform:uppercase; color:#A79E90; margin:0 0 2.2rem;
+}
+.bk-hero .actions{display:flex; gap:1rem; flex-wrap:wrap; margin-top:.4rem;}
+.bk-hero .btn{border-color:#4a5055; color:var(--bone);}
+.bk-hero .btn-solid{background:#C6544A; border-color:#C6544A; color:#20100E;}
+.bk-meta{
+  margin-top:2.2rem; font-family:var(--mono); font-size:.72rem;
+  letter-spacing:.08em; text-transform:uppercase; color:#8d8578;
+  display:flex; gap:1.6rem; flex-wrap:wrap;
+}
 
-        /* keep anchor targets clear of the sticky header */
-        #book, #author, #framework { scroll-margin-top: 110px; }
+/* cover presented as a physical object, at a size its resolution supports */
+.bk-cover{justify-self:center; perspective:1400px;}
+.bk-cover-inner{
+  position:relative; width:min(298px,72vw); transform:rotateY(-13deg) rotateX(2deg);
+  transition:transform .6s var(--ease);
+  box-shadow:0 34px 60px -18px rgba(0,0,0,.85), 0 4px 14px rgba(0,0,0,.5);
+}
+.bk-cover-inner:hover{transform:rotateY(-6deg) rotateX(1deg);}
+.bk-cover img{display:block; width:100%; height:auto; border-radius:1px 3px 3px 1px;}
+.bk-cover-inner::after{ /* spine shading */
+  content:""; position:absolute; inset:0 auto 0 0; width:16px;
+  background:linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.05));
+  border-radius:1px 0 0 1px; pointer-events:none;
+}
 
-        /* Author's Note */
-        .author-note {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 50px;
-            align-items: start;
-            max-width: 1100px;
-            margin: 0 auto 70px;
-        }
-        .author-portrait {
-            position: relative;
-            aspect-ratio: 1/1;
-            border-radius: 4px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.14);
-        }
-        .author-portrait img {
-            position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            object-fit: cover; display: block;
-        }
-        .author-portrait figcaption {
-            position: absolute; left: 0; right: 0; bottom: 0;
-            padding: 10px 12px;
-            font-size: .72em; letter-spacing: .06em; text-transform: uppercase;
-            color: #f1ece3;
-            background: linear-gradient(0deg, rgba(0,0,0,.72), transparent);
-        }
-        .author-note .note-body p {
-            text-align: left;
-            font-size: 1.15em;
-            line-height: 1.75;
-            color: #d8d8d8;
-            margin-bottom: 20px;
-        }
-        .author-note .note-lede {
-            font-size: 1.3em !important;
-            color: #fff !important;
-        }
-        .author-note .note-vow {
-            font-size: 1.25em !important;
-            color: #fff !important;
-            font-style: italic;
-            border-left: 3px solid rgba(255,0,0,.55);
-            padding-left: 18px;
-            margin-top: 30px !important;
-        }
-        .author-note .note-sign {
-            font-size: .95em !important;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            color: #9a9a9a !important;
-            margin-top: 18px !important;
-        }
-        @media (max-width: 820px) {
-            .author-note { grid-template-columns: 1fr; gap: 28px; }
-            .author-portrait { max-width: 320px; }
-        }
+/* the vow, as a full-bleed statement */
+.bk-vow{
+  background:var(--surface); border-block:1px solid var(--border);
+  padding-block:var(--gap-lg); text-align:center;
+}
+.bk-vow blockquote{
+  margin:0 auto; max-width:46rem;
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(1.7rem,3.8vw,3rem); line-height:1.15; letter-spacing:-.01em;
+  color:var(--text);
+}
+.bk-vow cite{
+  display:block; margin-top:1.6rem; font-family:var(--mono); font-style:normal;
+  font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dim);
+}
 
-        /* Book Showcase */
-        .book-showcase {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 50px;
-            align-items: center;
-            margin-top: 50px;
-        }
-        
-        .book-cover {
-            width: 300px;
-            height: 450px;
-            background-image: url('book-cover.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: 3px solid #ff0000;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #fff;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            animation: bookFloat 6s ease-in-out infinite;
-        }
-        
-        @keyframes bookFloat {
-            0%, 100% { transform: translateY(0px) rotateY(0deg); }
-            50% { transform: translateY(-10px) rotateY(5deg); }
-        }
-        
-        .book-cover:hover {
-            transform: scale(1.05) rotateY(10deg);
-            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.5);
-        }
-        
-        .book-info h3 {
-            font-size: 2em;
-            color: #ff0000;
-            margin-bottom: 20px;
-        }
-        
-        .book-info p {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        
-        /* Amazon Note */
-        .amazon-note {
-            background: rgba(255, 153, 0, 0.1);
-            border: 1px solid rgba(255, 153, 0, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            text-align: center;
-            font-size: 0.9em;
-            color: #cccccc;
-        }
-        
-        /* Features Grid */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 80px;
-        }
-        
-        .feature-card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 0, 0, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
-            opacity: 0;
-        }
-        
-        .feature-card:hover::before {
-            opacity: 1;
-            animation: cardSweep 1s ease-in-out;
-        }
-        
-        @keyframes cardSweep {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 0, 0, 0.8);
-            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.3);
-        }
-        
-        .feature-card h4 {
-            font-size: 1.5em;
-            color: #ff0000;
-            margin-bottom: 15px;
-        }
+/* author's note */
+.bk-note{display:grid; grid-template-columns:300px 1fr; gap:var(--gap-lg); align-items:start;}
+.bk-portrait{position:relative; aspect-ratio:1/1; overflow:hidden; border-radius:2px; border:1px solid var(--border);}
+.bk-portrait img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+.bk-portrait figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:.7rem .9rem;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase;
+  color:#F1ECE3; background:linear-gradient(0deg, rgba(0,0,0,.72), transparent);
+}
+.bk-note p{margin:0 0 1.1rem; font-size:1.05rem; line-height:1.75;}
+.bk-note .lede{font-size:1.2rem; color:var(--text);}
+.bk-note .sign{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--text-dim); margin-top:1.4rem;
+}
 
-        .feature-card p {
-            color: #fff;
-        }
-        
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, #111, #000);
-            border-top: 2px solid rgba(255, 0, 0, 0.3);
-            padding: 50px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .footer h3 {
-            color: #ff0000;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        
-        .footer p {
-            color: #cccccc;
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-        
-        .motto {
-            font-size: 1.5em;
-            color: #ff0000;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-            }
-            
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5em;
-            }
-            
-            .book-showcase {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .book-cover {
-                margin: 0 auto;
-            }
-            
-            .section {
-                padding: 50px 20px;
-            }
-            
-            .btn {
-                font-size: 0.9em;
-                padding: 12px 20px;
-                min-width: 250px;
-                white-space: normal;
-                line-height: 1.2;
-            }
-            
-            .btn-amazon {
-                font-size: 0.9em;
-                min-width: 250px;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+/* three pillars */
+.bk-pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border);
+  border:1px solid var(--border); margin-top:var(--gap-lg);}
+.bk-pillars > div{background:var(--bg); padding:2rem 1.7rem;}
+.bk-pillars h3{
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); margin:0 0 .9rem; font-weight:500;
+}
+.bk-pillars p{margin:0; color:var(--text-dim); line-height:1.7; font-size:.97rem;}
+
+/* dedication */
+.bk-dedication{
+  text-align:center; padding-block:var(--gap-lg);
+  border-top:1px solid var(--border);
+}
+.bk-dedication .tag{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--text-dim); margin:0 0 1.2rem;
+}
+.bk-dedication .name{
+  font-family:var(--serif); font-size:clamp(1.4rem,3vw,2.1rem); line-height:1.3;
+  margin:0 auto; max-width:38rem; color:var(--text);
+}
+
+/* closing CTA */
+.bk-cta{
+  position:relative; overflow:hidden;
+  background:var(--ink); color:var(--bone); text-align:center;
+  padding-block:var(--gap-lg);
+  border-block:1px solid #33383D;
+}
+.bk-cta::before{ /* keeps the band readable as a band in dark theme too */
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(90% 120% at 50% 0%, rgba(198,84,74,.16), transparent 65%);
+}
+.bk-cta .wrap{position:relative;}
+.bk-cta h2{
+  font-family:var(--serif); font-weight:500; font-size:clamp(1.7rem,4vw,2.7rem);
+  line-height:1.1; margin:0 0 1rem; color:var(--bone);
+}
+.bk-cta p{color:#A79E90; max-width:34rem; margin:0 auto 2rem;}
+.bk-cta .btn-solid{background:#C6544A; border-color:#C6544A; color:#20100E;}
+.bk-cta .fine{
+  margin-top:1.8rem; font-size:.82rem; color:#8d8578; max-width:40rem;
+  margin-left:auto; margin-right:auto;
+}
+
+@media (max-width:900px){
+  .bk-grid{grid-template-columns:1fr; gap:var(--gap-md); padding-block:var(--gap-lg);}
+  .bk-cover{justify-self:start;}
+  .bk-cover-inner{transform:none;}
+  .bk-note{grid-template-columns:1fr; gap:var(--gap-md);}
+  .bk-portrait{max-width:320px;}
+  .bk-pillars{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <div class="background"></div>
-    
-    <!-- Particle System -->
-    <div class="particles"></div>
-    
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">BDDT</div>
-            <ul class="nav-links">
-                <li><a href="#book">The Book</a></li>
-                <li><a href="#author">Author</a></li>
-                <li><a href="#framework">Framework</a></li>
-                <li><a href="index.html">Training</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="author-eyebrow">Jacob Ross &middot; Combat Medic, Author</p>
-            <h1>BLOOD, DIRT &amp; DUCT TAPE</h1>
-            <p class="subtitle">A Combat Medic's Legacy</p>
-            <p class="subtitle" style="font-style:italic; color:#fff;">&ldquo;Never again will I run without readiness.&rdquo;</p>
-            <div class="cta-buttons">
-                <a href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?utm_source=medicteamone&utm_medium=website&utm_campaign=book_launch" class="btn btn-amazon" target="_blank">Buy on Amazon – Support Veteran Medicine</a>
-                <a href="https://medicteamone.com" class="btn btn-secondary" target="_blank">Medic Training</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Book Section -->
-    <section class="section" id="book">
-        <h2>Why I Wrote It</h2>
 
-        <!-- Author's Note -->
-        <div class="author-note" id="author">
-            <figure class="author-portrait">
-                <img src="assets/img/instructor-portrait-800.webp"
-                     srcset="assets/img/instructor-portrait-600.webp 600w,
-                             assets/img/instructor-portrait-800.webp 800w,
-                             assets/img/instructor-portrait-1200.webp 1200w"
-                     sizes="(max-width: 820px) 80vw, 300px"
-                     width="1500" height="1500" loading="lazy" decoding="async"
-                     alt="Jacob Ross in combat uniform and helmet during deployment in Afghanistan."
-                     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
-                <figcaption>Afghanistan &mdash; deployment</figcaption>
-            </figure>
-
-            <div class="note-body">
-                <p class="note-lede">I'm Jacob Ross. I served as a combat medic in Afghanistan, I'm a Sergeant First Class in the Army National Guard, and I founded Medic Team One to teach civilians what I learned out there.</p>
-
-                <p>This book started with a near-tragedy involving my son. It was finished by what I saw in Afghanistan. Between those two things, everything I believed about being ready changed.</p>
-
-                <p>I wrote it for Pfc. Andrew J. Keller, and for the others who didn't come home. It deals with loss, guilt, and readiness &mdash; not as ideas, but as the things that decide whether somebody lives.</p>
-
-                <p>Twenty thousand words. Part of it is what I carry. The rest is doctrine you can actually use: cache systems, Speedball resupply, the 8-Bag SOP.</p>
-
-                <p class="note-vow">Never again will I run without readiness.</p>
-                <p class="note-sign">&mdash; Jacob Ross, service-disabled combat medic</p>
-            </div>
-        </div>
-        
-        <div class="book-showcase">
-            <div class="book-cover">
-                <!-- Book cover image will display as background -->
-            </div>
-            <div class="book-info">
-                <h3>What's Inside</h3>
-                <p>Twenty thousand words, split between the things I carried out of Afghanistan and the doctrine I built from them. It's not a textbook and it isn't a memoir &mdash; it's what I learned, written down so somebody else doesn't have to learn it the same way.</p>
-                <p>It's dedicated to <strong>Pfc. Andrew J. Keller</strong> and the other soldiers we lost. I write about near-death, about the calls I got wrong, and about improvising when the right answer wasn't available.</p>
-                <p>The through-line is how my thinking changed &mdash; from a near-tragedy with my son, through combat deaths in Afghanistan, to the systems I teach now: <strong>cache systems, Speedball resupply, and the 8-Bag SOP</strong>.</p>
-                <p>If you take one thing from it, take this: turn trauma into training, memories into doctrine, and silence into survival.</p>
-                
-                <div class="amazon-note">
-                    <em>When you buy through Amazon, they handle the transaction, tax, and fulfillment - you receive the book and support the movement to transform veteran trauma into civilian preparedness doctrine.</em>
-                </div>
-                
-                <a href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?utm_source=medicteamone&utm_medium=website&utm_campaign=book_launch" class="btn btn-amazon" target="_blank">Buy on Amazon – Support Veteran Medicine</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Features -->
-    <div class="features" id="framework">
-        <div class="feature-card">
-            <h4>The Medicine</h4>
-            <p>The procedures I actually used in Afghanistan, rewritten for people who aren't medics and won't have a team behind them.</p>
-        </div>
-        <div class="feature-card">
-            <h4>The Cost</h4>
-            <p>What it took to learn this, and what I still carry from it. The parts most manuals leave out.</p>
-        </div>
-        <div class="feature-card">
-            <h4>The Systems</h4>
-            <p>Cache systems, Speedball resupply, the 8-Bag SOP &mdash; the doctrine I built so I'd never be caught unready again.</p>
-        </div>
+<header>
+  <div class="wrap nav">
+    <a class="word" href="index.html">MEDIC TEAM <b>ONE</b></a>
+    <ul class="navlinks">
+      <li><a href="training.html">Training</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="doctrine.html">Doctrine</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="book.html" aria-current="page">Book</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="navcta">
+      <a class="btn btn-solid" href="index.html#contact">Reserve Training</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="motto">Never Again Will I Run Without Readiness</div>
-            <h3>From Combat Trauma to Field Doctrine</h3>
-            <p>I turned what happened to me into something teachable. That's the whole point of the book.</p>
-            <p><strong>Jacob Ross</strong> &mdash; Combat Medic, Author, Founder of Medic Team One</p>
+  </div>
+  <nav class="mobilemenu" id="mobileMenu">
+    <a href="training.html">Training</a>
+    <a href="about.html">About</a>
+    <a href="doctrine.html">Doctrine</a>
+    <a href="resources.html">Resources</a>
+    <a href="book.html">Book</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- hero -->
+  <section class="bk-hero">
+    <div class="wrap">
+      <div class="bk-grid">
+        <div>
+          <p class="bk-eyebrow">A book by Jacob Ross &middot; Combat Medic</p>
+          <h1 class="bk-title">Blood, Dirt<br>&amp; Duct Tape:<em>a combat medic&rsquo;s legacy.</em></h1>
+          <p class="bk-sub">Twenty thousand words &middot; Written in the field, not the classroom</p>
+          <div class="actions">
+            <a class="btn btn-solid" href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?utm_source=medicteamone&amp;utm_medium=website&amp;utm_campaign=book_launch" target="_blank" rel="noopener">Buy on Amazon</a>
+            <a class="btn" href="#note">Why I wrote it</a>
+          </div>
+          <div class="bk-meta">
+            <span>Trauma into training</span>
+            <span>Memories into doctrine</span>
+            <span>Silence into survival</span>
+          </div>
         </div>
-    </footer>
-    
-    <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Random size
-                const size = Math.random() * 4 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                // Random position
-                particle.style.left = Math.random() * 100 + '%';
-                
-                // Random animation delay
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                
-                // Random animation duration
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(0, 0, 0, 0.95)';
-                header.style.backdropFilter = 'blur(15px)';
-            } else {
-                header.style.background = 'rgba(0, 0, 0, 0.8)';
-                header.style.backdropFilter = 'blur(10px)';
-            }
-        });
-        
-        // Initialize
-        createParticles();
-        
-        // Mouse cursor effect
-        document.addEventListener('mousemove', (e) => {
-            const cursor = document.createElement('div');
-            cursor.style.position = 'fixed';
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursor.style.width = '4px';
-            cursor.style.height = '4px';
-            cursor.style.background = 'rgba(255, 0, 0, 0.6)';
-            cursor.style.borderRadius = '50%';
-            cursor.style.pointerEvents = 'none';
-            cursor.style.zIndex = '10000';
-            cursor.style.animation = 'cursorFade 1s ease-out forwards';
-            
-            document.body.appendChild(cursor);
-            
-            setTimeout(() => {
-                cursor.remove();
-            }, 1000);
-        });
-        
-        // Add cursor fade animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes cursorFade {
-                0% { opacity: 1; transform: scale(1); }
-                100% { opacity: 0; transform: scale(2); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+        <div class="bk-cover">
+          <div class="bk-cover-inner">
+            <img src="assets/img/book-cover-298.webp" width="298" height="445" decoding="async"
+                 alt="Cover of Blood, Dirt &amp; Duct Tape: A Combat Medic's Legacy by Jacob Ross.">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- the vow -->
+  <section class="bk-vow">
+    <div class="wrap">
+      <blockquote>&ldquo;Never again will I run without readiness.&rdquo;</blockquote>
+      <cite>The line the book was built around</cite>
+    </div>
+  </section>
+
+  <!-- author's note -->
+  <section class="section" id="note">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The author</p>
+        <h2>Why I wrote it</h2>
+      </div>
+      <div class="bk-note reveal">
+        <figure class="bk-portrait">
+          <img src="assets/img/instructor-portrait-800.webp"
+               srcset="assets/img/instructor-portrait-600.webp 600w,
+                       assets/img/instructor-portrait-800.webp 800w,
+                       assets/img/instructor-portrait-1200.webp 1200w"
+               sizes="(max-width: 900px) 80vw, 300px"
+               width="1500" height="1500" loading="lazy" decoding="async"
+               alt="Jacob Ross in combat uniform and helmet during deployment in Afghanistan.">
+          <figcaption>Afghanistan &mdash; deployment</figcaption>
+        </figure>
+        <div>
+          <p class="lede">I&rsquo;m Jacob Ross. I served as a combat medic in Afghanistan, I&rsquo;m a Sergeant First Class in the Army National Guard, and I founded Medic Team One to teach civilians what I learned out there.</p>
+          <p>This book started with a near-tragedy involving my son. It was finished by what I saw in Afghanistan. Between those two things, everything I believed about being ready changed.</p>
+          <p>I wrote it for Pfc. Andrew J. Keller, and for the others who didn&rsquo;t come home. It deals with loss, guilt, and readiness &mdash; not as ideas, but as the things that decide whether somebody lives.</p>
+          <p>Part of it is what I carry. The rest is doctrine you can actually use.</p>
+          <p class="sign">&mdash; Jacob Ross, service-disabled combat medic</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- what's inside -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Inside</p>
+        <h2>What&rsquo;s in it</h2>
+        <p class="lede" style="margin-top:.7rem;">Twenty thousand words, split between the things I carried out of Afghanistan and the doctrine I built from them. Not a textbook, not a memoir &mdash; what I learned, written down so somebody else doesn&rsquo;t have to learn it the same way.</p>
+      </div>
+      <div class="bk-pillars reveal">
+        <div>
+          <h3>The Medicine</h3>
+          <p>The procedures I actually used in Afghanistan, rewritten for people who aren&rsquo;t medics and won&rsquo;t have a team behind them.</p>
+        </div>
+        <div>
+          <h3>The Cost</h3>
+          <p>What it took to learn this, and what I still carry from it. The parts most manuals leave out.</p>
+        </div>
+        <div>
+          <h3>The Systems</h3>
+          <p>Cache systems, Speedball resupply, the 8-Bag SOP &mdash; the doctrine I built so I&rsquo;d never be caught unready again.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- dedication -->
+  <section class="bk-dedication">
+    <div class="wrap">
+      <p class="tag">Dedicated to</p>
+      <p class="name">Pfc. Andrew J. Keller, and the other soldiers we lost.</p>
+    </div>
+  </section>
+
+  <!-- closing CTA -->
+  <section class="bk-cta">
+    <div class="wrap">
+      <h2>Turn trauma into training.</h2>
+      <p>If you take one thing from the book, take that.</p>
+      <a class="btn btn-solid" href="https://www.amazon.com/Blood-Dirt-Duct-tape-Combat/dp/B0FKGH8WYP/ref=sr_1_3?utm_source=medicteamone&amp;utm_medium=website&amp;utm_campaign=book_launch" target="_blank" rel="noopener">Buy on Amazon</a>
+      <p class="fine">Amazon handles the transaction, tax and fulfillment. You receive the book, and you support the work of turning veteran experience into civilian preparedness training.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="word" href="index.html">MEDIC TEAM <b>ONE</b></a>
+        <p style="margin-top:1rem; color:var(--text-dim); max-width:26rem; font-size:.95rem;">Bridging battlefield medicine and civilian preparedness. Montgomery County, Texas.</p>
+      </div>
+      <p class="foot-legal">
+        <strong>Blood, Dirt &amp; Duct Tape</strong> is a personal account and training reflection, not a substitute for accredited medical education or professional medical advice. Techniques described are drawn from military field experience; civilian readers should seek qualified instruction before applying them.
+      </p>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Medic Team One, LLC</span>
+      <ul class="foot-links">
+        <li><a href="waiver.html">Waiver</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
 </body>
 </html>

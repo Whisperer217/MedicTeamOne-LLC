@@ -203,7 +203,9 @@ section.tight{padding-block:var(--gap-lg);}
 
 /* ---------- pull-quote ---------- */
 .pullquote{border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding-block:var(--gap-lg);}
-.pullquote blockquote{margin:0; font-family:var(--serif); font-style:italic; font-size:clamp(1.4rem,3vw,2.1rem); max-width:42rem; color:var(--text);}
+.pullquote blockquote,
+.pullquote .statement{margin:0; font-family:var(--serif); font-style:italic; font-size:clamp(1.4rem,3vw,2.1rem); max-width:42rem; color:var(--text);}
+.pullquote .eyebrow{margin-bottom:1.1rem;}
 .pullquote cite{display:block; margin-top:1.2rem; font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; font-style:normal; color:var(--text-dim);}
 
 /* ---------- training tracks ---------- */

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Medic Team One, LLC</title>
+    <meta name="description" content="How Medic Team One collects, uses, shares, and protects training inquiry information.">
+    <link rel="canonical" href="https://medicteamone.com/privacy.html">
     <style>
         * {
             margin: 0;
@@ -62,7 +64,7 @@
             content: '✚';
         }
 
-        .logo-text h1 {
+        .logo-text .logo-name {
             font-size: 1rem;
             font-weight: bold;
             color: #dc2626;
@@ -213,16 +215,38 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* accessibility: skip to content */
+        .skip-link {
+            position: fixed;
+            left: 1rem;
+            top: 1rem;
+            z-index: 200;
+            padding: 0.75rem 1rem;
+            background: #14171A;
+            color: #fff;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 2px;
+            transform: translateY(-180%);
+            transition: transform 0.2s ease;
+        }
+        .skip-link:focus {
+            transform: translateY(0);
+            outline: 2px solid #D05F55;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo-section">
                 <div class="logo-icon"></div>
                 <div class="logo-text">
-                    <h1>Medic Team One, LLC</h1>
+                    <div class="logo-name">Medic Team One, LLC</div>
                     <p>Legal Documents</p>
                 </div>
             </div>
@@ -231,33 +255,33 @@
     </nav>
 
     <!-- Privacy Policy Content -->
-    <div class="privacy-container">
+    <main id="main-content" class="privacy-container">
         <div class="privacy-header">
             <h1 class="privacy-title">Privacy Policy</h1>
             <p class="privacy-subtitle">Medic Team One, LLC</p>
             <div class="effective-date">
-                <strong>Effective Date:</strong> August 2025
+                <strong>Effective Date:</strong> September 2026
             </div>
         </div>
 
         <div class="policy-section">
             <h2 class="section-title">1. Information We Collect</h2>
             <div class="section-content">
-                <p>We collect personal information that you provide directly to us when registering for training, completing waivers, or making payments. This may include your name, phone number, email address, and payment details (processed through secure third-party providers).</p>
+                <p>We collect information that you provide when requesting training or contacting us, including your name, email address, optional phone number, selected training option, preferred timing, group size, location details, and any other information you choose to include. If training is confirmed, we may separately collect information needed for waivers, records, or payment.</p>
             </div>
         </div>
 
         <div class="policy-section">
             <h2 class="section-title">2. How We Use Your Information</h2>
             <div class="section-content">
-                <p>We use the information you provide to register you for courses, communicate about training, process payments, and maintain training records. We do not sell or rent your personal information to third parties.</p>
+                <p>We use this information to respond to inquiries, propose and confirm training arrangements, communicate about a session, process an agreed payment, and maintain appropriate business and training records. We do not sell or rent personal information.</p>
             </div>
         </div>
 
         <div class="policy-section">
             <h2 class="section-title">3. Third-Party Services</h2>
             <div class="section-content">
-                <p>We use trusted third-party providers such as payment processors (Stripe, Square, PayPal) to handle sensitive payment information. We do not store or control your full credit card information.</p>
+                <p>The training inquiry form is processed by <a href="https://formspree.io/legal/privacy-policy/" rel="external">Formspree</a>, which receives the information submitted through that form so it can be delivered to Medic Team One. If payment is arranged, the applicable payment provider will process payment information under its own privacy policy. Medic Team One does not receive or store a full payment-card number through the website inquiry form.</p>
             </div>
         </div>
 
@@ -271,7 +295,7 @@
         <div class="policy-section">
             <h2 class="section-title">5. Your Rights</h2>
             <div class="section-content">
-                <p>You may request access to, correction of, or deletion of your personal information by contacting us at <a href="mailto:jacob@medicteamone.com">jacob@medicteamone.com</a>.</p>
+                <p>You may request access to, correction of, or deletion of information held by Medic Team One by contacting us at <a href="mailto:jacob@medicteamone.com">jacob@medicteamone.com</a>. Some records may need to be retained where required for legal, safety, or legitimate business purposes.</p>
             </div>
         </div>
 
@@ -305,6 +329,6 @@
                 🏠 Return to Training Information
             </a>
         </div>
-    </div>
+    </main>
 </body>
 </html>

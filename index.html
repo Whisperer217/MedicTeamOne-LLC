@@ -4,12 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medic Team One, LLC — Combat-Proven Training for Civilian Readiness</title>
+<meta name="description" content="Hands-on civilian trauma training in Montgomery County, Texas. Learn bleeding control, basic airway management, and chest-seal application from combat medic Jacob Ross.">
+<link rel="canonical" href="https://medicteamone.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Medic Team One, LLC">
+<meta property="og:title" content="Medic Team One — Civilian Trauma Training">
+<meta property="og:description" content="Hands-on civilian trauma training in Montgomery County, Texas, led by combat medic Jacob Ross.">
+<meta property="og:url" content="https://medicteamone.com/">
+<meta property="og:image" content="https://medicteamone.com/assets/img/deployment-hero-1136.webp">
+<meta property="og:image:alt" content="Jacob Ross during deployment in Afghanistan.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14171A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css?v=2">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Medic Team One, LLC",
+  "url": "https://medicteamone.com/",
+  "telephone": "+1-936-217-7703",
+  "email": "jacob@medicteamone.com",
+  "description": "Hands-on civilian trauma preparedness training in Montgomery County, Texas.",
+  "areaServed": {"@type": "AdministrativeArea", "name": "Montgomery County, Texas"},
+  "founder": {"@type": "Person", "name": "Jacob Ross"}
+}
+</script>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <header>
   <div class="wrap nav">
@@ -18,26 +44,26 @@
       <li><a href="training.html">Training</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="doctrine.html">Doctrine</a></li>
-      <li><a href="resources.html">Resources</a></li>
+      <li><a href="resources.html">Capabilities</a></li>
       <li><a href="book.html">Book</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="navcta">
-      <a class="btn btn-solid" href="#contact">Reserve Training</a>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <a class="btn btn-solid" href="#contact">Request a date</a>
+      <button class="burger" id="burger" aria-label="Open navigation" aria-controls="mobileMenu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
   <nav class="mobilemenu" id="mobileMenu">
     <a href="training.html">Training</a>
     <a href="about.html">About</a>
     <a href="doctrine.html">Doctrine</a>
-    <a href="resources.html">Resources</a>
+    <a href="resources.html">Capabilities</a>
     <a href="book.html">Book</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<main id="top">
+<main id="main-content">
 
   <section class="hero">
     <div class="wrap hero-grid">
@@ -49,7 +75,7 @@
           <a class="btn btn-solid" href="training.html">See training options</a>
           <a class="btn" href="#contact">Ask a question</a>
         </div>
-        <p class="legal-pill">Protected under Texas Good Samaritan law (Tex. Civ. Prac. &amp; Rem. Code §74.151). Certificates include legal notation.</p>
+        <p class="legal-pill">Texas law may limit civil liability for qualifying good-faith emergency assistance. Protections depend on the circumstances; training does not guarantee legal immunity.</p>
       </div>
       <div class="reveal">
         <div class="photo-well ambient has-photo">
@@ -113,17 +139,17 @@
     </div>
   </section>
 
-  <section class="pullquote tight">
+  <section class="pullquote tight" aria-label="Teaching philosophy">
     <div class="wrap reveal">
-      <blockquote>“Every technique I teach has been tested under fire. This isn't theory – it's what works when someone's life is in your hands and seconds matter.”</blockquote>
-      <cite>— Jacob Ross, Combat Medic Instructor</cite>
+      <blockquote>“Operational experience shaped the way I teach: build calm, practice the sequence, and be ready to act when seconds matter.”</blockquote>
+      <cite>— Jacob Ross, on his teaching philosophy</cite>
     </div>
   </section>
 
   <section id="contact">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Reserve Training</p>
+        <p class="eyebrow">Request Training</p>
         <h2>Tell us what you need.</h2>
         <p>We'll follow up to confirm your training option and schedule it around your availability.</p>
       </div>
@@ -147,19 +173,20 @@
           </fieldset>
 
           <div class="field-row">
-            <div><label for="fn">First name *</label><input id="fn" name="first_name" required></div>
-            <div><label for="ln">Last name *</label><input id="ln" name="last_name" required></div>
+            <div><label for="fn">First name *</label><input id="fn" name="first_name" autocomplete="given-name" required></div>
+            <div><label for="ln">Last name *</label><input id="ln" name="last_name" autocomplete="family-name" required></div>
           </div>
           <div class="field-row">
-            <div><label for="em">Email *</label><input id="em" type="email" name="email" required></div>
-            <div><label for="ph">Phone *</label><input id="ph" type="tel" name="phone" required></div>
+            <div><label for="em">Email *</label><input id="em" type="email" name="email" autocomplete="email" required></div>
+            <div><label for="ph">Phone (optional)</label><input id="ph" type="tel" name="phone" autocomplete="tel"></div>
           </div>
           <div>
             <label for="add">Additional information (optional)</label>
             <textarea id="add" name="additional_info" rows="3" placeholder="Preferred timing, location details, group size, or specific training needs..."></textarea>
           </div>
-          <button class="btn btn-solid" type="submit">Reserve my training</button>
-          <p class="formnote">We'll contact you within 24 hours to confirm your training option, scheduling, and provide venue details. Payment is due upon confirmation.</p>
+          <button class="btn btn-solid" type="submit">Request a training date</button>
+          <p class="formnote">We'll contact you within 24 hours to discuss scheduling and venue details. Submitting this form is an inquiry, not a confirmed reservation. Payment is due only after you approve the details.</p>
+          <p class="formnote">This form is processed by Formspree. Review our <a href="privacy.html">Privacy Policy</a> for how inquiry information is handled.</p>
         </form>
       </div>
     </div>
@@ -174,7 +201,7 @@
         <p style="margin-top:1rem; color:var(--text-dim); max-width:26rem; font-size:.95rem;">Bridging battlefield medicine and civilian preparedness. Montgomery County, Texas.</p>
       </div>
       <p class="foot-legal">
-        <strong>Civilian Responder One (Basic)</strong> is a preparedness training program, not a state or nationally recognized EMS certification. Participation does not authorize attendees to represent themselves as licensed medical providers. Under Texas law (Tex. Civ. Prac. &amp; Rem. Code §74.151 — Good Samaritan Act), individuals who in good faith provide emergency aid are protected from liability except in cases of willful or wanton negligence.
+        <strong>Civilian Responder One (Basic)</strong> is a Medic Team One preparedness program, not a state or nationally recognized EMS certification. Participation does not authorize attendees to represent themselves as licensed medical providers. Texas Civil Practice &amp; Remedies Code §74.151 may limit civil liability for qualifying good-faith emergency care; application depends on the circumstances, and training does not guarantee legal immunity.
       </p>
     </div>
     <div class="foot-bottom">

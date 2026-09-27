@@ -215,9 +215,31 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* accessibility: skip to content */
+        .skip-link {
+            position: fixed;
+            left: 1rem;
+            top: 1rem;
+            z-index: 200;
+            padding: 0.75rem 1rem;
+            background: #14171A;
+            color: #fff;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 2px;
+            transform: translateY(-180%);
+            transition: transform 0.2s ease;
+        }
+        .skip-link:focus {
+            transform: translateY(0);
+            outline: 2px solid #D05F55;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -233,7 +255,7 @@
     </nav>
 
     <!-- Privacy Policy Content -->
-    <main class="privacy-container">
+    <main id="main-content" class="privacy-container">
         <div class="privacy-header">
             <h1 class="privacy-title">Privacy Policy</h1>
             <p class="privacy-subtitle">Medic Team One, LLC</p>

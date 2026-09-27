@@ -224,9 +224,31 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* accessibility: skip to content */
+        .skip-link {
+            position: fixed;
+            left: 1rem;
+            top: 1rem;
+            z-index: 200;
+            padding: 0.75rem 1rem;
+            background: #14171A;
+            color: #fff;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 2px;
+            transform: translateY(-180%);
+            transition: transform 0.2s ease;
+        }
+        .skip-link:focus {
+            transform: translateY(0);
+            outline: 2px solid #D05F55;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -242,7 +264,7 @@
     </nav>
 
     <!-- Terms of Service Content -->
-    <main class="terms-container">
+    <main id="main-content" class="terms-container">
         <div class="terms-header">
             <h1 class="terms-title">Terms of Service</h1>
             <p class="terms-subtitle">Medic Team One, LLC</p>
